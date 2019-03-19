@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.model.service.MemberService;
+import admin.model.service.AdminService;
 import member.model.vo.Member;
 
 /**
@@ -32,7 +32,7 @@ public class MemberManagerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Member> list = new MemberService().selectMemberAll();
+		ArrayList<Member> list = new AdminService().selectMemberAll();
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view = null;
 		if(list.size() > 0) {

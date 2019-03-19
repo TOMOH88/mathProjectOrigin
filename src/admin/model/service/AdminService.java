@@ -9,7 +9,7 @@ import admin.model.dao.MemberDao;
 import admin.model.vo.Admin;
 import member.model.vo.Member;
 
-public class MemberService {
+public class AdminService {
 	private MemberDao mdao = new MemberDao();
 	public Admin loginAdmin(String userId, String password) {
 		Connection conn = getConnection();
