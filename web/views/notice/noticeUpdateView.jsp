@@ -41,7 +41,7 @@ function listView(){
 		<tr height="50">
 			<th>첨부파일</th>
 			<td id="filetd">
-				<% if(notice.getOriginalFileName() != null){ %>
+				<% if(notice.getOriginalFileName() != null && !notice.getOriginalFileName().equals("null")){ %>
 					<%=notice.getOriginalFileName() %>
 				<% }else{ %>
 					첨부파일없음

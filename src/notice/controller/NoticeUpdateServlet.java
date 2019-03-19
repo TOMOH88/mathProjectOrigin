@@ -41,6 +41,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher view = null;
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
@@ -60,10 +61,12 @@ public class NoticeUpdateServlet extends HttpServlet {
 		notice.setWriterName(mrequest.getParameter("writer"));
 		notice.setNoticeContent(mrequest.getParameter("content"));
 		
-		String originalFileName = mrequest.getFilesystemName("upfile");		
+		String oFileName = mrequest.getParameter("ofile");
+		String rFileName = mrequest.getParameter("rfile");
+		
+		String originalFileName = mrequest.getFilesystemName("upfile");
+		
 		if(originalFileName != null) {
-			notice.setOriginalFileName(originalFileName);
-			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			Date currentTime = new Date(System.currentTimeMillis());
 			String renameFileName = sdf.format(currentTime) + originalFileName.substring(originalFileName.indexOf("."));
@@ -83,13 +86,17 @@ public class NoticeUpdateServlet extends HttpServlet {
 				}
 				fin.close();
 				fout.close();
-				
 				originFile.delete();
 			}
+			if(rFileName != null) {
+				(new File(savePath + "\\" +rFileName)).delete();
+			}
+			
+			notice.setOriginalFileName(originalFileName);
 			notice.setRenameFileName(renameFileName);
 		}else {
-			notice.setOriginalFileName(mrequest.getParameter("ofile"));
-			notice.setRenameFileName(mrequest.getParameter("rfile"));
+			notice.setOriginalFileName(oFileName);
+			notice.setRenameFileName(rFileName);
 		}
 		int result = new NoticeService().updateNotice(notice);
 		if(result > 0) {
