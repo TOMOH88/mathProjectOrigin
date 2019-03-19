@@ -12,12 +12,12 @@ public class Member implements Serializable{
 	private String phone;
 	private Date registDate;
 	private Date lastModified;
-	private int branchNo;
+	private String memberLevel;
 	
 	public Member() {}
 
 	public Member(String userId, String userPwd, String userName, String phone, Date registDate, Date lastModified,
-			int branchNo) {
+			String memberLevel) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -25,7 +25,7 @@ public class Member implements Serializable{
 		this.phone = phone;
 		this.registDate = registDate;
 		this.lastModified = lastModified;
-		this.branchNo = branchNo;
+		this.memberLevel = memberLevel;
 	}
 
 	public String getUserId() {
@@ -76,12 +76,12 @@ public class Member implements Serializable{
 		this.lastModified = lastModified;
 	}
 
-	public int getBranchNo() {
-		return branchNo;
+	public String getMemberLevel() {
+		return memberLevel;
 	}
 
-	public void setBranchNo(int branchNo) {
-		this.branchNo = branchNo;
+	public void setmemberLevel(String memberLevel) {
+		this.memberLevel = memberLevel;
 	}
 
 	public static long getSerialversionuid() {
@@ -91,7 +91,7 @@ public class Member implements Serializable{
 	@Override
 	public String toString() {
 		return userId + ", " + userPwd + ", " + userName + ", " + phone + ", " + registDate + ", " + lastModified + ", "
-				+ branchNo;
+				+ memberLevel;
 	}
 	
 	

@@ -53,8 +53,8 @@ public class MemberDao {
 				String phone = rset.getString(4);
 				Date registDate = rset.getDate(5);
 				Date lastModified = rset.getDate(6);
-				int branchNo = rset.getInt(7);
-				member = new Member(userId, userPwd, userName, phone, registDate, lastModified, branchNo);
+				String memberLevel = rset.getString(7);
+				member = new Member(userId, userPwd, userName, phone, registDate, lastModified, memberLevel);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,8 +98,8 @@ public class MemberDao {
 				String phone = rset.getString(4);
 				Date registDate = rset.getDate(5);
 				Date lastModified = rset.getDate(6);
-				int branchNo = rset.getInt(7);
-				list.add(new Member(userId, userPwd, userName, phone, registDate, lastModified, branchNo));
+				String memberLevel = rset.getString(7);
+				list.add(new Member(userId, userPwd, userName, phone, registDate, lastModified, memberLevel));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

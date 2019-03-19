@@ -29,8 +29,8 @@ public class MemberDao {
 				String phone = rset.getString(4);
 				Date registDate = rset.getDate(5);
 				Date lastModified = rset.getDate(6);
-				int branchNo = rset.getInt(7);
-				member = new Member(userId, userPwd, userName, phone, registDate, lastModified, branchNo);
+				String memberLevel = rset.getString(7);
+				member = new Member(userId, userPwd, userName, phone, registDate, lastModified, memberLevel);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,8 +95,8 @@ public class MemberDao {
 				String phone = rset.getString(4);
 				Date registDate = rset.getDate(5);
 				Date lastModified = rset.getDate(6);
-				int branchNo = rset.getInt(7);
-				member = new Member(userId, userPwd, userName, phone, registDate, lastModified, branchNo);
+				String memberLevel = rset.getString(7);
+				member = new Member(userId, userPwd, userName, phone, registDate, lastModified, memberLevel);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -121,6 +121,27 @@ public class MemberDao {
 		}finally {
 			close(pstmt);
 		}
+		return result;
+	}
+
+	public int searchLv(Connection conn, String userId) {
+		int result = 0;
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		String qurey ="select member_level from tb_user where user_id = ?";
+		try {
+			pstmt = conn.prepareStatement(qurey);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+			 result = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println(result);
 		return result;
 	}
 }

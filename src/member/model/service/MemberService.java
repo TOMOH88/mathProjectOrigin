@@ -3,7 +3,6 @@ package member.model.service;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
@@ -49,6 +48,12 @@ public class MemberService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
+		return result;
+	}
+	public int searchLv(String userId) {
+		Connection conn = getConnection();
+		int result = mdao.searchLv(conn, userId);
 		close(conn);
 		return result;
 	}
