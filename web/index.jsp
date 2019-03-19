@@ -47,6 +47,12 @@ $(function() {
 		}
 	});
 });
+$(function() {
+	$("#tac").click(function() {
+		window.open("/math/views/member/TermsAndConditions.jsp","window", "width=500,height=300");
+	});
+});
+
 </script>
 <style rel="stylesheet">
 @charset "UTF-8";
@@ -361,7 +367,8 @@ body .container .content .signup-cont {
 
 						                    <div class="submit-wrap">
 							                        <input type="submit" value="회원가입" class="submit">
-							                        <a href="#" class="more">Terms and conditions</a>
+							                        <a id="tac" class="more">Terms and conditions</a>
+							                        
 						                    </div>
         					        </form>
         					       
