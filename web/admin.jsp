@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String userId = (String)session.getAttribute("userId"); %>
+<% String admin = (String)session.getAttribute("admin"); %>
 <!doctype html>
 <html lang="kr">
 	<head>
@@ -8,45 +8,11 @@
 	<title>감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-<% if(userId != null){%>
-	$(function() {
-		location.href="views/main/main.jsp";
-	});	
-<%}%>
-function checkId() {
-	$.ajax({
-		url: "/math/chkid",
-		type: "post",
-		data: {userid: $("#email2").val()},
-		success: function(data) {
-				console.log("success : "+ data);
-				if(data == "ok"){
-					alert("사용 가능한 아이디입니다.");
-					$("#password2").focus();
-				}else{
-					alert("이미 사용중인 아이디입니다.\n"
-							+"다시 입력하십시요.");
-					$("#email2").select();
-				}
-		},
-		error: function( jqXHR, textStatus, errorThrown) {
-			console.log("error : "+  jqXHR +", "+textStatus+", "+errorThrown);
-		}
-	});
-	return false;
-}
+<% if(admin != null){%>
 $(function() {
-	$("#password3").blur(function() {
-		console.log("포커스 사라짐");
-		var pwd1 = $("#password2").val();
-		var pwd2 = $("#password3").val();
-		if(pwd1 != pwd2){
-			alert("암호와 암호 확인이 일치하지 않습니다.\n"
-					+"다시 입력하십시요.");
-			$("#password2").select();
-		}
-	});
-});
+	location.href="views/main/adminmain.jsp";
+});	
+<%}%>
 </script>
 <style rel="stylesheet">
 @charset "UTF-8";
@@ -325,15 +291,14 @@ body .container .content .signup-cont {
 
 <section class="container">
 		    <article class="half">
-			        <h1>감성수학</h1>
+			        <h1>감성수학 관리자모드</h1>
 			        <div class="tabs">
 				            <span class="tab signin active"><a href="#signin">로그인</a></span>
-				            <span class="tab signup"><a href="#signup">회원가입</a></span>
 			        </div>
 			        <div class="content">
 				            <div class="signin-cont cont">
-					                <form action="/math/login" method="post">
-						                    <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일 주소">
+					                <form action="/math/alogin" method="post">
+						                    <input type="text" name="userid" id="userid" class="inpt" required="required" placeholder="아이디">
 						                    <label for="email">Your email</label>
 						                    <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호">
                 						    <label for="password">Your password</label>
@@ -344,28 +309,7 @@ body .container .content .signup-cont {
 							                        <a href="#" class="more">Forgot your password?</a>
 						                    </div>
         					        </form>
-    				        </div>
-    				        <div class="signup-cont cont">
-                <form action="/math/mjoin" method="post">
-						                    <input type="email" name="email2" id="email2" class="inpt" required="required" placeholder="이메일 주소">
-						                    <button onclick="return checkId();">중복 확인</button>
-						                    <label for="name">Your name</label>
-						                    <input type="password" name="password2" id="password2" class="inpt" required="required" placeholder="비밀번호">
-						                    <label for="password">Your password</label>
-						                    <input type="password" class="inpt" id="password3"required="required" placeholder="비밀번호확인">
-                						    <label for="password">Your password</label>
-                    						<input type="text" name="username" id="username" class="inpt" required="required" placeholder="이름">
-						                    <label for="email">Your email</label>
-						                    <input type="tel" name="phone" id="phone" class="inpt" required="required" placeholder="휴대폰번호">
-						                    <label for="phone">Your phone</label>
-
-						                    <div class="submit-wrap">
-							                        <input type="submit" value="회원가입" class="submit">
-							                        <a href="#" class="more">Terms and conditions</a>
-						                    </div>
-        					        </form>
-        					       
-            </div>
+    				        
 			        </div>
 		    </article>
 		    <div class="half bg"></div>
