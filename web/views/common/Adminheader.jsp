@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String userId = (String)session.getAttribute("userId"); %>
+<%  
+	String adminId = (String)session.getAttribute("admin");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,12 +93,19 @@ $(".hover").mouseleave(
   <div class="box" >
   </div>
   <li class="current"><a href="#" data-hover="Home">감성수학</a></li>
+  <%if(adminId != null){ %>
   <li><a href="/math/nslist"  data-hover="Notice">공지사항</a></li>
-  <li><a href="#" data-hover="FAQ">FAQ</a></li>
+  <li><a href="/math/flist" data-hover="FAQ">FAQ</a></li>
   <li><a href="#" data-hover="QnA">QnA</a></li>
   <li><a href="#" data-hover="Matter">문제</a></li>
-  <li><a href="/math/mmanager" data-hover="My Page">회원 관리</a></li>
+  <li><a href="/math/mmanager" data-hover="My Page">회원관리페이지</a></li>
   <li><a href="/math/alogout" data-hover="logout">로그아웃</a></li>
+  <%}else{ %>
+ 	<script type="text/javascript">
+ 		alert("로그인해주세요");
+ 		location.href="/math/admin.jsp";
+ 	</script>
+  <%} %>
 </ul>
 </body>
 </html>

@@ -36,9 +36,9 @@ window.onpageshow = function(event) {
 		<tr>
 			<th>첨부파일</th>
 			<td>
-				<% if(notice.getOriginalFileName() != null){ %>
+				<% if(notice.getOriginalFileName() != null && !notice.getOriginalFileName().equals("null")){ %>
 					<a href="/math/nfdown?ofile=<%=notice.getOriginalFileName() %>&rfile=<%=notice.getRenameFileName()%>"><%=notice.getOriginalFileName() %></a>
-				<% }else { %>
+				<% }else{ %>
 					첨부파일없음
 				<% } %>
 			</td>
