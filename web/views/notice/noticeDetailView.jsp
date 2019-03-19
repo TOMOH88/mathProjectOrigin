@@ -20,7 +20,6 @@ window.onpageshow = function(event) {
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
 <h1 align="center"><%=notice.getNoticeNo() %>번 상세보기페이지</h1>
-<form action="" method="post" >
 	<table border="1" cellspacing="0" width="600"  height="200" align="center">
 		<tr>
 			<th>제목</th>
@@ -51,6 +50,5 @@ window.onpageshow = function(event) {
 			</td>
 		</tr>
 	</table>
-</form> 
 </body>
 </html>

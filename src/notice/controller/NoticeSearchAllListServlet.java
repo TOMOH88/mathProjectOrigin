@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
@@ -60,7 +63,7 @@ public class NoticeSearchAllListServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view = null;
 		if(nsList.size() > 0) {
-			view = request.getRequestDispatcher("views/notice/noticeListView1.jsp");
+			view = request.getRequestDispatcher("views/notice/noticeListView.jsp");
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
 			request.setAttribute("startPage", startPage);

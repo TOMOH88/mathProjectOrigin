@@ -91,7 +91,7 @@ public class NoticeWriteServlet extends HttpServlet {
 		int result = new NoticeService().insertNoticeWrite(notice);
 		
 		if(result > 0) {
-			response.sendRedirect("/math/nlist");
+			response.sendRedirect("/math/nslist");
 		}else {
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
 			request.setAttribute("message", "글쓰기 실패하였습니다");

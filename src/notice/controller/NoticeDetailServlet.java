@@ -13,16 +13,16 @@ import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeUpdateView
+ * Servlet implementation class NoticeDetailListServlet
  */
-@WebServlet("/nupview")
-public class NoticeUpdateView extends HttpServlet {
+@WebServlet("/ndetail")
+public class NoticeDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateView() {
+    public NoticeDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,20 +33,24 @@ public class NoticeUpdateView extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("no"));
 		
-		Notice notice = new NoticeService().selectNDetail(noticeNo);
+		NoticeService nservice = new NoticeService();
 		
-		response.setContentType("text/html; charset=utf-8");
+		//조회수 1증가 처리
+		nservice.addReadCount(noticeNo);
+		
+		Notice notice = nservice.selectNDetail(noticeNo);
+		
 		RequestDispatcher view = null;
+		response.setContentType("text/html; charset=utf-8");
 		if(notice != null) {
-			view = request.getRequestDispatcher("views/notice/noticeUpdateView.jsp");
+			view = request.getRequestDispatcher("views/notice/noticeDetailView.jsp");
 			request.setAttribute("notice", notice);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("messgae", noticeNo + "번 수정페이지창으로 갈수 없습니다.");
+			request.setAttribute("message", noticeNo + "번의 상세보기 실패하셨습니다.");
 			view.forward(request, response);
 		}
-		
 	}
 
 	/**

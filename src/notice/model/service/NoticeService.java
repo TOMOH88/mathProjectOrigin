@@ -86,25 +86,4 @@ public class NoticeService {
 		return result;
 	}
 
-	public ArrayList<Notice> searchTitleNotice(String searchTitle, int currentPage, int limit) {
-		Connection conn = getConnection();
-		ArrayList<Notice> nList = ndao.searchTitleNotice(searchTitle,currentPage,limit, conn);
-		close(conn);
-		return nList;
-	}
-
-	public int titleListCount(String searchTitle) {
-		Connection conn = getConnection();
-		int result = ndao.titleListCount(searchTitle, conn);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-
-	
-	
 }

@@ -1,7 +1,6 @@
 package notice.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeListViewServlet
+ * Servlet implementation class NoticeUpdateView
  */
-@WebServlet("/nlist")
-public class NoticeListViewServlet extends HttpServlet {
+@WebServlet("/nupview")
+public class NoticeUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListViewServlet() {
+    public NoticeUpdateViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,43 +31,22 @@ public class NoticeListViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int currentPage = 1;
-		if(request.getParameter("page") != null) {
-			currentPage = Integer.parseInt(request.getParameter("page"));
-		}
+		int noticeNo = Integer.parseInt(request.getParameter("no"));
 		
-		int limit = 5;
-		
-		NoticeService nservice = new NoticeService();
-		
-		int listCount = nservice.AllListCount();
-		
-		ArrayList<Notice> nList = nservice.selectAllList(currentPage, limit);
-		
-		int maxPage = (int)((double)listCount / limit + 0.9);
-		int startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
-		int endPage = startPage + limit - 1;
-		
-		if(maxPage < endPage) {
-			endPage = maxPage;
-		}
+		Notice notice = new NoticeService().selectNDetail(noticeNo);
 		
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view = null;
-		if(nList.size() > 0) {
-			view = request.getRequestDispatcher("views/notice/noticeListView.jsp");
-			request.setAttribute("nList", nList);
-			request.setAttribute("currentPage", currentPage);
-			request.setAttribute("maxPage", maxPage);
-			request.setAttribute("startPage", startPage);
-			request.setAttribute("endPage", endPage);
-			request.setAttribute("listCount", listCount);
+		if(notice != null) {
+			view = request.getRequestDispatcher("views/notice/noticeUpdateView.jsp");
+			request.setAttribute("notice", notice);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "공지글 조회 실패!");
+			request.setAttribute("messgae", noticeNo + "번 수정페이지창으로 갈수 없습니다.");
 			view.forward(request, response);
 		}
+		
 	}
 
 	/**
