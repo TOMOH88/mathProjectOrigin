@@ -57,4 +57,10 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	public int checkId(String userId) {
+		Connection conn = getConnection();
+		int result = mdao.checkId(conn, userId);
+		close(conn);
+		return result;
+	}
 }
