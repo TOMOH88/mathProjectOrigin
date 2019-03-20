@@ -60,21 +60,22 @@ public class PopupListServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		System.out.println("p " + plist.size());
 		if(plist.size() > 0) {
-			//view = request.getRequestDispatcher("views/popup/popupListView.jsp");
-			response.sendRedirect("views/popup/test.jsp");
-			/*request.setAttribute("currentPage", currentPage);
+			view = request.getRequestDispatcher("views/popup/popupListView.jsp");
+			//response.sendRedirect("views/popup/test.jsp");
+			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);;
 			request.setAttribute("limit", limit);
 			request.setAttribute("searchTitle", searchTitle);
-			request.setAttribute("plist", plist);*/
-			//view.forward(request, response);
+			request.setAttribute("plist", plist);
+			request.setAttribute("AllSearchListCount", AllSearchListCount);
+			view.forward(request, response);
 			System.out.println("1");
 		}else {
-			//view = request.getRequestDispatcher("views/popup/popupError.jsp");
-			//request.setAttribute("message", "조회 불가");
-			//view.forward(request, response);
+			view = request.getRequestDispatcher("views/popup/popupError.jsp");
+			request.setAttribute("message", "조회 불가");
+			view.forward(request, response);
 			System.out.println("0");
 		}
 	}
