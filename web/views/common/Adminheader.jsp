@@ -98,6 +98,7 @@ $(".hover").mouseleave(
   <li><a href="/math/flist" data-hover="FAQ">FAQ</a></li>
   <li><a href="#" data-hover="QnA">QnA</a></li>
   <li><a href="#" data-hover="Matter">문제</a></li>
+  <li><a href="/math/plist" data-hover="Matter">팝업 관리</a></li>
   <li><a href="/math/mmanager" data-hover="My Page">회원관리페이지</a></li>
   <li><a href="/math/alogout" data-hover="logout">로그아웃</a></li>
   <%}else{ %>
