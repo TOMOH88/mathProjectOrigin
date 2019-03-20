@@ -5,108 +5,75 @@
 %>    
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>감성수학</title>
-<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-$(".hover").mouseleave(
-        function () {
-          $(this).removeClass("hover");
-        }
-      );
-</script>
-<!-- <style>
-@import url(https://fonts.googleapis.com/css?family=Work+Sans);
-.snip1485 {
-  font-family: 'Work Sans', Arial, sans-serif;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-.snip1485 *,
-.snip1485 *:after {
-  box-sizing: border-box;
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
-}
-.snip1485 li {
-  display: inline-block;
-  list-style: outside none none;
-  margin: 0.5em 0.6em;
-  -webkit-perspective: 50em;
-  perspective: 50em;
-}
-.snip1485 a {
-  backface-visibility: hidden;
-  color: #ffffff;
-  display: inline-block;
-  line-height: 2.2em;
-  padding: 0 1.4em;
-  position: relative;
-  text-decoration: none;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  background-color: #667273;
-  -webkit-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-}
-.snip1485 a:after {
-  background-color: #5c122e;
-  color: transparent;
-  content: attr(data-hover);
-  bottom: 100%;
-  line-height: 2.2em;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  -webkit-transform: translateY(0%) rotateX(90deg);
-  transform: translateY(0%) rotateX(90deg);
-  -webkit-transform-origin: 50% 100%;
-  -ms-transform-origin: 50% 100%;
-  transform-origin: 50% 100%;
-}
-.snip1485 li:hover a,
-.snip1485 li.current a {
-  -webkit-transform: translateY(50%) rotateX(-90deg);
-  transform: translateY(50%) rotateX(-90deg);
-  background-color: #363c3d;
-  color: transparent;
-}
-.snip1485 li:hover a:after,
-.snip1485 li.current a:after {
-  background-color: #b12358;
-  color: #ffffff;
-  cursor: pointer;
-}
-.box{
-   width:5px;
-   height:5px;
-   float:left;
-   z-index: 1;
-}
-</style> -->
-</head>
-<body>
-<ul class="snip1485">
-  <div class="box" >
-  </div>
-  <li class="current"><a href="#" data-hover="Home">감성수학</a></li>
-  <%if(adminId != null){ %>
-  <li><a href="/math/nslist"  data-hover="Notice">공지사항</a></li>
-  <li><a href="/math/flist" data-hover="FAQ">FAQ</a></li>
-  <li><a href="#" data-hover="QnA">QnA</a></li>
-  <li><a href="#" data-hover="Matter">문제</a></li>
-  <li><a href="/math/plist" data-hover="Matter">팝업 관리</a></li>
-  <li><a href="/math/mmanager" data-hover="My Page">회원관리페이지</a></li>
-  <li><a href="/math/alogout" data-hover="logout">로그아웃</a></li>
-  <%}else{ %>
- 	<script type="text/javascript">
- 		alert("로그인해주세요");
- 		location.href="/math/admin.jsp";
- 	</script>
-  <%} %>
-</ul>
+<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="favicon.ico">
+		<title>Adminheader</title>
+		<!-- Bootstrap core CSS -->
+		<link href="/math/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<!-- Custom styles for this template -->
+		<link href="/math/resources/bootstrap/css/style.css" rel="stylesheet">
+	</head>
+	<body id="page-top">
+	<header>
+		<!-- Navigation -->
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header page-scroll">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand page-scroll" href="#page-top"><img src="/math/resources/bootstrap/images/logo.png" alt="감성수학"></a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="hidden">
+							<a href="#page-top"></a>
+						</li>
+						<li>
+							<a class="page-scroll" href="/math/nslist" data-toggle="modal">공지사항관리</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="/math/flist" data-toggle="modal">FAQ관리</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="#team" data-toggle="modal">QnA관리</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="#contact" data-toggle="modal">문제관리</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="#contact" data-toggle="modal">강의관리</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="/math/plist" data-toggle="modal">팝업관리</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="/math/mmanager" data-toggle="modal">회원관리</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="/math/alogout" data-toggle="modal">로그아웃</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+		</header>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="/math/resources/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/math/resources/bootstrap/js/SmoothScroll.js"></script>
+		<script src="/math/resources/bootstrap/js/theme-scripts.js"></script>
 </body>
 </html>

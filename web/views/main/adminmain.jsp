@@ -9,7 +9,7 @@
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<hr style="clear:both;">
+
 <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

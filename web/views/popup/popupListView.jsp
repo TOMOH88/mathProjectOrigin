@@ -17,6 +17,7 @@
 <title>Popup</title>
 </head>
 <body>
+<%@ include file="../common/Adminheader.jsp" %>
 <h1  align="center">팝업관리 목록</h1>
 <table align="center" width="500" border="1" cellspacing="0" id="ts1">
 	<tr>
@@ -77,5 +78,6 @@
 	<input type="text" name="title" >
 	<input type="submit" value="검색" >
 </form>
+<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

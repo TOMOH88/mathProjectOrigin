@@ -8,7 +8,7 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
-<hr style="clear:both;">
+
 <%@ include file="../common/footer.jsp" %>
 </body>
 </html>
