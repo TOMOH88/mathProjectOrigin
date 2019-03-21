@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
     <link href="/math/resources/assets/css/material-kit.css?v=2.0.5" rel="stylesheet" />
+    <title>footer</title>
 </head>
 <body>
 <footer class="footer footer-default" >
@@ -36,11 +37,6 @@
 <script src="/math/resources/assets/js/core/jquery.min.js" type="text/javascript"></script>
 <script src="/math/resources/assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="/math/resources/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-<script src="/math/resources/assets/js/plugins/moment.min.js"></script>
-<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-<script src="/math/resources/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="/math/resources/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
