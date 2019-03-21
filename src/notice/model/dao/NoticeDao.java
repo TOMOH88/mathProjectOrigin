@@ -9,19 +9,24 @@ import static common.JDBCTemplate.*;
 public class NoticeDao {
 	public NoticeDao() {}
 
-	public ArrayList<Notice> searchAllList(String searchTitle,int currentPage, int limit, Connection conn) {
+	public ArrayList<Notice> searchAllList(String searchTitle,String nOption,int currentPage, int limit, Connection conn) {
 		ArrayList<Notice> nsList = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		String query = "";
-		if(searchTitle != null) {
-		query = "select * "
+
+		String query = "";		
+		if(nOption.equals("ntitle")) {
+			query = "select * "
 				+ "from (select rownum rnum, notice_no, notice_title, notice_content, notice_date, notice_count, original_filename, rename_filename, writer_name "
 				+ "from (select * from tb_notice where notice_title like ? order by notice_no desc)) "
 				+ "where rnum >= ? and rnum <= ?";
+		}else if(nOption.equals("ntContent")){
+			query = "select * "
+					+ "from (select rownum rnum, notice_no, notice_title, notice_content, notice_date, notice_count, original_filename, rename_filename, writer_name "
+					+ "from (select * from tb_notice where notice_title like ? or notice_content like ? order by notice_no desc)) "
+					+ "where rnum >= ? and rnum <= ?";
 		}else {
 			query = "select * "
 					+ "from (select rownum rnum, notice_no, notice_title, notice_content, notice_date, notice_count, original_filename, rename_filename, writer_name "
@@ -31,10 +36,15 @@ public class NoticeDao {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			if(searchTitle != null) {
+			if(nOption.equals("ntitle")) {
 				pstmt.setString(1, "%"+searchTitle+"%");
 				pstmt.setInt(2, startRow);
 				pstmt.setInt(3, endRow);
+			}else if(nOption.equals("ntContent")){
+				pstmt.setString(1, "%"+searchTitle+"%");
+				pstmt.setString(2, "%"+searchTitle+"%");
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
 			}else {
 				pstmt.setInt(1, startRow);
 				pstmt.setInt(2, endRow);
@@ -102,20 +112,25 @@ public class NoticeDao {
 		return notice;
 	}
 
-	public int AllSearchListCount(String searchTitle, Connection conn) {
+	public int AllSearchListCount(String searchTitle,String nOption, Connection conn) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "";
-		if(searchTitle != null) {
+		if(nOption.equals("ntitle")){
 			query = "select count(*) from tb_notice where notice_title like ?";
+		}else if(nOption.equals("ntContent")) {
+			query = "select count(*) from tb_notice where notice_title like ? or notice_content like ?";
 		}else {
 			query = "select count(*) from tb_notice";
 		}
 		try {
 			pstmt = conn.prepareStatement(query);
-			if(searchTitle != null) {
+			if(nOption.equals("ntitle")) {
 				pstmt.setString(1, "%" + searchTitle + "%");
+			}else if(nOption.equals("ntContent")) {
+				pstmt.setString(1, "%" + searchTitle + "%");
+				pstmt.setString(2, "%"+ searchTitle +"%");
 			}
 			rset = pstmt.executeQuery();
 			 if(rset.next()) {
@@ -216,6 +231,80 @@ public class NoticeDao {
 		}
 		
 		return result;
+	}
+
+	public int noticeBack(int noticeNo,Connection conn) {
+		int noticeBack = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query ="select notice_no from tb_notice where notice_no in (select max(notice_no) from tb_notice where notice_no < ?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			
+			rset = pstmt.executeQuery();
+			 if(rset.next()) {
+				 noticeBack = rset.getInt(1);
+			 }
+			 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return noticeBack;
+	}
+
+	public int noticeNext(int noticeNo,Connection conn) {
+		int noticeNext = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query ="select notice_no from tb_notice where notice_no in (select min(notice_no) from tb_notice where notice_no > ?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			
+			rset = pstmt.executeQuery();
+			 if(rset.next()) {
+				 noticeNext = rset.getInt(1);
+			 }
+			 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return noticeNext;
+	}
+
+	public int noticeMin(Connection conn) {
+		int noticeMin = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query ="select min(notice_no) from tb_notice";
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			 if(rset.next()) {
+				 noticeMin = rset.getInt(1);
+			 }
+			 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return noticeMin;
 	}
 
 }

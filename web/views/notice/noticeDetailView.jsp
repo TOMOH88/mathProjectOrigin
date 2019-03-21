@@ -3,6 +3,11 @@
 <%@ page import="notice.model.vo.Notice" %>    
 <%
 	Notice notice = (Notice)request.getAttribute("notice");
+	String searchTitle = (String)request.getAttribute("searchTitle");
+	String nOption = (String)request.getAttribute("noption");
+	int noticeBack = (Integer)request.getAttribute("noticeBack");
+	int noticeNext = (Integer)request.getAttribute("noticeNext");
+	int noticeMin = (Integer)request.getAttribute("noticeMin");
 %>    
 <!DOCTYPE html>
 <html>
@@ -10,11 +15,6 @@
 <meta charset="UTF-8">
 <title>감성수학 관리자 상세보기창</title>
 <script type="text/javascript">
-window.onpageshow = function(event) {
-    if (event.persisted) {
-        document.location.reload();
-    }
-};
 </script>
 </head>
 <body>
@@ -47,6 +47,12 @@ window.onpageshow = function(event) {
 			<td colspan="2">
 				<a href="/math/nupview?no=<%=notice.getNoticeNo() %>">글수정</a>
 				<a href="/math/ndelete?no=<%=notice.getNoticeNo()%>">글삭제</a>
+				<a href="/math/nslist">목록가기</a>
+				<%if(notice.getNoticeNo() > noticeMin){ %>
+					<button name="btn" onclick="javascript:location.href='/math/nback?no=<%=notice.getNoticeNo()%>'">이전글</button>
+				<%} if(notice.getNoticeNo() < noticeNext){ %>
+					<button name="btn" onclick="javascript:location.href='/math/nnext?no=<%=notice.getNoticeNo()%>'">다음글</button>
+				<%} %>
 			</td>
 		</tr>
 	</table>
