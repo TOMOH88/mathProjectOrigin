@@ -12,7 +12,7 @@
 <script type="text/javascript" src="/math/resoures/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 function listView(){
-	location.href = '/math/nlist';
+	location.href = '/math/nslist';
 }
 
 </script>

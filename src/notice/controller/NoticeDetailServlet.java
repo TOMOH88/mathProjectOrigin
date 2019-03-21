@@ -31,20 +31,36 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		int noticeNo = Integer.parseInt(request.getParameter("no"));
-		
+	
+		String nOption = "";
+		if(request.getParameter("noption") != null) {
+			nOption = request.getParameter("noption");
+		}
+		String searchTitle = "";
+		if(request.getParameter("title") != null) {
+			searchTitle = request.getParameter("title");
+		}
 		NoticeService nservice = new NoticeService();
-		
 		//조회수 1증가 처리
 		nservice.addReadCount(noticeNo);
 		
 		Notice notice = nservice.selectNDetail(noticeNo);
+		
+		int noticeBack = nservice.noticeBack(noticeNo);
+		int noticeNext = nservice.noticeNext(noticeNo);
+		int noticeMin = nservice.noticeMin();
 		
 		RequestDispatcher view = null;
 		response.setContentType("text/html; charset=utf-8");
 		if(notice != null) {
 			view = request.getRequestDispatcher("views/notice/noticeDetailView.jsp");
 			request.setAttribute("notice", notice);
+			request.setAttribute("noticeBack", noticeBack);
+			request.setAttribute("noticeNext", noticeNext);
+			request.setAttribute("noticeMin", noticeMin);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
