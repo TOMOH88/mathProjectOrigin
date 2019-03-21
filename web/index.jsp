@@ -52,7 +52,21 @@ $(function() {
 		window.open("/math/views/member/TermsAndConditions.jsp","window", "width=500,height=300");
 	});
 });
-
+$(function() {
+	$("#phone").blur(function() {
+		console.log("포커스 사라짐");
+		var phone = $("#phone").val();
+		
+		num = /^[0-9]+$/;
+		if(!num.test(phone)){
+			alert("숫자만 입력해주세요");
+			phone = "";
+			phone.focus();
+			return;
+		}
+		
+	});
+});
 </script>
 <style rel="stylesheet">
 @charset "UTF-8";

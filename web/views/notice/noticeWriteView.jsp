@@ -32,6 +32,8 @@
 	<tr>
 		<th colspan="2">
 			<input type="submit" value="글 등록">
+			<input type="reset" value="작성취소">
+			<button onclick="javascript:location.href='/math/nslist'; return false;">목록가기</button>
 		</th>
 	</tr>
 </table>

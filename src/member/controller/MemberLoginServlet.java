@@ -38,6 +38,12 @@ public class MemberLoginServlet extends HttpServlet {
 		String userPwd = request.getParameter("password");
 		LoginManager loginManager = LoginManager.getInstance(); 
 		RequestDispatcher view=null;
+		int ckdId = new MemberService().checkId(userId);
+		if(ckdId < 1) {
+			view = request.getRequestDispatcher("/views/member/memberError.jsp");
+			request.setAttribute("message", "회원 가입후 이용해주세요!");
+			view.forward(request, response);
+		}else {
 		int lev = new MemberService().searchLv(userId);
 		if(lev != 0) {
 		if(loginManager.isValid(userId, userPwd)) {
@@ -59,14 +65,15 @@ public class MemberLoginServlet extends HttpServlet {
 	        }
 		}else {
 			view = request.getRequestDispatcher("/views/member/memberError.jsp");
-			request.setAttribute("message", "로그인실패!");
+			request.setAttribute("message", "비밀번호를 확인해주세요!");
 			view.forward(request, response);
 		}
 		}else {
        	 view = request.getRequestDispatcher("/views/member/memberError.jsp");
    			request.setAttribute("message", "승인후 로그인 할수 있습니다.");
    			view.forward(request, response);
-       }
+      		}
+		}
 	}
 
 	/**

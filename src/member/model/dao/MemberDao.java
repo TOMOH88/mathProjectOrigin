@@ -144,4 +144,24 @@ public class MemberDao {
 		System.out.println(result);
 		return result;
 	}
+
+	public int checkId(Connection conn, String userId) {
+		int result = 0;
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		String qurey ="select count(1) from tb_user where user_id = ?";
+		try {
+			pstmt = conn.prepareStatement(qurey);
+			pstmt.setString(1, userId);
+			rset =pstmt.executeQuery();
+			while(rset.next()) {
+				 result = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

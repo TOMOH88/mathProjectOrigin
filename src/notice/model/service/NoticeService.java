@@ -13,9 +13,9 @@ public class NoticeService {
 	
 	public NoticeService() {}
 
-	public ArrayList<Notice> searchAllList(String searchTitle,int currentPage, int limit) {
+	public ArrayList<Notice> searchAllList(String searchTitle,String nOption,int currentPage, int limit) {
 		Connection conn = getConnection();
-		ArrayList<Notice> nsList = ndao.searchAllList(searchTitle,currentPage, limit,conn);
+		ArrayList<Notice> nsList = ndao.searchAllList(searchTitle,nOption,currentPage, limit,conn);
 		close(conn);
 		return nsList;
 	}
@@ -74,9 +74,9 @@ public class NoticeService {
 		return result;
 	}
 
-	public int AllSearchListCount(String searchTitle) {
+	public int AllSearchListCount(String searchTitle, String nOption) {
 		Connection conn = getConnection();
-		int result = ndao.AllSearchListCount(searchTitle,conn);
+		int result = ndao.AllSearchListCount(searchTitle,nOption,conn);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -84,6 +84,27 @@ public class NoticeService {
 		}
 		close(conn);
 		return result;
+	}
+	
+	public int noticeBack(int noticeNo) {
+		Connection conn = getConnection();
+		int noticeMax = ndao.noticeBack(noticeNo,conn);
+		close(conn);
+		return noticeMax;
+	}
+
+	public int noticeNext(int noticeNo) {
+		Connection conn = getConnection();
+		int noticeMin = ndao.noticeNext(noticeNo,conn);
+		close(conn);
+		return noticeMin;
+	}
+
+	public int noticeMin() {
+		Connection conn = getConnection();
+		int noticeMin = ndao.noticeMin(conn);
+		close(conn);
+		return noticeMin;
 	}
 
 }
