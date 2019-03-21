@@ -5,75 +5,113 @@
 %>    
 <!DOCTYPE html>
 <html>
+<head>
 <meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<link rel="icon" href="favicon.ico">
-		<title>Adminheader</title>
-		<!-- Bootstrap core CSS -->
-		<link href="/math/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-		<!-- Custom styles for this template -->
-		<link href="/math/resources/bootstrap/css/style.css" rel="stylesheet">
-	</head>
-	<body id="page-top">
-	<header>
-		<!-- Navigation -->
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header page-scroll">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand page-scroll" href="#page-top"><img src="/math/resources/bootstrap/images/logo.png" alt="감성수학"></a>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="hidden">
-							<a href="#page-top"></a>
-						</li>
-						<li>
-							<a class="page-scroll" href="/math/nslist" data-toggle="modal">공지사항관리</a>
-						</li>
-						<li>
-							<a class="page-scroll" href="/math/flist" data-toggle="modal">FAQ관리</a>
-						</li>
-						<li>
-							<a class="page-scroll" href="#team" data-toggle="modal">QnA관리</a>
-						</li>
-						<li>
-							<a class="page-scroll" href="#contact" data-toggle="modal">문제관리</a>
-						</li>
-						<li>
-							<a class="page-scroll" href="#contact" data-toggle="modal">강의관리</a>
-						</li>
-						<li>
-							<a class="page-scroll" href="/math/plist" data-toggle="modal">팝업관리</a>
-						</li>
-						<li>
-							<a class="page-scroll" href="/math/mmanager" data-toggle="modal">회원관리</a>
-						</li>
-						<li>
-							<a class="page-scroll" href="/math/alogout" data-toggle="modal">로그아웃</a>
-						</li>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
-			</div>
-			<!-- /.container-fluid -->
-		</nav>
-		</header>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="/math/resources/bootstrap/js/bootstrap.min.js"></script>
-		<script src="/math/resources/bootstrap/js/SmoothScroll.js"></script>
-		<script src="/math/resources/bootstrap/js/theme-scripts.js"></script>
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+<body class="index-page sidebar-collapse">
+  <!-- Extra details for Live View on GitHub Pages -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
+          Material Kit </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <i class="material-icons">apps</i> Components
+            </a>
+            <div class="dropdown-menu dropdown-with-icons">
+              <a href="./index.html" class="dropdown-item">
+                 공지사항관리
+              </a>
+              <a href="https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                 FAQ관리
+              </a>
+              <a href="https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                 QnA관리
+              </a>
+              <a href="https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                 문제관리
+              </a>
+              <a href="https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                 강의관리
+              </a>
+              <a href="https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                 팝업관리
+              </a>
+              <a href="https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                 회원관리
+              </a>
+              <a href="https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                 로그아웃
+              </a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+              <i class="material-icons">cloud_download</i> Download
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
+              <i class="fa fa-facebook-square"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
+              <i class="fa fa-instagram"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('/math/resources/assets/img/bg2.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand">
+            <h1>감성수학</h1>
+            <h3>감성수학에 오신것을 환영합니다</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
