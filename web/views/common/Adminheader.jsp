@@ -8,13 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>감성수학</title>
-<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-$(".hover").mouseleave(
+/* $(".hover").mouseleave(
         function () {
           $(this).removeClass("hover");
         }
-      );
+      ); */
 </script>
 <!-- <style>
 @import url(https://fonts.googleapis.com/css?family=Work+Sans);
