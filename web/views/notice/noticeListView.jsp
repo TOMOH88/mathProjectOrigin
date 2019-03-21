@@ -9,6 +9,7 @@
 	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 	int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
 	String searchTitle = (String)request.getAttribute("searchTitle");
+	String nOption = (String)request.getAttribute("noption");
 %>
 <!DOCTYPE html>
 <html>
@@ -43,38 +44,39 @@
 	<% if(currentPage <= 1){ %>
 		[맨처음]&nbsp;
 	<% }else if(searchTitle != null){ %>
-		<a href="/math/nslist?page=1&title=<%=searchTitle%>">[맨처음]</a>
+		<a href="/math/nslist?page=1&title=<%=searchTitle%>&noption=<%=nOption%>">[맨처음]</a>
 	<% }else{ %>
 		<a href="/math/nslist?page=1">[맨처음]</a>&nbsp;
 	<%} if((currentPage - 5) <= startPage && (endPage - 5) >= 1){ %>
-		<a href="/math/nslist?page=<%= (startPage - 5) + 4   %>&title=<%=searchTitle%>">[이전]</a>&nbsp;
+		<a href="/math/nslist?page=<%= (startPage - 5) + 4   %>&title=<%=searchTitle%>&noption=<%=nOption%>">[이전]</a>&nbsp;
 	<% }else{%>
 		[이전]
 	<%} for(int p = startPage; p <= endPage; p++){ 
 			if(p == currentPage){%>
 				<font>[<%=p %>]</font>
-			<%}else if(searchTitle != null){ %>
-				<a href="/math/nslist?page=<%=p%>&title=<%=searchTitle%>"><%=p %></a>
+			<%}else if(searchTitle != null && nOption != null){ %>
+				<a href="/math/nslist?page=<%=p%>&title=<%=searchTitle%>&noption=<%=nOption%>"><%=p %></a>
 				<%}else{ %>
 				<a href="/math/nslist?page=<%=p%>"><%=p %></a>
 	<% }} %>
 	<% if((startPage + 5) <= maxPage && (currentPage + 5) >= startPage){ %>
-		<a href="/math/nslist?page=<%=startPage+5%>&title=<%=searchTitle %>">&nbsp;[다음]</a>
+		<a href="/math/nslist?page=<%=startPage+5%>&title=<%=searchTitle %>&noption=<%=nOption%>">&nbsp;[다음]</a>
 	<%}else{ %>
 		[다음]&nbsp;
 	<%} %>
 	<% if(currentPage >= maxPage){ %>
 		&nbsp;[마지막]
 	<% }else if(searchTitle != null){ %>
-		<a href="/math/nslist?page=<%=maxPage%>&title=<%=searchTitle%>">&nbsp;[마지막]</a>
+		<a href="/math/nslist?page=<%=maxPage%>&title=<%=searchTitle%>&noption=<%=nOption%>">&nbsp;[마지막]</a>
 	<% }else{ %>
 		<a href="/math/nslist?page=<%=maxPage%>">&nbsp;[마지막]</a>
 	<%} %>
 <div align="center">
 <form action="/math/nslist?page=1" method="post" >
-	<select>
+	<select name="noption">
 		<option value="">선택하시오</option>
-		<option name="title" value="title" >제목</option>
+		<option name="ntitle" value="ntitle" >제목</option>
+		<option name="ntContent" value="ntContent">제목+내용</option>
 	</select>
 	&nbsp;
 	<input type="text" name="title" >

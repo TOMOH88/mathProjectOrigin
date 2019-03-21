@@ -36,18 +36,22 @@ public class NoticeSearchAllListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int currentPage = 1;
 		if(request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
 		int limit = 5;
-		
-		NoticeService nservice = new NoticeService();
+		String nOption = "";
+		if(request.getParameter("noption") != null) {
+			nOption = request.getParameter("noption");
+		}
 		String searchTitle = "";
 		if(request.getParameter("title") != null) {
 			searchTitle = request.getParameter("title");
 		}
-		int AllSearchListCount = nservice.AllSearchListCount(searchTitle);
+		NoticeService nservice = new NoticeService();
+		int AllSearchListCount = nservice.AllSearchListCount(searchTitle,nOption);
 		
 		int maxPage = (int)((double)AllSearchListCount / limit + 0.9);
 		int startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
@@ -57,8 +61,7 @@ public class NoticeSearchAllListServlet extends HttpServlet {
 		if(maxPage < endPage) {
 			endPage = maxPage;
 		}
-		
-		ArrayList<Notice> nsList = nservice.searchAllList(searchTitle,startPage, limit);
+		ArrayList<Notice> nsList = nservice.searchAllList(searchTitle,nOption,currentPage, limit);
 		
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view = null;
@@ -72,6 +75,7 @@ public class NoticeSearchAllListServlet extends HttpServlet {
 			request.setAttribute("searchTitle", searchTitle);
 			request.setAttribute("AllSearchListCount", AllSearchListCount);
 			request.setAttribute("nslist", nsList);
+			request.setAttribute("noption", nOption);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
