@@ -109,5 +109,22 @@ public class MemberDao {
 		}
 		return list;
 	}
+	public int levelChange(Connection conn, String userid, int level) {
+		int result = 0;
+		PreparedStatement pstmt= null;
+		String qurey ="update tb_user set MEMBER_LEVEL=? where user_id = ?";
+		try {
+			pstmt= conn.prepareStatement(qurey);
+			pstmt.setInt(1, level);
+			pstmt.setString(2, userid);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 
 }

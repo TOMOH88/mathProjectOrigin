@@ -40,4 +40,15 @@ public class AdminService {
 		close(conn);
 		return list;
 	}
+	public int levelChange(String userid, int level) {
+		Connection conn = getConnection();
+		int result = mdao.levelChange(conn, userid,level);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
