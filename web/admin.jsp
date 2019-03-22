@@ -10,7 +10,7 @@
 <script type="text/javascript">
 <% if(admin != null){%>
 $(function() {
-	location.href="views/main/adminmain.jsp";
+	location.href="/main/nslit.jsp";
 });	
 <%}%>
 </script>

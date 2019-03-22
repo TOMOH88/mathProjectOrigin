@@ -25,7 +25,6 @@ $(function() {
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
-<hr style="clear:both;">
 <form action="/math/mupdate" method="post">
 <table align="center"> 
 <tr><td>아이디</td><th><input type="text" name="userid" value="<%=member.getUserId()%>" readonly="readonly"></th></tr>

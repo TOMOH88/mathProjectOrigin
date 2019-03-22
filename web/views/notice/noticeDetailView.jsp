@@ -13,31 +13,26 @@
 <html>
 <head>
 <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <!-- Material Kit CSS -->
-    <link href="/math/resources/assets/css/material-kit.css?v=2.0.5" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="/math/resources/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="/math/resources/assets/demo/demo.css" rel="stylesheet" />
-<script src="/math/resources/assets/js/material-kit.js?v=2.0.5" type="text/javascript"></script>
+
 <script type="text/javascript">
 </script>
 <title>공지사항 상세보기</title>
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<div class="main main-raised">
-  <div class="container">
-    <div class="section text-center">
-<h1 align="center"><%=notice.getNoticeNo() %>번 상세보기페이지</h1>
-	<table border="1" cellspacing="0" width="600"  height="200" align="center">
+ <div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">공지사항</h4>
+              <p class="card-category"><%=notice.getNoticeNo() %>번글 상세보기페이지</p>
+            </div>
+            <div class="card-body">
+              <div id="typography">
+                <div class="card-title">
+	<table class="table">
+	<tr>
+	</tr>
 		<tr>
 			<th>제목</th>
 			<td><%=notice.getNoticeTitle() %></td>
@@ -60,22 +55,23 @@
 				<% } %>
 			</td>
 		</tr>
-		<tr>
-			<td colspan="2">
-				<a href="/math/nupview?no=<%=notice.getNoticeNo() %>">글수정</a>
-				<a href="/math/ndelete?no=<%=notice.getNoticeNo()%>">글삭제</a>
-				<a href="/math/nslist">목록가기</a>
-				<%if(notice.getNoticeNo() > noticeMin){ %>
-					<button name="btn" onclick="javascript:location.href='/math/nback?no=<%=notice.getNoticeNo()%>'">이전글</button>
-				<%} if(notice.getNoticeNo() < noticeNext){ %>
-					<button name="btn" onclick="javascript:location.href='/math/nnext?no=<%=notice.getNoticeNo()%>'">다음글</button>
-				<%} %>
-			</td>
-		</tr>
 	</table>
+	<div style="text-align:center;">
+	<a href="/math/nupview?no=<%=notice.getNoticeNo() %>" class="btn btn-default">글수정</a>
+				<a href="/math/ndelete?no=<%=notice.getNoticeNo()%>" class="btn btn-default">글삭제</a>
+				<a href="/math/nslist" class="btn btn-default">목록가기</a>
+				<%if(notice.getNoticeNo() > noticeMin){ %>
+					<button name="btn" onclick="javascript:location.href='/math/nback?no=<%=notice.getNoticeNo()%>'" class="btn btn-primary btn-link">이전글</button>
+				<%} if(notice.getNoticeNo() < noticeNext){ %>
+					<button name="btn" onclick="javascript:location.href='/math/nnext?no=<%=notice.getNoticeNo()%>'" class="btn btn-primary btn-link">다음글</button>
+				<%} %>
+				</div>
 	</div>
-  </div>
-</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 <%@ include file="../common/footer.jsp" %>
 <script src="/math/resources/assets/js/core/jquery.min.js"></script>
   <script src="/math/resources/assets/js/core/popper.min.js"></script>
