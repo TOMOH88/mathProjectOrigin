@@ -18,8 +18,19 @@
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<h1  align="center">팝업관리 목록</h1>
-<table align="center" width="500" border="1" cellspacing="0" id="ts1">
+ <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">팝업관리</h4>
+                  <p class="card-category"> 현재 게시글 수 : <%=AllSearchListCount %></p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
 	<tr>
 		<th></th>
 		<th>제목</th>
@@ -38,36 +49,64 @@
 	<% } %>
 </table>
 <div style="text-align:center">
+                    <ul class="pagination pagination-primary">
 	<% if(currentPage <= 1){ %>
-		[맨처음]&nbsp;
+	<li class="page-item">
+		<a class="page-link">[맨처음]&nbsp; </a>
+		</li>
 	<% }else if(searchTitle != null){ %>
-		<a href="/math/plist?page=1&title=<%=searchTitle%>">[맨처음]</a>
+	<li class="page-item">
+		<a href="/math/plist?page=1&title=<%=searchTitle%>" class="page-link">[맨처음]</a>
+		</li>
 	<% }else{ %>
+	<li class="page-item">
 		<a href="/math/plist?page=1">[맨처음]</a>&nbsp;
+		</li>
 	<%} if((currentPage - 5) <= startPage && (endPage - 5) >= 1){ %>
-		<a href="/math/plist?page=<%= (startPage - 5) + 4   %>&title=<%=searchTitle%>">[이전]</a>&nbsp;
+	<li class="page-item">
+		<a href="/math/plist?page=<%= (startPage - 5) + 4   %>&title=<%=searchTitle%>" class="page-link">[이전]</a>&nbsp;
+		</li>
 	<% }else{%>
-		[이전]
+	<li class="page-item">
+		<a class="page-link"> [이전] </a>
+		</li>
 	<%} for(int p = startPage; p <= endPage; p++){ 
 			if(p == currentPage){%>
-				<font>[<%=p %>]</font>
+			<li class="page-item">
+				<a class="page-link"> <font>[<%=p %>]</font> </a>
+				</li>
 			<%}else if(searchTitle != null){ %>
-				<a href="/math/plist?page=<%=p%>&title=<%=searchTitle%>"><%=p %></a>
+			<li class="page-item">
+				<a href="/math/plist?page=<%=p%>&title=<%=searchTitle%>" v><%=p %></a>
+				</li>
 				<%}else{ %>
-				<a href="/math/plist?page=<%=p%>"><%=p %></a>
+				<li class="page-item">
+				<a href="/math/plist?page=<%=p%>" class="page-link"><%=p %></a>
+				</li>
 	<% }} %>
 	<% if((startPage + 5) <= maxPage && (currentPage + 5) >= startPage){ %>
+	<li>
 		<a href="/math/plist?page=<%=startPage+5%>&title=<%=searchTitle %>">&nbsp;[다음]</a>
+		</li>
 	<%}else{ %>
-		[다음]&nbsp;
+	<li class="page-item">
+		<a class="page-link"> [다음]&nbsp; </a>
+		</li>
 	<%} %>
 	<% if(currentPage >= maxPage){ %>
-		&nbsp;[마지막]
+	<li class="page-item">
+		<a class="page-link"> &nbsp;[마지막] </a>
+		</li>
 	<% }else if(searchTitle != null){ %>
-		<a href="/math/plist?page=<%=maxPage%>&title=<%=searchTitle%>">&nbsp;[마지막]</a>
+	<li class="page-item">
+		<a href="/math/plist?page=<%=maxPage%>&title=<%=searchTitle%>" class="page-link">&nbsp;[마지막]</a>
+		</li>
 	<% }else{ %>
-		<a href="/math/plist?page=<%=maxPage%>">&nbsp;[마지막]</a>
+	<li class="page-item">
+		<a href="/math/plist?page=<%=maxPage%>" class="page-link">&nbsp;[마지막]</a>
+		</li>
 	<%} %>
+	</div>
 <div align="center">
 <form action="/math/plist?page=1" method="post" >
 	<select>
@@ -78,6 +117,14 @@
 	<input type="text" name="title" >
 	<input type="submit" value="검색" >
 </form>
+<button onclick="javascript:location.href='views/popup/popupWriteView.jsp'" type="button" class="btn btn-primary">팝업등록</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

@@ -68,7 +68,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/math/plist">
               <i class="material-icons">dashboard</i>
               <p>팝업관리</p>
             </a>
@@ -94,7 +94,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+            <a class="navbar-brand" href="#">Dashboard</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -105,7 +105,7 @@
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#pablo">
+                <a class="nav-link" href="#">
                   <i class="material-icons">notifications</i> logout
                 </a>
               </li>
