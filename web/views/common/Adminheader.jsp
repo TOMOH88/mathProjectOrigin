@@ -90,6 +90,12 @@
               <p>테스트</p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/math/views/main/test2.jsp">
+              <i class="material-icons">dashboard</i>
+              <p>테스트2</p>
+            </a>
+          </li>
           <!-- your sidebar here -->
         </ul>
       </div>
