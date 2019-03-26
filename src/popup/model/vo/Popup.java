@@ -17,11 +17,13 @@ public class Popup implements Serializable{
 	private Date popupEndDate;
 	private String popupImagePath;
 	private String popupExplan;
+	private String adminId;
 	
 	public Popup() {}
 
 	public Popup(int popupNo, String popupName, String popupLink, int popupX, int popupY, int popupWidth,
-			int popupHeight, Date popupDate, Date popupEndDate, String popupImagePath, String popupExplan) {
+			int popupHeight, Date popupDate, Date popupEndDate, String popupImagePath, String popupExplan,
+			String adminId) {
 		super();
 		this.popupNo = popupNo;
 		this.popupName = popupName;
@@ -34,8 +36,17 @@ public class Popup implements Serializable{
 		this.popupEndDate = popupEndDate;
 		this.popupImagePath = popupImagePath;
 		this.popupExplan = popupExplan;
+		this.adminId = adminId;
 	}
-
+	
+	public String getAdminId() {
+		return adminId;
+	}
+	
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
+	}
+	
 	public int getPopupNo() {
 		return popupNo;
 	}
@@ -135,6 +146,6 @@ public class Popup implements Serializable{
 				+ this.popupY + ", " + this.popupWidth + ", " 
 				+ this.popupHeight + ", " + this.popupDate + ", " 
 				+ this.popupEndDate + ", " + this.popupImagePath + ", " 
-				+ this.popupExplan; 
+				+ this.popupExplan + ", " + this.adminId; 
 	}
 }

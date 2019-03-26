@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import notice.model.vo.Notice;
+
 import static common.JDBCTemplate.*;
 
 import popup.model.vo.Popup;
@@ -89,13 +91,61 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 	}
 
 	public int insertPopup(Connection conn, Popup popup) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "insert into tb_popup values (sq_popupno.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'admin01')";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, popup.getPopupName());
+			pstmt.setString(2, popup.getPopupImagePath());
+			pstmt.setInt(3, popup.getPopupX());
+			pstmt.setInt(4, popup.getPopupY());
+			pstmt.setInt(5, popup.getPopupWidth());
+			pstmt.setInt(6, popup.getPopupHeight());
+			pstmt.setDate(7, popup.getPopupDate());
+			pstmt.setDate(8, popup.getPopupEndDate());
+			pstmt.setString(9, popup.getPopupImagePath());
+			pstmt.setString(10, popup.getPopupExplan());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	public Popup selectPopup(Connection conn, int popupNo) {
-		// TODO Auto-generated method stub
-		return null;
+		Popup popup= null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from tb_popup where popup_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, popupNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				popup = new Popup();
+				
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return popup;
 	}
 
 	public int AllSearchListCount(String searchTitle, Connection conn) {

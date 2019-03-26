@@ -22,7 +22,7 @@
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-<form action="#" method="post">
+<form action="/math/pinsert" method="post">
 <table class="table">
 <tr>
 </tr>
@@ -60,12 +60,12 @@
 		</td>
 	</tr>
 	<tr>
-		<th>이미지첨부파일</th>
-		<td><input type="file" name="imagefile" ></td>
+		<th>이미지경로</th>
+		<td><input type="text" name="imagelink" ></td>
 	</tr>
 	<tr>
 		<th>설명</th>
-		<td><textarea rows="2" cols="60" ></textarea></td>
+		<td><textarea rows="2" cols="60" name="discrip"></textarea></td>
 	</tr>
 </table>
 <div style="text-align:center;">
