@@ -51,9 +51,9 @@ public class NoticeSearchAllListServlet extends HttpServlet {
 			searchTitle = request.getParameter("title");
 		}
 		NoticeService nservice = new NoticeService();
-		int AllSearchListCount = nservice.AllSearchListCount(searchTitle,nOption);
+		int allSearchListCount = nservice.allSearchListCount(searchTitle,nOption);
 		
-		int maxPage = (int)((double)AllSearchListCount / limit + 0.9);
+		int maxPage = (int)((double)allSearchListCount / limit + 0.9);
 		int startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
 		
 		int endPage = startPage + limit - 1;
@@ -73,7 +73,7 @@ public class NoticeSearchAllListServlet extends HttpServlet {
 			request.setAttribute("endPage", endPage);;
 			request.setAttribute("limit", limit);
 			request.setAttribute("searchTitle", searchTitle);
-			request.setAttribute("AllSearchListCount", AllSearchListCount);
+			request.setAttribute("allSearchListCount", allSearchListCount);
 			request.setAttribute("nslist", nsList);
 			request.setAttribute("noption", nOption);
 			view.forward(request, response);

@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<th>글내용</th>
-			<td><%=notice.getNoticeContent().replaceAll("\r\n", "<br>") %></td>
+			<td><%=notice.getNoticeContent()%></td>
 		</tr>
 		<tr>
 			<th>첨부파일</th>

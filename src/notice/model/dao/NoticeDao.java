@@ -112,7 +112,7 @@ public class NoticeDao {
 		return notice;
 	}
 
-	public int AllSearchListCount(String searchTitle,String nOption, Connection conn) {
+	public int allSearchListCount(String searchTitle,String nOption, Connection conn) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

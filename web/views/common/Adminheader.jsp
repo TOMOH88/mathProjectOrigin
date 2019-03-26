@@ -49,13 +49,13 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/math/fslist">
               <i class="material-icons">dashboard</i>
               <p>FAQ관리</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/math/qslist">
               <i class="material-icons">dashboard</i>
               <p>QnA관리</p>
             </a>
