@@ -44,8 +44,8 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("message", "회원 가입후 이용해주세요!");
 			view.forward(request, response);
 		}else {
-		int lev = new MemberService().searchLv(userId);
-		if(lev != 0) {
+/*		int lev = new MemberService().searchLv(userId);
+		if(lev != 0) {*/
 		if(loginManager.isValid(userId, userPwd)) {
 			response.setContentType("text/html; charset=utf-8"); 
 			//접속자 아이디를 세션에 담는다.
@@ -68,11 +68,11 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("message", "비밀번호를 확인해주세요!");
 			view.forward(request, response);
 		}
-		}else {
+/*		}else {
        	 view = request.getRequestDispatcher("/views/member/memberError.jsp");
    			request.setAttribute("message", "승인후 로그인 할수 있습니다.");
    			view.forward(request, response);
-      		}
+      		}*/
 		}
 	}
 

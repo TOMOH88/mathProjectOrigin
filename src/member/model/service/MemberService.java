@@ -3,6 +3,7 @@ package member.model.service;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
@@ -62,5 +63,11 @@ public class MemberService {
 		int result = mdao.checkId(conn, userId);
 		close(conn);
 		return result;
+	}
+	public ArrayList<Member> searchEmail(String phone) {
+		Connection conn = getConnection();
+		ArrayList<Member> member = mdao.searchEmail(conn,phone);
+		close(conn);
+		return member;
 	}
 }

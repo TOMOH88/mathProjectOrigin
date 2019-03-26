@@ -36,6 +36,14 @@
 			return false;	
 		}
 		}
+	function memberDetail(i) {
+	var name = $("#" + i).html();
+	location.href="/math/mdetail?userid="+name;	
+	}
+	function sendmail(i) {
+		var name = $("#" + i).html();
+		location.href="/math/sendemail";
+		}
 </script>
 </head>
 <body>
@@ -48,7 +56,7 @@
 <%for(int i=0 ; i<list.size();i++){
 String name = list.get(i).getUserId();
 %>
-<tr><th id="<%= i %>"><%=list.get(i).getUserId()%></th><th><a href="/math/mdetail?userid=<%=list.get(i).getUserId() %>"><%=list.get(i).getUserName() %></a></th><th><%=list.get(i).getRegistDate() %></th>
+<tr><th id="<%= i %>"><%=list.get(i).getUserId()%></th><th><%=list.get(i).getUserName() %></th><th><%=list.get(i).getRegistDate() %></th>
 <th>
 <%if(Integer.parseInt(list.get(i).getMemberLevel())==1){ %>
 <select name="level" id="level<%= i%>">
@@ -63,7 +71,7 @@ String name = list.get(i).getUserId();
 <%} %>
 <button onclick="levelChange(<%= i %>);">등급변경</button>
 </th>
-<th><button>회원정보</button></th><th><button>비밀번호 초기화</button></th>
+<th><button onclick="memberDetail(<%= i %>);">회원정보</button></th><th><button onclick="sendmail(<%= i %>);">비밀번호 초기화</button></th>
 
 </tr>
 <%} %>

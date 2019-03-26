@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import member.model.vo.Member;
 
 public class MemberDao {
@@ -163,5 +165,33 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public ArrayList<Member> searchEmail(Connection conn, String phone) {
+		ArrayList<Member> member = new ArrayList<Member>();
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		String query = "select * from tb_user where phone = ?";
+		try {
+			pstmt  = conn.prepareStatement(query);
+			pstmt.setString(1, phone);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				String userId = rset.getString(1);
+				String userPwd = rset.getString(2);
+				String userName = rset.getString(3);
+				String phone2 = rset.getString(4);
+				Date registDate = rset.getDate(5);
+				Date lastModified = rset.getDate(6);
+				String memberLevel = rset.getString(7);
+				member.add(new Member(userId, userPwd, userName, phone2, registDate, lastModified, memberLevel));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return member;
 	}
 }
