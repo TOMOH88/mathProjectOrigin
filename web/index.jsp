@@ -48,6 +48,11 @@ $(function() {
 	});
 });
 $(function() {
+	$("#searchid").click(function() {
+		window.open("/math/views/member/searchemail.jsp","window", "width=500,height=300");
+	});
+});
+$(function() {
 	$("#tac").click(function() {
 		window.open("/math/views/member/TermsAndConditions.jsp","window", "width=500,height=300");
 	});
@@ -361,7 +366,7 @@ body .container .content .signup-cont {
 						                    <label for="remember">Remember me</label>
 						                    <div class="submit-wrap">
 							                        <input type="submit" value="로그인 " class="submit">
-							                        <a href="#" class="more">Forgot your password?</a>
+							                        <a id="searchid" class="more">Forgot your Email?</a>
 						                    </div>
         					        </form>
     				        </div>
