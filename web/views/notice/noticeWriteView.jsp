@@ -8,11 +8,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<<<<<<< HEAD
 <meta charset="utf-8">
-=======
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
->>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
 <title>공지사항 글쓰기</title>
 <script type="text/javascript" src="<%=ctx %>/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
@@ -55,7 +52,6 @@ $(function(){
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<<<<<<< HEAD
  <div class="content">
         <div class="container-fluid">
           <div class="card">
@@ -66,52 +62,27 @@ $(function(){
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-<form action="/math/nwrite" method="post" enctype="multipart/form-data">
-<table class="table">
-<input type="hidden" name="writer" value="" class="form-control">
-=======
-<hr style="clear:both;">
-<h1 align="center">공지사항 글쓰기</h1>
 <form name="nform"  id="nform"  action="/math/nwrite" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-<table align="center" width="800" cellspacing="0">
-<input type="hidden" name="writer" value="<%=adminId%>">
->>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
+
+<table class="table">
 	<tr>
+	</tr>
+	
 	</tr>
 		<th>제목</th>
-<<<<<<< HEAD
 		<td><input type="text" name="title" class="form-control"></td>
-	</tr>
-	<tr>
-		<th>내용</th>
-		<td>
-		<label for="exampleFormControlTextarea1">내용작성</label>
-		<textarea id="exampleFormControlTextarea1" rows="3"  name="content" class="form-control"></textarea></td>
 	</tr>
 	<tr>
 		<th>첨부파일</th>
 		<td><input type="file" name="upfile" class="form-control"></td>
-=======
-		<td><input type="text" id="title" name="title" ></td>
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td><textarea row="10" cols="30" id="con1" name="content" style="width:650px; height: 350px;"></textarea></td>
-	</tr>
-	<tr>
-		<th>첨부파일</th>
-		<td><input type="file" name="upfile"></td>
-	</tr>
-	<tr>
-		<th colspan="2">
-			<input type="button" id="save" value="글 등록">
-			<input type="reset" value="작성취소">
-			<button onclick="javascript:location.href='/math/nslist'; return false;">목록가기</button>
-		</th>
->>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
+		<td><textarea row="10" cols="30" id="con1" name="content" style="width:100%; height: 350px;"></textarea></td>
 	</tr>
 </table>
 <div style="text-align:center;">
+<input type="hidden" name="writer" value="<%=adminId%>" class="form-control">
 			<input type="submit" value="글 등록" class="btn btn-default">
 			<input type="reset" value="작성취소" class="btn btn-default">
 			<button onclick="javascript:location.href='/math/nslist'; return false;" class="btn btn-default">목록가기</button>

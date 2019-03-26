@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import notice.model.vo.Notice;
-
 import static common.JDBCTemplate.*;
 
 import popup.model.vo.Popup;
@@ -86,8 +84,23 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 	}
 
 	public int deletePopup(Connection conn, int popupNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "delete from tb_popup where popup_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, popupNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	public int insertPopup(Connection conn, Popup popup) {

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
 import popup.model.service.PopupService;
 
 /**
@@ -38,7 +37,7 @@ public class PopupBackServlet extends HttpServlet {
 		int popupBack = new PopupService().popupBack(popupNo);
 
 		if(popupBack < popupNo) {
-			response.sendRedirect("/math/ndetail?no="+popupBack);
+			response.sendRedirect("/math/pdetail?no="+popupBack);
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher("views/popup/popupError.jsp");
 			request.setAttribute("message", "페이지 이동 불가");

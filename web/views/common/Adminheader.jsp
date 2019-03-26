@@ -22,7 +22,7 @@
 </script>
 </head>
 <body>
-<div class="wrapper ">
+ <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white">
       <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
@@ -30,13 +30,16 @@
       Tip 2: you can also add an image using data-image tag
   -->
       <div class="logo">
+        <a href="#" class="simple-text logo-mini">
+          CT
+        </a>
         <a href="#" class="simple-text logo-normal">
           감성수학
         </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
+           <li class="nav-item active  ">
             <a class="nav-link" href="#">
               <i class="material-icons">dashboard</i>
               <p>감성수학</p>
@@ -105,7 +108,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#">Dashboard</a>
+            <a class="navbar-brand" href="#pablo">Dashboard</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>

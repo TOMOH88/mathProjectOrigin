@@ -48,27 +48,40 @@ $(function(){
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<hr style="clear:both;">
-<h1 align="center"><%=faq.getFaqNo() %>번 수정페이지</h1>
-<form id="nform" action="/math/fupdate" method="post" >
-<input type="hidden" name="no" value="<%=faq.getFaqNo()%>">
-<input  type="hidden" name="writer" value="<%=faq.getAdminId() %>">
-<table align="center" cellspacing="0" width="800">
+<div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">FAQ 글쓰기 페이지</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                  <form id="nform" action="/math/fupdate" method="post" >
+					<input type="hidden" name="no" value="<%=faq.getFaqNo()%>">
+					<input  type="hidden" name="writer" value="<%=faq.getAdminId() %>">
+                    <table class="table">
 	<tr>
 		<th>제목</th>
-		<td><input type="text" name="title"  value="<%=faq.getQuestionContent() %>"></td>
+		<td><input type="text" name="title"  value="<%=faq.getQuestionContent() %>" class="form-control"></td>
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td><textarea row="10" cols="30" id="con1" name="content" style="width:650px; height: 350px;"><%=faq.getAnswerContent() %></textarea></td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<input type="button" id="save" value="수정하기" >
-			<button onclick="javascript:location.href='/math/fslist';">목록으로가기</button>
-		</td>
+		<td><textarea row="10" cols="30" id="con1" name="content" style="width:100%; height: 350px;"><%=faq.getAnswerContent() %></textarea></td>
 	</tr>
 </table>
+<div align="center">
+	<input type="button" id="save" value="수정하기" class="btn btn-default btn-sm">
+	<button onclick="javascript:location.href='/math/fslist';" class="btn btn-default btn-sm">목록으로가기</button>
+	</div>
 </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

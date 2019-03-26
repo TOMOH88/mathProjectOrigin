@@ -1,11 +1,15 @@
 package popup.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import popup.model.service.PopupService;
 
 /**
  * Servlet implementation class PopupDeleteServlet
@@ -26,8 +30,17 @@ public class PopupDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int popupNo = Integer.parseInt(request.getParameter("no"));
+		
+		int result = new PopupService().deletePopup(popupNo);
+		
+		if(result > 0) {
+			response.sendRedirect("/math/plist");
+		}else {
+			RequestDispatcher view = request.getRequestDispatcher("views/popup/popupError.jsp");
+			request.setAttribute("message", popupNo + "번 글 삭제 실패");
+			view.forward(request, response);
+		}
 	}
 
 	/**

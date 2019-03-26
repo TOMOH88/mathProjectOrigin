@@ -8,21 +8,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<<<<<<< HEAD
-<meta charset="utf-8">
-<title>수정페이지</title>
-=======
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>수정페이지</title>
 <script type="text/javascript" src="<%=ctx %>/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
->>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 function listView(){
 	location.href = '/math/nslist';
 }
-<<<<<<< HEAD
-=======
+
 var oEditors = [];
 $(function(){
       nhn.husky.EZCreator.createInIFrame({
@@ -55,12 +49,10 @@ $(function(){
           $("#nform").submit();
       });    
 });
->>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
 </script>
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<<<<<<< HEAD
 <div class="content">
         <div class="container-fluid">
           <div class="card">
@@ -78,15 +70,6 @@ $(function(){
 	<table class="table">
 	<tr>
 	</tr>
-=======
-<hr style="clear:both;">
-<h1 align="center"><%=notice.getNoticeNo() %>번 글 수정페이지</h1>
-<form id="nform" action="/math/nupdate" method="post" enctype="multipart/form-data">
-<input type="hidden" name="no" value="<%=notice.getNoticeNo() %>">
-<input type="hidden" name="ofile" value="<%=notice.getOriginalFileName() %>">
-<input type="hidden" name="rfile" value="<%=notice.getRenameFileName() %>">
-	<table	align="center" width="800" cellspacing="0">
->>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
 		<tr>
 			<th>제목</th>
 			<td><input type="text" name="title" value="<%=notice.getNoticeTitle() %>"  class="form-control"></td>
@@ -97,13 +80,7 @@ $(function(){
 		</tr>
 		<tr>
 			<th>내용</th>
-<<<<<<< HEAD
-			<td>
-			<label for="exampleFormControlTextarea1">내용작성</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"><%=notice.getNoticeContent().replaceAll("<br>","\r\n")%></textarea></td>
-=======
-			<td><textarea row="10" cols="30" id="con1" name="content" style="width:650px; height: 350px;"><%=notice.getNoticeContent() %></textarea></td>
->>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
+			<td><textarea row="10" cols="30" id="con1" name="content" style="width:100%; height: 350px;"><%=notice.getNoticeContent() %></textarea></td>
 		</tr>
 		<tr height="50">
 			<th>첨부파일</th>
@@ -116,15 +93,6 @@ $(function(){
 				<input type="file" value="첨부파일 변경"  name="upfile" class="form-control">
 			</td>
 		</tr>
-<<<<<<< HEAD
-=======
-		<tr>
-			<th colspan="2">
-				<input type="button" id="save" value="수정하기">
-				<button onclick="listView(); return false;">목록으로 돌아가기</button>
-			</th>
-		</tr>
->>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
 	</table>
 	<div style="text-align:center;">
 	<input type="submit" value="수정하기" class="btn btn-default">

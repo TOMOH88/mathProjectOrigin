@@ -1,11 +1,16 @@
 package popup.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import popup.model.service.PopupService;
+import popup.model.vo.Popup;
 
 /**
  * Servlet implementation class PopupUpdateViewServlet
@@ -26,8 +31,21 @@ public class PopupUpdateViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int popupNo = Integer.parseInt(request.getParameter("no"));
+		
+		Popup popup = new PopupService().selectPDetail(popupNo);
+		
+		response.setContentType("text/html; charset=utf-8");
+		RequestDispatcher view = null;
+		if(popup != null) {
+			view = request.getRequestDispatcher("views/popup/popupUpdateView.jsp");
+			request.setAttribute("popup", popup);
+			view.forward(request, response);
+		}else {
+			view = request.getRequestDispatcher("views/notice/popupError.jsp");
+			request.setAttribute("messgae", popupNo + "번 수정페이지창으로 갈수 없습니다.");
+			view.forward(request, response);
+		}
 	}
 
 	/**

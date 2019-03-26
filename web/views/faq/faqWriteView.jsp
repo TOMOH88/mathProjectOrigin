@@ -50,22 +50,40 @@ $(function(){
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<hr style="clear:both;">
-<H1 align="center">FAQ 글쓰기 페이지</H1>
-<form id="nform" action="/math/fwrite" method="post">
-<input type="hidden" name="writer" value="<%=adminId%>">
-<table width="800px" cellspacing="0" align="center">
+<div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">FAQ 글쓰기 페이지</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                  <form id="nform" action="/math/fwrite" method="post">
+	<input type="hidden" name="writer" value="<%=adminId%>">
+                    <table class="table" id="faqTable">
 	<tr>
 		<th>글제목</th>
-		<td><input type="text" name="title" id="ftitle" ></td>
+		<td><input type="text" name="title" id="ftitle" class="form-control"></td>
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td><textarea row="10" cols="30" id="con1" name="content" style="width:650px; height: 350px;"></textarea></td>
+		<td><textarea row="10" cols="30" id="con1" name="content" style="width:100%; height: 350px;"></textarea></td>
 	</tr>
 </table>
-<input type="button"  id="save" value="글쓰기" />
-<input type="reset" value="작성취소" />
+<div align="center">
+<input type="button"  id="save" value="글쓰기" class="btn btn-default btn-sm">
+<input type="reset" value="작성취소" class="btn btn-default btn-sm">
+</div>
 </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

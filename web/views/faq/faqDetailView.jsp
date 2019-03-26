@@ -14,9 +14,19 @@
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<hr style="clear:both;">
-<H1 align="center">FAQ <%=faq.getFaqNo()%>번 상세페이지</H1>
-<table align="center" cellspacing="0" width="800">
+<div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">FAQ</h4>
+                  <p class="card-category"> FAQ <%=faq.getFaqNo()%>번글 상세페이지</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table" id="faqTable">
+                      <thead class=" text-primary">
 	<tr>
 		<th>제목</th>
 		<td><%=faq.getQuestionContent() %></td>
@@ -29,14 +39,25 @@
 		<th>내용</th>
 		<td><%=faq.getAnswerContent() %></td>
 	</tr>
+	</thead>
 </table>
-<button onclick="javascript:location.href='/math/fupview?no=<%=faq.getFaqNo()%>'">글수정</button>
-<button onclick="javascript:location.href='/math/fdelete?no=<%=faq.getFaqNo() %>'">글삭제</button>
+<div align="center">
+<button onclick="javascript:location.href='/math/fupview?no=<%=faq.getFaqNo()%>'" class="btn btn-default btn-sm">글수정</button>
+<button onclick="javascript:location.href='/math/fdelete?no=<%=faq.getFaqNo() %>'" class="btn btn-default btn-sm">글삭제</button>
 <% if(faq.getFaqNo() > faqMin){ %>
-<button onclick="javascript:location.href='/math/fback?no=<%=faq.getFaqNo()%>'">이전글</button>
+<button onclick="javascript:location.href='/math/fback?no=<%=faq.getFaqNo()%>'" class="btn btn-default btn-sm">이전글</button>
 <% } if(faq.getFaqNo() < faqNext){%>
-<button onclick="javascript:location.href='/math/fnext?no=<%=faq.getFaqNo()%>'">다음글</button>
+<button onclick="javascript:location.href='/math/fnext?no=<%=faq.getFaqNo()%>'" class="btn btn-default btn-sm">다음글</button>
 <% } %>
-<button onclick="javascript:location.href='/math/fslist';">목록으로가기</button>
+<button onclick="javascript:location.href='/math/fslist';" class="btn btn-default btn-sm">목록으로가기</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

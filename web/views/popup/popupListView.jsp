@@ -38,6 +38,7 @@
 		<th>등록날짜</th>
 		<th>종료날짜</th>
 	</tr>
+	</thead>
 	<% for(int n = 0; n < plist.size(); n++){ %>
 	<tr>
 		<td><%=plist.get(n).getPopupNo() %></td>
@@ -48,8 +49,7 @@
 	</tr>
 	<% } %>
 </table>
-<div style="text-align:center">
-                    <ul class="pagination pagination-primary">
+                    <ul class="pagination pagination-primary" style="justify-content: center;">
 	<% if(currentPage <= 1){ %>
 	<li class="page-item">
 		<a class="page-link">[맨처음]&nbsp; </a>
@@ -106,18 +106,22 @@
 		<a href="/math/plist?page=<%=maxPage%>" class="page-link">&nbsp;[마지막]</a>
 		</li>
 	<%} %>
-	</div>
+	</ul>
 <div align="center">
-<form action="/math/plist?page=1" method="post" >
-	<select>
+<form action="/math/plist?page=1" method="post" class="form-inline ml-auto">
+<div class="container">
+	<select class="form-control">
 		<option value="">선택하시오</option>
 		<option name="title" value="title" >제목</option>
 	</select>
 	&nbsp;
-	<input type="text" name="title" >
-	<input type="submit" value="검색" >
+	<input type="text" name="title" class="form-control" placeholder="Search">
+	<button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
+                    <i class="material-icons">search</i>
+                  </button>
+                  </div>
 </form>
-<button onclick="javascript:location.href='views/popup/popupWriteView.jsp'" type="button" class="btn btn-primary">팝업등록</button>
+<button onclick="javascript:location.href='views/popup/popupWriteView.jsp'" type="button" class="btn btn-primary btn-sm">팝업등록</button>
 </div>
 </div>
 </div>
