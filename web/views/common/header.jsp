@@ -96,7 +96,7 @@ $(".hover").mouseleave(
   <div class="box">
   </div>
   <li class="current"><a href="#" data-hover="Home">감성수학</a></li>
-  <li><a href="/math/nlist"  data-hover="Notice">공지사항</a></li>
+  <li><a href="/math/nslist"  data-hover="Notice">공지사항</a></li>
   <li><a href="#" data-hover="FAQ">FAQ</a></li>
   <li><a href="#" data-hover="QnA">QnA</a></li>
   <li><a href="#" data-hover="Matter">문제</a></li>

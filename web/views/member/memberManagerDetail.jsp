@@ -1,7 +1,12 @@
+<%@page import="admin.model.vo.Semester"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% Member member = (Member)request.getAttribute("member"); %>
+<% Member member = (Member)request.getAttribute("member");
+	ArrayList<Semester> slist = (ArrayList<Semester>)request.getAttribute("semester");
+	ArrayList<Semester> mylist = (ArrayList<Semester>)request.getAttribute("permission");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,18 +82,53 @@ function sendmail(){
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<hr style="clear:both;">
-
-<table border="1" cellspacing="0">
+<div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">회원정보</h4>
+              <p class="card-category">회원정보수정</p>
+            </div>
+            <div class="card-body">
+              <div id="typography">
+                <div class="card-title">
+<table class="table">
+<tr></tr>
 <tr><td>회원 아이디 </td><th><input type="text" id="userid" value="<%=member.getUserId()%>" readonly="readonly"></th></tr>
 <tr><td>회원 이름</td><th><%=member.getUserName() %></th></tr>
 <tr><td>전화번호</td><th><%=member.getPhone() %></th></tr>
 <tr><td>비밀번호</td><th><input type="password" name="password" id="password" value="<%=member.getUserPwd() %>"></th></tr>
 <tr><td>비밀번호 확인</td><th><input type="password" name="password" id="password1" value="<%=member.getUserPwd() %>"></th></tr>
-<tr><td colspan="2"><button onclick="changePwd();">변경</button>&nbsp;&nbsp;<button onclick="sendmail();">비밀번호 초기화</button></td></tr>
+<tr><td colspan="2"><button onclick="changePwd();" class="btn btn-default">변경</button>&nbsp;&nbsp;<button onclick="sendmail();" class="btn btn-default">비밀번호 초기화</button></td></tr>
 <tr><td>가입일</td><th><%=member.getRegistDate() %></th></tr>
+<tr><td>최종 수정일</td><th><%=member.getLastModified() %></th></tr>
+<tr><td>권한 주기</td>
+<th>
+<Select>
+	<option selected="selected">권한 선택</option>
+	<option>모든권한</option>
+	<%for(Semester s : slist){ %>
+	<option><%=s.getSemesterName() %></option>
+	<%} %>
+</Select>
+<button onclick="addPermission();">권한추가</button>
+</th></tr>
+<tr><td>보유 권한</td><th>
+<Select>
+	<option selected="selected">보유 권한</option>
+	<%for(Semester m : mylist){ %>
+	<option><%=m.getSemesterName() %></option>
+	<%} %>
+</Select>
+<button onclick="removePermission();">권한삭제</button>
+</th></tr>
 </table>
-
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <%@ include file="../common/footer.jsp" %>
 </body>
 </html>
