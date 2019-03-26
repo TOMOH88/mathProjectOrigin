@@ -40,10 +40,6 @@
 	var name = $("#" + i).html();
 	location.href="/math/mdetail?userid="+name;	
 	}
-	function sendmail(i) {
-		var name = $("#" + i).html();
-		location.href="/math/sendemail";
-		}
 </script>
 </head>
 <body>
@@ -52,7 +48,7 @@
 
 
 <table id="t1" border="1" cellspacing="0">
-<tr><td>회원 아이디 </td><td>회원 이름</td><td>가입일</td><td>권한</td><td>회원정보</td><td>비밀번호 초기화</td></tr>
+<tr><td>회원 아이디 </td><td>회원 이름</td><td>가입일</td><td>권한</td><td>회원정보</td></tr>
 <%for(int i=0 ; i<list.size();i++){
 String name = list.get(i).getUserId();
 %>
@@ -71,7 +67,7 @@ String name = list.get(i).getUserId();
 <%} %>
 <button onclick="levelChange(<%= i %>);">등급변경</button>
 </th>
-<th><button onclick="memberDetail(<%= i %>);">회원정보</button></th><th><button onclick="sendmail(<%= i %>);">비밀번호 초기화</button></th>
+<th><button onclick="memberDetail(<%= i %>);">회원정보</button></th>
 
 </tr>
 <%} %>

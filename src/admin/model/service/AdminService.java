@@ -62,4 +62,15 @@ public class AdminService {
 		close(conn);
 		return result;
 	}
+	public int resetPassword(String userId, String hex) {
+		Connection conn = getConnection();
+		int result = adao.resetPassword(conn,userId, hex);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

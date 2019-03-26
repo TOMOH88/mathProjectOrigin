@@ -142,5 +142,21 @@ public class AdminDao {
 		}
 		return result;
 	}
+	public int resetPassword(Connection conn, String userId, String hex) {
+		int result = 0;
+		PreparedStatement pstmt= null;
+		String qurey ="update tb_user set USER_PWD=? where user_id = ?";
+		try {
+			pstmt= conn.prepareStatement(qurey);
+			pstmt.setString(1, hex);
+			pstmt.setString(2, userId);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
 }
