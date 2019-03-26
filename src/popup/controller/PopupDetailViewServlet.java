@@ -1,11 +1,18 @@
 package popup.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import notice.model.service.NoticeService;
+import notice.model.vo.Notice;
+import popup.model.service.PopupService;
+import popup.model.vo.Popup;
 
 /**
  * Servlet implementation class PopupDetailViewServlet
@@ -26,8 +33,42 @@ public class PopupDetailViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+request.setCharacterEncoding("UTF-8");
+		
+		int popupNo = Integer.parseInt(request.getParameter("no"));
+	
+		String pOption = "";
+		if(request.getParameter("poption") != null) {
+			pOption = request.getParameter("poption");
+		}
+		String psearchTitle = "";
+		if(request.getParameter("title") != null) {
+			psearchTitle = request.getParameter("title");
+		}
+		PopupService pservice = new PopupService();
+		//조회수 1증가 처리
+		pservice.addReadCount(popupNo);
+		
+		Popup popup = pservice.selectPDetail(popupNo);
+		
+		int popupBack = pservice.popupBack(popupNo);
+		int popupNext = pservice.popupNext(popupNo);
+		int popupMin = pservice.popupMin();
+		
+		RequestDispatcher view = null;
+		response.setContentType("text/html; charset=utf-8");
+		if(popup != null) {
+			view = request.getRequestDispatcher("views/popup/popupDetailView.jsp");
+			request.setAttribute("popup", popup);
+			request.setAttribute("popupBack", popupBack);
+			request.setAttribute("popupNext", popupNext);
+			request.setAttribute("popupMin", popupMin);
+			view.forward(request, response);
+		}else {
+			view = request.getRequestDispatcher("views/popup/popupError.jsp");
+			request.setAttribute("message", popupNo + "번의 상세보기 실패하셨습니다.");
+			view.forward(request, response);
+		}
 	}
 
 	/**

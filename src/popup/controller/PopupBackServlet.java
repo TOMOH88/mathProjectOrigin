@@ -1,4 +1,4 @@
-package notice.controller;
+package popup.controller;
 
 import java.io.IOException;
 
@@ -10,18 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import notice.model.service.NoticeService;
+import popup.model.service.PopupService;
 
 /**
- * Servlet implementation class NotieBackServlet
+ * Servlet implementation class PopupBackServlet
  */
-@WebServlet("/nback")
-public class NotieBackServlet extends HttpServlet {
+@WebServlet("/pback")
+public class PopupBackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NotieBackServlet() {
+    public PopupBackServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +33,14 @@ public class NotieBackServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		int noticeNo = Integer.parseInt(request.getParameter("no"));
+		int popupNo = Integer.parseInt(request.getParameter("no"));
 		
-		int noticeBack = new NoticeService().noticeBack(noticeNo);
+		int popupBack = new PopupService().popupBack(popupNo);
 
-		if(noticeBack < noticeNo) {
-			response.sendRedirect("/math/ndetail?no="+noticeBack);
+		if(popupBack < popupNo) {
+			response.sendRedirect("/math/ndetail?no="+popupBack);
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("views/notice/noticeError.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/popup/popupError.jsp");
 			request.setAttribute("message", "페이지 이동 불가");
 			view.forward(request, response);
 		}

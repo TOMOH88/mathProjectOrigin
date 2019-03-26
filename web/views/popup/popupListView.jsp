@@ -41,7 +41,7 @@
 	<% for(int n = 0; n < plist.size(); n++){ %>
 	<tr>
 		<td><%=plist.get(n).getPopupNo() %></td>
-		<td><a href="/math/ndetail?no=<%=plist.get(n).getPopupName()%>"><%=plist.get(n).getPopupName() %></a></td>
+		<td><a href="/math/pdetail?no=<%=plist.get(n).getPopupNo()%>"><%=plist.get(n).getPopupName() %></a></td>
 		<td><%=plist.get(n).getPopupImagePath() %></td>
 		<td><%=plist.get(n).getPopupDate() %></td>
 		<td><%=plist.get(n).getPopupEndDate() %></td>

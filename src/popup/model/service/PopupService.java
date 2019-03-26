@@ -8,6 +8,7 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import notice.model.vo.Notice;
 import popup.model.dao.PopupDao;
 import popup.model.vo.Popup;
 
@@ -76,5 +77,44 @@ public class PopupService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public void addReadCount(int popupNo) {
+		Connection conn = getConnection();
+		int result = pdao.addReadCount(popupNo, conn);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+	}
+
+	public Popup selectPDetail(int popupNo) {
+		Connection conn = getConnection();
+		Popup popup = pdao.selectPDetail(popupNo, conn);
+		close(conn);
+		return popup;
+	}
+
+	public int popupBack(int popupNo) {
+		Connection conn = getConnection();
+		int popupMax = pdao.popupBack(popupNo,conn);
+		close(conn);
+		return popupMax;
+	}
+
+	public int popupNext(int popupNo) {
+		Connection conn = getConnection();
+		int popupMin = pdao.popupNext(popupNo,conn);
+		close(conn);
+		return popupMin;
+	}
+
+	public int popupMin() {
+		Connection conn = getConnection();
+		int popupMin = pdao.popupMin(conn);
+		close(conn);
+		return popupMin;
 	}
 }
