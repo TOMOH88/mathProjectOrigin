@@ -48,7 +48,6 @@
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<<<<<<< HEAD
 <div class="content">
         <div class="container-fluid">
           <div class="card">
@@ -59,23 +58,7 @@
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-<table class="table">
-<tr><td>회원 아이디 </td><td>회원 이름</td><td>가입일</td></tr>
-<%for(Member m : list){ %>
-<tr><th><%=m.getUserId() %> </th><th><a href="/math/mdetail?userid=<%=m.getUserId() %>"><%=m.getUserName() %></a></th><th><%=m.getRegistDate() %></th></tr>
-<%} %>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-=======
-<hr style="clear:both;">
-
-
-<table id="t1" border="1" cellspacing="0">
+<table id="t1" class="table">
 <tr><td>회원 아이디 </td><td>회원 이름</td><td>가입일</td><td>권한</td><td>회원정보</td><td>비밀번호 초기화</td></tr>
 <%for(int i=0 ; i<list.size();i++){
 String name = list.get(i).getUserId();
@@ -83,27 +66,28 @@ String name = list.get(i).getUserId();
 <tr><th id="<%= i %>"><%=list.get(i).getUserId()%></th><th><%=list.get(i).getUserName() %></th><th><%=list.get(i).getRegistDate() %></th>
 <th>
 <%if(Integer.parseInt(list.get(i).getMemberLevel())==1){ %>
-<select name="level" id="level<%= i%>">
+<select name="level" id="level<%= i%>" class="form-control">
     <option value="1" selected="selected">정회원</option>
     <option value="0">준회원</option>
 </select>
 <%}else{ %>
-<select name="level" id="level<%=i%>">
+<select name="level" id="level<%=i%>" class="form-control">
     <option value="1">정회원</option>
     <option value="0" selected="selected">준회원</option>
 </select>
 <%} %>
-<button onclick="levelChange(<%= i %>);">등급변경</button>
+<button onclick="levelChange(<%= i %>);" class="btn btn-default">등급변경</button>
 </th>
-<th><button onclick="memberDetail(<%= i %>);">회원정보</button></th><th><button onclick="sendmail(<%= i %>);">비밀번호 초기화</button></th>
-
+<th><button onclick="memberDetail(<%= i %>);" class="btn btn-default">회원정보</button></th><th><button onclick="sendmail(<%= i %>);" class="btn btn-default">비밀번호 초기화</button></th>
 </tr>
 <%} %>
 </table>
-
-
->>>>>>> b68da3285039aad70a53f42e6a653fdb7a1cb7e9
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <%@ include file="../common/footer.jsp" %>
-
 </body>
 </html>

@@ -51,7 +51,6 @@ function changePwd() {
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<<<<<<< HEAD
 <div class="content">
         <div class="container-fluid">
           <div class="card">
@@ -65,9 +64,7 @@ function changePwd() {
 <table>
 <tr><td>회원 아이디 </td><td>회원 이름</td><td>가입일</td></tr>
 <tr><th><%=member.getUserId() %> </th><th><%=member.getUserName() %></th><th><%=member.getRegistDate() %></th></tr>
-=======
-<hr style="clear:both;">
-
+</table>
 <table border="1" cellspacing="0">
 <tr><td>회원 아이디 </td><th><input type="text" id="userid" value="<%=member.getUserId()%>" readonly="readonly"></th></tr>
 <tr><td>회원 이름</td><th><%=member.getUserName() %></th></tr>
@@ -75,7 +72,6 @@ function changePwd() {
 <tr><td>비밀번호</td><th><input type="password" name="password" id="password" value="<%=member.getUserPwd() %>"></th></tr>
 <tr><td>비밀번호 확인</td><th><input type="password" name="password" id="password1" value="<%=member.getUserPwd() %>"><button onclick="changePwd();">변경</button></th></tr>
 <tr><td>가입일</td><th><%=member.getRegistDate() %></th></tr>
->>>>>>> b68da3285039aad70a53f42e6a653fdb7a1cb7e9
 </table>
 </div>
 </div>

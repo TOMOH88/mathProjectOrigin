@@ -20,46 +20,48 @@
                 <div class="card-title">
 <form action="#" method="post">
 <table class="table">
+<tr>
+</tr>
 	<tr>
 		<th>제목</th>
-		<td><input type="text" name="ptitle"></td>
+		<td><input type="text" name="ptitle" class="form-control"></td>
 	</tr>
 	<tr>
 		<th>링크주소</th>
-		<td><input type="text" name="plink"></td>
+		<td><input type="text" name="plink" class="form-control"></td>
 	</tr>
 	<tr>
 		<th>x좌표</th>
-		<td><input type="number" name="x"></td>
+		<td><input type="number" name="x" class="form-control"></td>
 	</tr>
 	<tr>
 		<th>y좌표</th>
-		<td><input type="number" name="y"></td>
+		<td><input type="number" name="y" class="form-control"></td>
 	</tr>
 	<tr>
 		<th>width</th>
-		<td><input type="number" name="pwidth"></td>
+		<td><input type="number" name="pwidth" class="form-control"></td>
 	</tr>
 	<tr>
 		<th>height</th>
-		<td><input type="number" name="pheight"></td>
+		<td><input type="number" name="pheight" class="form-control"></td>
 	</tr>
 	<tr>
 		<td colspan="2">
 		<label for="startDate">시작일</label>
-		<input type="date" name="startDate">
+		<input type="date" name="startDate" class="form-control">
 		~
 		<label for="endDate">종료일</label>
-		<input type="date" name="endDate">
+		<input type="date" name="endDate" class="form-control">
 		</td>
 	</tr>
 	<tr>
 		<th>이미지첨부파일</th>
-		<td><input type="file" name="imagefile"></td>
+		<td><input type="file" name="imagefile" class="form-control"></td>
 	</tr>
 	<tr>
 		<th>설명</th>
-		<td><textarea rows="2" cols="60"></textarea></td>
+		<td><textarea rows="2" cols="60" class="form-control"></textarea></td>
 	</tr>
 </table>
 <div style="text-align:center;">
