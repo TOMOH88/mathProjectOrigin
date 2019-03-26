@@ -74,9 +74,9 @@ public class NoticeService {
 		return result;
 	}
 
-	public int AllSearchListCount(String searchTitle, String nOption) {
+	public int allSearchListCount(String searchTitle, String nOption) {
 		Connection conn = getConnection();
-		int result = ndao.AllSearchListCount(searchTitle,nOption,conn);
+		int result = ndao.allSearchListCount(searchTitle,nOption,conn);
 		if(result > 0) {
 			commit(conn);
 		}else {

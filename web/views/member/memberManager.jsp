@@ -40,10 +40,24 @@
 	var name = $("#" + i).html();
 	location.href="/math/mdetail?userid="+name;	
 	}
-	function sendmail(i) {
-		var name = $("#" + i).html();
-		location.href="/math/sendemail";
-		}
+	
+	$(function() {
+		$.ajax({
+			url: "/math/cmember",
+			type: "post",
+			success: function(data) {
+				$("#cmember").html("현재 인원수 :"+data);
+					/* if(data == "ok"){
+						alert("변경되였습니다.");
+					}else{
+						alert("변경실패!");
+					} */
+			},
+			error: function( jqXHR, textStatus, errorThrown) {
+				console.log("error : "+  jqXHR +", "+textStatus+", "+errorThrown);
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -53,13 +67,21 @@
           <div class="card">
             <div class="card-header card-header-primary">
               <h4 class="card-title">회원관리</h4>
+<<<<<<< HEAD
               <p class="card-category">현재인원수</p>
+=======
+              <p class="card-category" id="cmember"></p>
+>>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
             </div>
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
 <table id="t1" class="table">
+<<<<<<< HEAD
 <tr><td>회원 아이디 </td><td>회원 이름</td><td>가입일</td><td>권한</td><td>회원정보</td><td>비밀번호 초기화</td></tr>
+=======
+<tr><td>회원 아이디 </td><td>회원 이름</td><td>가입일</td><td>권한</td><td>회원정보</td></tr>
+>>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
 <%for(int i=0 ; i<list.size();i++){
 String name = list.get(i).getUserId();
 %>
@@ -78,7 +100,12 @@ String name = list.get(i).getUserId();
 <%} %>
 <button onclick="levelChange(<%= i %>);" class="btn btn-default">등급변경</button>
 </th>
+<<<<<<< HEAD
 <th><button onclick="memberDetail(<%= i %>);" class="btn btn-default">회원정보</button></th><th><button onclick="sendmail(<%= i %>);" class="btn btn-default">비밀번호 초기화</button></th>
+=======
+<th><button onclick="memberDetail(<%= i %>);" class="btn btn-default">회원정보</button></th>
+
+>>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
 </tr>
 <%} %>
 </table>
@@ -88,6 +115,10 @@ String name = list.get(i).getUserId();
 </div>
 </div>
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 99f4a28b079353512139db284dc29b8b799cf226
 <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

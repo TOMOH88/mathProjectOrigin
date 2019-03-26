@@ -1,6 +1,7 @@
 package admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.model.service.AdminService;
+import admin.model.vo.Semester;
 import member.model.vo.Member;
 
 /**
@@ -34,11 +36,16 @@ public class MemberDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String userId = request.getParameter("userid");
 		Member member = new AdminService().selectMember(userId);
+		ArrayList<Semester> slist = new AdminService().selectPermission();
+		ArrayList<Semester> mylsit = new AdminService().selectMyPermission(userId);
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view = null;
 		if(member != null) {
 			view = request.getRequestDispatcher("views/member/memberManagerDetail.jsp"); 
 			request.setAttribute("member", member);
+			request.setAttribute("semester", slist);
+			request.setAttribute("permission", mylsit);
+			
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/member/AdminError.jsp");

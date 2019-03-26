@@ -7,11 +7,11 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail {
 	
-	public void SendMails(){
-	String subject = "비밀번호 초기화 안내2"; 
+	public void SendMails(String userId, String hex){
+	String subject = "비밀번호 초기화 안내"; 
 	String from = "aftersay2@gmail.com";
-	String to = "sapirin@naver.com";
-	String content = "냉무";
+	String to = userId;
+	String content = "초기화 된 비밀번호는 "+hex+"입니다.";
 
 	Properties prop = new Properties();// 정보를 담을 객체
 	prop.put("mail.smtp.starttls.enable", "true");     // gmail은 무조건 true 고정
@@ -25,11 +25,10 @@ public class SendMail {
     try{
 	      
 	 
-	    msg.setSubject(subject); //  제목
-	 
+	    msg.setSubject(subject);
 	    StringBuffer buffer = new StringBuffer();
-	    buffer.append("내용 : ");
 	    buffer.append(content+"<br>");
+	    buffer.append("초기화 된 비밀번호로 로그인후 변경하여주시기바랍니다.<br>");
 	    Address fromAddr = new InternetAddress(from);
 	    msg.setFrom(fromAddr); 
 	 
