@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String userId = (String)session.getAttribute("userId"); %>
 <!doctype html>
 <html lang="kr">
 	<head>
@@ -8,11 +7,6 @@
 	<title>감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-<% if(userId != null){%>
-	$(function() {
-		location.href="views/main/main.jsp";
-	});	
-<%}%>
 function checkId() {
 	$.ajax({
 		url: "/math/chkid",

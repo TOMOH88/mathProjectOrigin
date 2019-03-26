@@ -7,11 +7,12 @@
 <style>
 </style>
 <title>감성수학</title>
+
 </head>
 <body>
 <hr>
 <footer align="center">
-|감성수학 
+<h1>감성수학</h1> 
 </footer>
 </body>
 </html>

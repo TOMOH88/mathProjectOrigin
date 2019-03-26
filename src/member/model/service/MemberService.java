@@ -52,4 +52,22 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	public int searchLv(String userId) {
+		Connection conn = getConnection();
+		int result = mdao.searchLv(conn, userId);
+		close(conn);
+		return result;
+	}
+	public int checkId(String userId) {
+		Connection conn = getConnection();
+		int result = mdao.checkId(conn, userId);
+		close(conn);
+		return result;
+	}
+	public ArrayList<Member> searchEmail(String phone) {
+		Connection conn = getConnection();
+		ArrayList<Member> member = mdao.searchEmail(conn,phone);
+		close(conn);
+		return member;
+	}
 }

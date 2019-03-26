@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import member.model.service.LoginManager;
+import member.model.service.MemberService;
 
 /**
  * Servlet implementation class MemberLoginServlet
@@ -37,12 +38,21 @@ public class MemberLoginServlet extends HttpServlet {
 		String userPwd = request.getParameter("password");
 		LoginManager loginManager = LoginManager.getInstance(); 
 		RequestDispatcher view=null;
+		int ckdId = new MemberService().checkId(userId);
+		if(ckdId < 1) {
+			view = request.getRequestDispatcher("/views/member/memberError.jsp");
+			request.setAttribute("message", "회원 가입후 이용해주세요!");
+			view.forward(request, response);
+		}else {
+/*		int lev = new MemberService().searchLv(userId);
+		if(lev != 0) {*/
 		if(loginManager.isValid(userId, userPwd)) {
 			response.setContentType("text/html; charset=utf-8"); 
 			//접속자 아이디를 세션에 담는다.
 	        session.setAttribute("userId", userId);    
 	        //이미 접속한 아이디인지 체크한다.
 	        loginManager.printloginUsers();
+	     
 	        if(loginManager.isUsing(userId)){   
 	        	if(userId != null){
 	                view = request.getRequestDispatcher("/views/member/memberError.jsp");
@@ -55,8 +65,14 @@ public class MemberLoginServlet extends HttpServlet {
 	        }
 		}else {
 			view = request.getRequestDispatcher("/views/member/memberError.jsp");
-			request.setAttribute("message", "로그인실패!");
+			request.setAttribute("message", "비밀번호를 확인해주세요!");
 			view.forward(request, response);
+		}
+/*		}else {
+       	 view = request.getRequestDispatcher("/views/member/memberError.jsp");
+   			request.setAttribute("message", "승인후 로그인 할수 있습니다.");
+   			view.forward(request, response);
+      		}*/
 		}
 	}
 

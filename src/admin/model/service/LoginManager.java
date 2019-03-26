@@ -49,7 +49,7 @@ public class LoginManager implements HttpSessionBindingListener {
 
 	public boolean isValid(String userId, String userPwd) {
 		boolean ckd = false;
-		 Admin admin = new MemberService().loginAdmin(userId, userPwd);
+		 Admin admin = new AdminService().loginAdmin(userId, userPwd);
         System.out.println(admin);
 		 if(admin != null) {
        	 ckd= true;
