@@ -74,7 +74,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#sss">
+            <a class="nav-link" href="/math/mmanager">
               <i class="material-icons">dashboard</i>
               <p>회원관리</p>
             </a>
