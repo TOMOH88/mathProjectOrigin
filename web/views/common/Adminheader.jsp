@@ -72,6 +72,7 @@
               <i class="material-icons">people</i>
               <p>회원관리</p>
             </a>
+            </li>
           <!-- your sidebar here -->
         </ul>
       </div>

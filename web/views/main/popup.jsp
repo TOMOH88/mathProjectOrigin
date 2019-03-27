@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>child</title>
+<script>
+
+</script>
 </head>
 <body>
-
+<div>
+	<img src="awdajkdhkandkwaj">
+</div>
+<a href="javascript:MovePage();">자세한내용보기</a>
 </body>
 </html>

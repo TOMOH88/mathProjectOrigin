@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="popup.model.vo.Popup, java.util.ArrayList" %>
+    <% 
+    	ArrayList<Popup> plist = (ArrayList<Popup>)request.getAttribute("plist");
+    	System.out.print("plist" + plist);
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +18,24 @@
   <link href="/math/resources/assets/css/material-kit.css?v=2.0.5" rel="stylesheet" />
 <title>Insert title here</title>
 </head>
-<body>
+<script type="text/javascript">
+function OpenWindow(){
+	var url;
+	var top;
+	var left;
+	var width;
+	var height;
+	window.open("http://www.naver.com", "_blank", "top=0, left=0, width=600, height=600, resizable=1, scrollbars=yes");
+}
+</script>
+<body onload="OpenWindow();">
 <%@ include file="../common/header.jsp" %>
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('/math/resources/images/math-3986758_1920.jpg')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
-            <h1>Your title here</h1>
+            <h1>메인</h1>
             <h3 class="title text-center">Subtitle</h3>
           </div>
         </div>

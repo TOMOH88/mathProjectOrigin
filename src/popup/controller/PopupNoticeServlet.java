@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import popup.model.service.PopupService;
 import popup.model.vo.Popup;
 
 /**
- * Servlet implementation class PopupListServlet
+ * Servlet implementation class PopupNoticeServlet
  */
-@WebServlet("/plist")
-public class PopupListServlet extends HttpServlet {
+@WebServlet("/npopup")
+public class PopupNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PopupListServlet() {
+    public PopupNoticeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,43 +31,13 @@ public class PopupListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int currentPage = 1;
-		if(request.getParameter("page") != null) {
-			currentPage = Integer.parseInt(request.getParameter("page"));
-		}
-		int limit = 5;
-		
-		PopupService pservice = new PopupService();
-		String searchTitle = "";
-		if(request.getParameter("title") != null) {
-			searchTitle = request.getParameter("title");
-		}
-		int AllSearchListCount = pservice.AllSearchListCount(searchTitle);
-		
-		int maxPage = (int)((double)AllSearchListCount / limit + 0.9);
-		int startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
-		
-		int endPage = startPage + limit - 1;
-		
-		if(maxPage < endPage) {
-			endPage = maxPage;
-		}
-		
-		ArrayList<Popup> plist = pservice.searchAllList(searchTitle, startPage, limit);
+		ArrayList<Popup> plist = new ArrayList<Popup>();
 		
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view = null;
 		if(plist.size() > 0) {
-			view = request.getRequestDispatcher("views/popup/popupListView.jsp");
 			view = request.getRequestDispatcher("views/main/main.jsp");
-			request.setAttribute("currentPage", currentPage);
-			request.setAttribute("maxPage", maxPage);
-			request.setAttribute("startPage", startPage);
-			request.setAttribute("endPage", endPage);;
-			request.setAttribute("limit", limit);
-			request.setAttribute("searchTitle", searchTitle);
 			request.setAttribute("plist", plist);
-			request.setAttribute("AllSearchListCount", AllSearchListCount);
 			view.forward(request, response);
 			System.out.println("plist" + plist);
 		}else {

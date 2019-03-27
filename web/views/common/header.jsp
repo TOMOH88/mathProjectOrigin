@@ -69,6 +69,11 @@
               <i class="material-icons">apps</i> 로그아웃
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/math/views/main/popup.jsp" class="nav-link">
+              <i class="material-icons">apps</i> popup
+            </a>
+          </li>
         </ul>
       </div>
     </div>
