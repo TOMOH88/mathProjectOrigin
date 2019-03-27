@@ -4,6 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Kit CSS -->
+  <link href="/math/resources/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
 <title>Search Email</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -45,10 +52,13 @@ function searchid() {
 </script>
 </head>
 <body>
-<h1>아이디 찾기</h1>
-전화번호 입력:<input type="text" name="phone" id="phone"></input><button onclick="searchid();">확인</button>
+<div align="center">
+<h3>아이디 찾기</h1>
+<div class="container">
+전화번호 입력:<input type="text" name="phone" id="phone" class="form-control" style="width:140px;"></input><button onclick="searchid();" class="btn btn-default btn-sm">확인</button>
+</div>
 <div>
-<table id="p1">
+<table id="p1" class="table">
 </table>
 </div>
 </body>
