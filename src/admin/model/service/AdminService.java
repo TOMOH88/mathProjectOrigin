@@ -121,4 +121,15 @@ public class AdminService {
 		close(conn);
 		return result;
 	}
+	public void lastModifiedPermission(String userId) {
+		Connection conn = getConnection();
+		int result = adao.lastModifiedPermission(conn,userId);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+	}
 }

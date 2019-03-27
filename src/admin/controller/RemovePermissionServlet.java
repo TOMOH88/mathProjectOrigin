@@ -46,6 +46,7 @@ public class RemovePermissionServlet extends HttpServlet {
 			addper.add(new Semester(seme.getSemesterNo(),userId , seme.getSemesterName()));
 		}
 		result = new AdminService().removePermission(addper);
+		new AdminService().lastModifiedPermission(userId);
 		String returnValue=null;
 		if(0<result) {
 			returnValue="ok";

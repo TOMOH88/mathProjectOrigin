@@ -39,16 +39,26 @@ public class AddPermissionServlet extends HttpServlet {
 		System.out.println(per);
 		String[] str = per.split(" ");
 		ArrayList<Semester> addper = new ArrayList<>();
+		ArrayList<Semester> addper2 = new ArrayList<>();
 		int result =0;
 		if(str[1].equals("모든권한")) {
+			addper2 = new AdminService().selectMyPermission(userId);
+/*			for(int i = 0 ; i<addper2.size();i++) {
+				addper2.get(i).setUserId(userId);
+				System.out.println(addper2);
+			}*/
+			int result2 = new AdminService().removePermission(addper2);
+			System.out.println(result2);
 			addper = new AdminService().selectPermission();
 			for(int i = 0 ; i<addper.size();i++) {
 				addper.get(i).setUserId(userId);
 			}
+			
 			for(Semester s:addper) {
 				System.out.println(s);
 			}
 			result = new AdminService().addPermission(addper);
+			new AdminService().lastModifiedPermission(userId);
 		}else {
 		System.out.println(str.length);
 		for(int i=1 ; i<str.length;i++) {
@@ -56,6 +66,7 @@ public class AddPermissionServlet extends HttpServlet {
 			addper.add(new Semester(seme.getSemesterNo(),userId , seme.getSemesterName()));
 		}
 		result = new AdminService().addPermission(addper);
+		new AdminService().lastModifiedPermission(userId);
 		}
 		String returnValue=null;
 		if(0<result) {

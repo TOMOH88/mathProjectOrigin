@@ -203,7 +203,7 @@ public class AdminDao {
 		ArrayList<Semester> mylist = new ArrayList<Semester>();
 		PreparedStatement pstmt= null;
 		ResultSet rset = null;
-		String query = "select semester_name,user_id from tb_permission "
+		String query = "select semester_name,user_id,semester_no from tb_permission "
 				+ "join tb_semester using(semester_no) where user_id = ?";
 		try {
 			pstmt  = conn.prepareStatement(query);
@@ -211,7 +211,8 @@ public class AdminDao {
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				String semesterName = rset.getString(1);
-				mylist.add(new Semester(userId, semesterName));
+				int semesterNo = rset.getInt(3);
+				mylist.add(new Semester(semesterNo, userId, semesterName));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -272,6 +273,24 @@ public class AdminDao {
 			pstmt.setString(2, addper.get(i).getUserId());		
 			result += pstmt.executeUpdate();
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int lastModifiedPermission(Connection conn, String userId) {
+		
+		int result = 0;
+		PreparedStatement pstmt= null;
+		String qurey ="update tb_user set LASTMODIFIED = sysdate where user_id = ?";
+		try {
+			
+			pstmt= conn.prepareStatement(qurey);
+			pstmt.setString(1, userId);		
+			result = pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
