@@ -60,7 +60,6 @@ public class PopupListServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(plist.size() > 0) {
 			view = request.getRequestDispatcher("views/popup/popupListView.jsp");
-			view = request.getRequestDispatcher("views/main/main.jsp");
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
 			request.setAttribute("startPage", startPage);
