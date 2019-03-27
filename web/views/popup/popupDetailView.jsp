@@ -40,9 +40,9 @@
 		</tr>
 	</table>
 	<div style="text-align:center;">
-	<a href="/math/pupview?no=<%=popup.getPopupNo() %>" class="btn btn-default">글수정</a>
-				<a href="/math/pdelete?no=<%=popup.getPopupNo()%>" class="btn btn-default">글삭제</a>
-				<a href="/math/plist" class="btn btn-default">목록가기</a>
+	<a href="/math/pupview?no=<%=popup.getPopupNo() %>" class="btn btn-default btn-sm">글수정</a>
+				<a href="/math/pdelete?no=<%=popup.getPopupNo()%>" class="btn btn-default btn-sm">글삭제</a>
+				<a href="/math/plist" class="btn btn-default btn-sm">목록가기</a>
 				<%if(popup.getPopupNo() > popupMin){ %>
 					<button name="btn" onclick="javascript:location.href='/math/pback?no=<%=popup.getPopupNo()%>'" class="btn btn-primary btn-link">이전글</button>
 				<%} if(popup.getPopupNo() < popupNext){ %>

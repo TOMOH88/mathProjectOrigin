@@ -26,7 +26,8 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table" id="faqTable">
-                      <thead class=" text-primary">
+                    <tr>
+                    </tr>
 	<tr>
 		<th>제목</th>
 		<td><%=faq.getQuestionContent() %></td>
@@ -39,17 +40,16 @@
 		<th>내용</th>
 		<td><%=faq.getAnswerContent() %></td>
 	</tr>
-	</thead>
 </table>
 <div align="center">
 <button onclick="javascript:location.href='/math/fupview?no=<%=faq.getFaqNo()%>'" class="btn btn-default btn-sm">글수정</button>
 <button onclick="javascript:location.href='/math/fdelete?no=<%=faq.getFaqNo() %>'" class="btn btn-default btn-sm">글삭제</button>
-<% if(faq.getFaqNo() > faqMin){ %>
-<button onclick="javascript:location.href='/math/fback?no=<%=faq.getFaqNo()%>'" class="btn btn-default btn-sm">이전글</button>
-<% } if(faq.getFaqNo() < faqNext){%>
-<button onclick="javascript:location.href='/math/fnext?no=<%=faq.getFaqNo()%>'" class="btn btn-default btn-sm">다음글</button>
-<% } %>
 <button onclick="javascript:location.href='/math/fslist';" class="btn btn-default btn-sm">목록으로가기</button>
+<% if(faq.getFaqNo() > faqMin){ %>
+<button onclick="javascript:location.href='/math/fback?no=<%=faq.getFaqNo()%>'" class="btn btn-primary btn-link">이전글</button>
+<% } if(faq.getFaqNo() < faqNext){%>
+<button onclick="javascript:location.href='/math/fnext?no=<%=faq.getFaqNo()%>'" class="btn btn-primary btn-link">다음글</button>
+<% } %>
 </div>
 </div>
 </div>

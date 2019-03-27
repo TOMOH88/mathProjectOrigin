@@ -63,9 +63,9 @@
 		</tr>
 	</table>
 	<div style="text-align:center;">
-	<a href="/math/nupview?no=<%=notice.getNoticeNo() %>" class="btn btn-default">글수정</a>
-				<a href="/math/ndelete?no=<%=notice.getNoticeNo()%>" class="btn btn-default">글삭제</a>
-				<a href="/math/nslist" class="btn btn-default">목록가기</a>
+	<a href="/math/nupview?no=<%=notice.getNoticeNo() %>" class="btn btn-default btn-sm">글수정</a>
+				<a href="/math/ndelete?no=<%=notice.getNoticeNo()%>" class="btn btn-default btn-sm">글삭제</a>
+				<a href="/math/nslist" class="btn btn-default btn-sm">목록가기</a>
 				<%if(notice.getNoticeNo() > noticeMin){ %>
 					<button name="btn" onclick="javascript:location.href='/math/nback?no=<%=notice.getNoticeNo()%>'" class="btn btn-primary btn-link">이전글</button>
 				<%} if(notice.getNoticeNo() < noticeNext){ %>

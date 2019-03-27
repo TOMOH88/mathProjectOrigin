@@ -49,21 +49,29 @@ $(function(){
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<hr style="clear:both;">
-<h1 align="center"><%=qna.getQnaNo() %>번 수정페이지</h1>
-<form id="nform" action="/math/qaupdate" method="post" enctype="multipart/form-data">	
+ <div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">공지사항</h4>
+               <p class="card-category"><%=qna.getQnaNo() %>번글 수정페이지</p>
+            </div>
+            <div class="card-body">
+              <div id="typography">
+                <div class="card-title">
+                <form id="nform" action="/math/qaupdate" method="post" enctype="multipart/form-data">	
 <input type="hidden" name="qno" value="<%=qna.getQnaNo()%>">
 <input type="hidden" name="adminId" value="<%=qna.getAdminId()%>">
 <input type="hidden" name="ofile" value="<%=qna.getOriginalQname() %>">
 <input type="hidden" name="rfile" value="<%=qna.getRenameQname() %>">
-<table align="center" cellspacing="0" width="800px">
+                <table class="table">
 	<tr>
 		<td>질문내용</td>
-		<td><input type="text" name="qATitle"  value="<%=qna.getQnaTitle()%>" readonly></td>
+		<td><input type="text" name="qATitle"  value="<%=qna.getQnaTitle()%>" readonly class="form-control"></td>
 	</tr>
 	<tr>
 		<td>답변내용</td>
-		<td><textarea row="10" cols="30" id="con1" name="content" style="width:650px; height: 350px;"><%=qna.getQnaContent()%></textarea></td>
+		<td><textarea row="10" cols="30" id="con1" name="content" style="width:100%; height: 350px;"><%=qna.getQnaContent()%></textarea></td>
 	</tr>
 	<tr>
 		<td>첨부파일</td>
@@ -73,11 +81,19 @@ $(function(){
 		<% }else{ %>
 			첨부파일없음
 		<% } %>
-			<input type="file" name="upfile" value="첨부파일변경">
+			<input type="file" name="upfile" value="첨부파일변경" class="form-control">
 		</td>
 	</tr>
 </table>
-<input type="button" id="save" value="수정하기">
+<div align="center">
+<input type="button" id="save" value="수정하기" class="btn btn-default btn-sm">
+</div>
 </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

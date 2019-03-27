@@ -373,7 +373,9 @@ body .container .content .signup-cont {
     				        <div class="signup-cont cont">
                 <form action="/math/mjoin" method="post">
 						                    <input type="email" name="email2" id="email2" class="inpt" required="required" placeholder="이메일 주소">
-						                    <button onclick="return checkId();">중복 확인</button>
+						                    <div class="submit-wrap">
+						                    <input type="button" onclick="return checkId();" class="submit" value="중복확인">
+						                    </div><br>
 						                    <label for="name">Your name</label>
 						                    <input type="password" name="password2" id="password2" class="inpt" required="required" placeholder="비밀번호">
 						                    <label for="password">Your password</label>

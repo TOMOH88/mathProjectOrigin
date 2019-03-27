@@ -108,7 +108,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+            <a class="navbar-brand" href="#">Admin</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -120,7 +120,7 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="/math/alogout">
-                  <i class="material-icons">notifications</i> logout
+                  <i class="material-icons">account_circle</i> logout
                 </a>
               </li>
               <!-- your navbar here -->

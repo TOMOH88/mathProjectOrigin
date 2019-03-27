@@ -20,9 +20,19 @@
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<hr style="clear:both;">
-<H1 align="center"><%=qna.getQnaNo() %>번 상세페이지</H1>
-<table align="center" width="800px">
+         <div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">공지사항</h4>
+               <p class="card-category"><%=qna.getQnaNo() %>번글 상세페이지</p>
+            </div>
+            <div class="card-body">
+              <div id="typography">
+                <div class="card-title">
+                <table class="table">
+                <tr>
+                </tr>
 	<tr>
 		<th>질문내용</th>
 		<td><%=qna.getQnaTitle() %></td>
@@ -44,9 +54,18 @@
 		</td>
 	</tr>
 </table>
+<div align="center">
 <% if(qna.getQnaStatus().equals("N")){ %>
-	<button onclick="answerWrite();">답변하기</button>	
+	<button onclick="answerWrite();" class="btn btn-default btn-sm">답변하기</button>	
 <% } %>
-<button onclick="updateView();">수정하기</button>
+<button onclick="updateView();" class="btn btn-default btn-sm">수정하기</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

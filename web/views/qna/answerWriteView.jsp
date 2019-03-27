@@ -49,27 +49,42 @@ $(function(){
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-<hr style="clear:both;">
-<form id="nform" action="/math/qawrite" method="post" enctype="multipart/form-data">
+<div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">공지사항</h4>
+            </div>
+            <div class="card-body">
+              <div id="typography">
+                <div class="card-title">
+                <form id="nform" action="/math/qawrite" method="post" enctype="multipart/form-data">
 <input type="hidden" name="qno" value="<%=qna.getQnaNo()%>">
 <input type="hidden" name="adminId" value="<%=qna.getAdminId()%>">
 <input type="hidden" name="userId" value="<%=qna.getUserId()%>">
-<table align="center" cellspacing="0" width="800px">
+                <table class="table">
 	<tr>
 		<td>질문내용</td>
-		<td><input type="text" name="qATitle"  value="<%=qna.getQnaTitle()%>" readonly></td>
+		<td><input type="text" name="qATitle"  value="<%=qna.getQnaTitle()%>" readonly class="form-control"></td>
 	</tr>
 	<tr>
 		<td>답변내용</td>
-		<td><textarea row="10" cols="30" id="con1" name="content" style="width:650px; height: 350px;"></textarea></td>
+		<td><textarea row="10" cols="30" id="con1" name="content" style="width:100%; height: 350px;"></textarea></td>
 	</tr>
 	<tr>
 		<td>첨부파일</td>
-		<td><input type="file" name="upfile"></td>
+		<td><input type="file" name="upfile" class="form-control"></td>
 	</tr>
 </table>
-<input type="button" id="save" value="답변쓰기">
+<div align="center">
+<input type="button" id="save" value="답변쓰기" class="btn btn-default btn-sm">
+</div>
 </form>
-
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
