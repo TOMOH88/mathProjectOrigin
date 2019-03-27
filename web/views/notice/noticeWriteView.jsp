@@ -95,5 +95,21 @@ $(function(){
 </div>
 </div>
 <%@ include file="../common/footer.jsp" %>
+<script src="/math/resources/assets/js/core/jquery.min.js"></script>
+  <script src="/math/resources/assets/js/core/popper.min.js"></script>
+  <script src="/math/resources/assets/js/core/bootstrap-material-design.min.js"></script>
+  <script src="/math/resources/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+  <!-- Library for adding dinamically elements -->
+  <script src="/math/resources/assets/js/plugins/arrive.min.js"></script>
+  <!-- Chartist JS -->
+  <script src="/math/resources/assets/js/plugins/chartist.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="/math/resources/assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/math/resources/assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+  <script src="/math/resources/assets/demo/demo.js"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <title>footer</title>
 </head>
 <body>
-<footer class="footer">
+      <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
             <ul>

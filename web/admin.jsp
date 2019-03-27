@@ -10,7 +10,7 @@
 <script type="text/javascript">
 <% if(admin != null){%>
 $(function() {
-	location.href="/main/nslit.jsp";
+	location.href="/math/nslist";
 });	
 <%}%>
 </script>
@@ -302,11 +302,8 @@ body .container .content .signup-cont {
 						                    <label for="email">Your email</label>
 						                    <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호">
                 						    <label for="password">Your password</label>
-						                    <input type="checkbox" id="remember" class="checkbox" checked>
-						                    <label for="remember">Remember me</label>
 						                    <div class="submit-wrap">
 							                        <input type="submit" value="로그인 " class="submit">
-							                        <a href="#" class="more">Forgot your password?</a>
 						                    </div>
         					        </form>
     				        

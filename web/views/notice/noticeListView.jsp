@@ -26,8 +26,9 @@
 </style>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
-         <div class="content">
+<div class="content">
         <div class="container-fluid">
+          <!-- your content here -->
           <div class="card">
             <div class="card-header card-header-primary">
               <h4 class="card-title">공지사항</h4>
@@ -157,6 +158,7 @@
 </div>
 </div>
 </div>
+<%@ include file="../common/footer.jsp" %>
 <script src="/math/resources/assets/js/core/jquery.min.js"></script>
   <script src="/math/resources/assets/js/core/popper.min.js"></script>
   <script src="/math/resources/assets/js/core/bootstrap-material-design.min.js"></script>
@@ -173,6 +175,5 @@
   <script src="/math/resources/assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="/math/resources/assets/demo/demo.js"></script>
-<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
