@@ -27,7 +27,7 @@ function faqWrite(){
 <%@ include file="../common/Adminheader.jsp" %>
 <hr style="clear:both;">
 <h1>총 게시물 수 : <%=allSearchListCount %></h1>
-<table align="center" border="1"  width="600"  cellspacing="0" id="faqTable">
+<table align="center" border="1"  width="600"  cellspacing="0" >
 	<tr>
 		<th></th>
 		<th>글제목</th>
@@ -36,7 +36,7 @@ function faqWrite(){
 	<% for(int i =0; i < fList.size(); i++){ %>
 	<tr>
 		<td><%=fList.get(i).getFaqNo() %></td>
-		<td><a href="/math/fdetail?no=<%=fList.get(i).getFaqNo()%>"><%=fList.get(i).getQuestionContent() %></a></td>
+		<td><a href="/math/fdetail?no=<%=fList.get(i).getFaqNo()%>&page=<%=currentPage%>"><%=fList.get(i).getQuestionContent() %></a></td>
 		<td><%=fList.get(i).getFaqDate() %></td>
 	</tr>
 	<% } %>

@@ -76,7 +76,7 @@ public class FaqSearchAllListServlet extends HttpServlet {
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/faq/faqError.jsp");
-			request.setAttribute("message", "FAQ목록 조회 실패");
+			request.setAttribute("message", "FAQ글이 없습니다");
 			view.forward(request, response);
 		}
 	}

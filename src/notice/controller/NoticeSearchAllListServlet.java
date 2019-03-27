@@ -79,7 +79,7 @@ public class NoticeSearchAllListServlet extends HttpServlet {
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "조회 불가");
+			request.setAttribute("message", "공지사항글이 없습니다.");
 			view.forward(request, response);
 		}
 	}

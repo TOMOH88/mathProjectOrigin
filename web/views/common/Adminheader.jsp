@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%  
-	String adminId = (String)session.getAttribute("admin");
+	String admin = (String)session.getAttribute("admin");
 %>    
 <!DOCTYPE html>
 <html>
@@ -19,6 +19,15 @@
 <title>감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+$(function(){
+	if(<%=admin%> != null){
+		location.href="/math/nslist";
+	}else {
+		alert("관리자로그인을 하셔야 합니다.");
+		location.href="/math/admin.jsp";
+	}
+});
+
 </script>
 </head>
 <body>

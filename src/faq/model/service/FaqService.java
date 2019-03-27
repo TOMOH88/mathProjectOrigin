@@ -88,4 +88,11 @@ public class FaqService {
 		close(conn);
 		return faqMin;
 	}
+
+	public ArrayList<Faq> faqUserList() {
+		Connection conn = getConnection();
+		ArrayList<Faq> fList = fdao.faqUserList(conn);
+		close(conn);
+		return fList;
+	}
 }

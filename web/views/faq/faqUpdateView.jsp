@@ -3,6 +3,7 @@
 <%@ page import="faq.model.vo.Faq" %>    
 <%
 	Faq faq = (Faq)request.getAttribute("faq");
+	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 %>
 <!DOCTYPE html>
 <html>
@@ -44,6 +45,10 @@ $(function(){
           $("#nform").submit();
       });    
 });
+
+function faqList(){
+	location.href="/math/fslist?page="+<%=currentPage%>;
+}
 </script>
 </head>
 <body>
@@ -65,10 +70,10 @@ $(function(){
 	<tr>
 		<td colspan="2">
 			<input type="button" id="save" value="수정하기" >
-			<button onclick="javascript:location.href='/math/fslist';">목록으로가기</button>
 		</td>
 	</tr>
 </table>
 </form>
+<button onclick="faqList();">목록으로가기</button>
 </body>
 </html>

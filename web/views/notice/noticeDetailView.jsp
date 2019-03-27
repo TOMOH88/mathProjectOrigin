@@ -5,16 +5,32 @@
 	Notice notice = (Notice)request.getAttribute("notice");
 	String searchTitle = (String)request.getAttribute("searchTitle");
 	String nOption = (String)request.getAttribute("noption");
-	int noticeBack = (Integer)request.getAttribute("noticeBack");
-	int noticeNext = (Integer)request.getAttribute("noticeNext");
-	int noticeMin = (Integer)request.getAttribute("noticeMin");
+	int noticeBack = ((Integer)request.getAttribute("noticeBack")).intValue();
+	int noticeNext = ((Integer)request.getAttribute("noticeNext")).intValue();
+	int noticeMin = ((Integer)request.getAttribute("noticeMin")).intValue();
+	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>감성수학 관리자 상세보기창</title>
+<title>감성수학 상세보기</title>
 <script type="text/javascript">
+	function noticeUpView(){
+		location.href="/math/nupview?no="+<%=notice.getNoticeNo() %>+"&page="+<%=currentPage%>;
+	}
+	
+	function noticeDelete(){
+		if(confirm("정말 삭제하시겠습니까?") == true){
+			location.href="/math/ndelete?no="+<%=notice.getNoticeNo() %>;
+		}else{
+			return;
+		}
+	}
+	
+	function noticeList(){
+			location.href="/math/nslist?page="+<%=currentPage%>;
+	}
 </script>
 </head>
 <body>
@@ -45,9 +61,9 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<a href="/math/nupview?no=<%=notice.getNoticeNo() %>">글수정</a>
-				<a href="/math/ndelete?no=<%=notice.getNoticeNo()%>">글삭제</a>
-				<a href="/math/nslist">목록가기</a>
+				<button onclick="noticeUpView();" >글수정</button>
+				<button onclick="noticeDelete();">글삭제</button>
+				<button onclick="noticeList();">목록가기</button>
 				<%if(notice.getNoticeNo() > noticeMin){ %>
 					<button name="btn" onclick="javascript:location.href='/math/nback?no=<%=notice.getNoticeNo()%>'">이전글</button>
 				<%} if(notice.getNoticeNo() < noticeNext){ %>

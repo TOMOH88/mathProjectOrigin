@@ -26,8 +26,6 @@ public class QnaService {
 		return qna;
 	}
 	
-	public int insertQnaWrite(Qna qna) {}
-	
 	public int insertAnswerWrite(Qna qna) {
 		Connection conn = getConnection();
 		int aInsert = qdao.insertAnswerWrite(qna, conn);
@@ -39,8 +37,6 @@ public class QnaService {
 		close(conn);
 		return aInsert;
 	}
-	
-	public int qnaUpdate(Qna qna) {}
 	
 	public int answerUpdate(Qna qna) {
 		Connection conn = getConnection();
@@ -54,7 +50,30 @@ public class QnaService {
 		return result;
 	}
 	
-	public int qnaDelete(int qnaNo) {}
+	public int qnaDelete(int qnaNo) {
+		Connection conn = getConnection();
+		int result = qdao.qnaDelete(qnaNo, conn);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int qnaAnswerDelete(int qnaNo) {
+		Connection conn = getConnection();
+		int result = qdao.qnaAnswerDelete(qnaNo, conn);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 	
 	public int allSearchListCount(String searchTitle, String qOption) {
 		Connection conn = getConnection();
@@ -63,8 +82,6 @@ public class QnaService {
 		return result;
 	}
 	
-	public void addReadCount(int qnaNo) {}
-
 	public void qnaUpdateStatus(int qnaNo) {
 		Connection conn = getConnection();
 		int result = qdao.qnaUpdateStatus(qnaNo, conn);
@@ -74,6 +91,44 @@ public class QnaService {
 			rollback(conn);
 		}
 		close(conn);
+		
 	}
 	
+	public void qnaUpdateQStatus(int qnaNo) {
+		Connection conn = getConnection();
+		int result = qdao.qnaUpdateQStatus(qnaNo, conn);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+	}
+
+	public ArrayList<Qna> qnaUserMyList(String userId, int currentPage, int limit) {
+		Connection conn = getConnection();
+		ArrayList<Qna> qList = qdao.qnaUserMyList(userId, currentPage, limit, conn);
+		close(conn);
+		return qList;
+	}
+
+	public int myUserListCount(String userId) {
+		Connection conn = getConnection();
+		int result = qdao.myUserListCount(userId, conn);
+		close(conn);
+		return result;
+	}
+
+	public int insertQuestionWrite(Qna qna) {
+		Connection conn = getConnection();
+		int qInsert = qdao.insertQuestionWrite(qna, conn);
+		if(qInsert > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return qInsert;
+	}
+
 }

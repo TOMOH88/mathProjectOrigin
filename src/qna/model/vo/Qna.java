@@ -16,13 +16,12 @@ public class Qna implements java.io.Serializable{
 	private int qnaLevel;
 	private int qnaIndex;
 	private String qnaStatus;
-	private String userId;
-	private String adminId;
+	private String qnaWriter;
 	
 	public Qna() {}
 
 	public Qna(int qnaNo, String qnaTitle, String qnaContent, Date qnaDate, String originalQname, String renameQname,
-			int parentNo, int answerRef, int qnaLevel, int qnaIndex, String qnaStatus, String userId, String adminId) {
+			int parentNo, int answerRef, int qnaLevel, int qnaIndex, String qnaStatus, String qnaWriter) {
 		super();
 		this.qnaNo = qnaNo;
 		this.qnaTitle = qnaTitle;
@@ -35,8 +34,7 @@ public class Qna implements java.io.Serializable{
 		this.qnaLevel = qnaLevel;
 		this.qnaIndex = qnaIndex;
 		this.qnaStatus = qnaStatus;
-		this.userId = userId;
-		this.adminId = adminId;
+		this.qnaWriter = qnaWriter;
 	}
 
 	public int getQnaNo() {
@@ -127,20 +125,12 @@ public class Qna implements java.io.Serializable{
 		this.qnaStatus = qnaStatus;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getQnaWriter() {
+		return qnaWriter;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getAdminId() {
-		return adminId;
-	}
-
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
+	public void setQnaWriter(String qnaWriter) {
+		this.qnaWriter = qnaWriter;
 	}
 
 	public static long getSerialversionuid() {
@@ -151,7 +141,7 @@ public class Qna implements java.io.Serializable{
 	public String toString() {
 		return qnaNo + ", " + qnaTitle + ", " + qnaContent + ", " + qnaDate + ", " + originalQname + ", " + renameQname
 				+ ", " + parentNo + ", " + answerRef + ", " + qnaLevel + ", " + qnaIndex + ", " + qnaStatus + ", "
-				+ userId + ", " + adminId;
+				+ qnaWriter;
 	}
-	
+
 }
