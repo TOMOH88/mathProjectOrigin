@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import member.model.vo.Member;
+import member.model.vo.Semester;
 
 public class MemberDao {
 
@@ -194,4 +195,50 @@ public class MemberDao {
 		}
 		return member;
 	}
+
+	public ArrayList<Semester> selectMyPermission(Connection conn, String userId) {
+		ArrayList<Semester> mylist = new ArrayList<Semester>();
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		String query = "select semester_name,user_id from tb_permission "
+				+ "join tb_semester using(semester_no) where user_id = ?";
+		try {
+			pstmt  = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				String semesterName = rset.getString(1);
+				mylist.add(new Semester(userId, semesterName));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return mylist;
+	}
+
+	public ArrayList<Semester> selectPermission(Connection conn) {
+		ArrayList<Semester> slist = new ArrayList<Semester>();
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		String query = "select * from tb_semester";
+		try {
+			pstmt  = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				int semesterNo = rset.getInt(1);
+				String semesterName = rset.getString(2);
+				slist.add(new Semester(semesterNo, semesterName));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return slist;
+	}
 }
+

@@ -93,4 +93,21 @@ public class AdminService {
 		close(conn);
 		return mylist;
 	}
+	public int addPermission(ArrayList<Semester> addper) {
+		Connection conn = getConnection();
+		int result = adao.addPermission(conn,addper);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public Semester selectSemesterNo(String semeName) {
+		Connection conn = getConnection();
+		Semester seme = adao.selectSemesterNo(conn,semeName);
+		close(conn);
+		return seme;
+	}
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
+import member.model.vo.Semester;
 
 public class MemberService {
 	private MemberDao mdao = new MemberDao();
@@ -69,5 +70,17 @@ public class MemberService {
 		ArrayList<Member> member = mdao.searchEmail(conn,phone);
 		close(conn);
 		return member;
+	}
+	public ArrayList<Semester> selectMyPermission(String userId) {
+		Connection conn = getConnection();
+		ArrayList<Semester>  mylist = mdao.selectMyPermission(conn,userId);
+		 	close(conn);
+		return mylist;
+	}
+	public ArrayList<Semester> selectPermission(String userId) {
+		Connection conn = getConnection();
+		ArrayList<Semester>  slist = mdao.selectPermission(conn);
+		close(conn);
+		return slist;
 	}
 }
