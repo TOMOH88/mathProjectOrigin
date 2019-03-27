@@ -78,6 +78,42 @@ function sendmail(){
 		return false;	
 	}
 	};
+	
+	
+	function addPermission() {
+		var per = $("#s1").val();
+		$("#d1").html($("#d1").text()+" "+per)
+
+	};
+	function sendAddPer() {
+		if(confirm("권한을 적용하시겠습니까?")){
+			$.ajax({
+				url: "/math/addper",
+				type: "post",
+				data: {userid : $("#userid").val(),
+					    per: $("#d1").text()},
+				
+				success: function(data) {
+						if(data == "ok"){
+							alert("변경되였습니다.");
+							window.location.reload();
+						}else{
+							alert("권한주기 오류 확인후 다시해주세요");
+						}
+				
+				},
+				error: function( jqXHR, textStatus, errorThrown) {
+					console.log("error : "+  jqXHR +", "+textStatus+", "+errorThrown);
+				}
+		});
+		}else{
+			$("#d1").html("");
+			return false;
+		}
+	};
+	function remove1() {
+		$("#d1").html("");
+	}
 </script>
 </head>
 <body>
@@ -104,7 +140,7 @@ function sendmail(){
 <tr><td>최종 수정일</td><th><%=member.getLastModified() %></th></tr>
 <tr><td>권한 주기</td>
 <th>
-<Select>
+<Select id="s1">
 	<option selected="selected">권한 선택</option>
 	<option>모든권한</option>
 	<%for(Semester s : slist){ %>
@@ -113,8 +149,9 @@ function sendmail(){
 </Select>
 <button onclick="addPermission();">권한추가</button>
 </th></tr>
+<tr><th><div id="d1"></div></th><th><button onclick="sendAddPer();">권한 주기</button><button onclick="remove1();">선택한 권한지우기</button></th></tr>
 <tr><td>보유 권한</td><th>
-<Select>
+<Select id="s2">
 	<option selected="selected">보유 권한</option>
 	<%for(Semester m : mylist){ %>
 	<option><%=m.getSemesterName() %></option>

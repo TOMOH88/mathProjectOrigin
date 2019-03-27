@@ -221,5 +221,45 @@ public class AdminDao {
 		}
 		return mylist;
 	}
+	public int addPermission(Connection conn, ArrayList<Semester> addper) {
+		int result = 0;
+		PreparedStatement pstmt= null;
+		String qurey ="insert into tb_permission values(?,?)";
+		try {
+			for(int i = 0 ; i<addper.size();i++) {
+			pstmt= conn.prepareStatement(qurey);
+			pstmt.setInt(1, addper.get(i).getSemesterNo());
+			pstmt.setString(2, addper.get(i).getUserId());		
+			result += pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public Semester selectSemesterNo(Connection conn, String semeName) {
+		Semester seme = null;
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		String query = "select * from tb_semester where semester_name = ?";
+		try {
+			pstmt  = conn.prepareStatement(query);
+			pstmt.setString(1, semeName);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				int semesterNo = rset.getInt(1);
+				String semesterName = rset.getString(2);
+				seme =new Semester(semesterNo, semesterName);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return seme;
+	}
 
 }

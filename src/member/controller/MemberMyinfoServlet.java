@@ -1,6 +1,7 @@
 package member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import member.model.vo.Semester;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
@@ -35,11 +37,15 @@ public class MemberMyinfoServlet extends HttpServlet {
 		HttpSession session =request.getSession();
 		String userId = (String)session.getAttribute("userId");
 		Member member = new MemberService().selectMember(userId);
+		ArrayList<Semester> allList = new MemberService().selectPermission(userId);
+		ArrayList<Semester> slist = new MemberService().selectMyPermission(userId);
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view = null;
 		if(member != null) {
 			view = request.getRequestDispatcher("views/member/memberDetailView.jsp"); 
 			request.setAttribute("member", member);
+			request.setAttribute("semester", allList);
+			request.setAttribute("permission", slist);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/member/memberError.jsp");
