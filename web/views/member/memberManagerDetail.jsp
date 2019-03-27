@@ -14,18 +14,6 @@
 <title>감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
  <script type="text/javascript">
-/* $(function() {
-	$("#password1").blur(function() {
-		console.log("포커스 사라짐");
-		var pwd1 = $("#password").val();
-		var pwd2 = $("#password1").val();
-		if(pwd1 != pwd2){
-			alert("암호와 암호 확인이 일치하지 않습니다.\n"
-					+"다시 입력하십시요.");
-			$("#password").select();
-		}
-	});
-}); */
 function changePwd() {
 	var pwd1 = $("#password").val();
 	var pwd2 = $("#password1").val();
@@ -114,7 +102,44 @@ function sendmail(){
 	function remove1() {
 		$("#d1").html("");
 	}
-</script>
+	function allCheck() {
+		$(":checkbox").prop("checked",true);
+	}
+	function unCheck() {
+		$(":checkbox").prop("checked",false);
+	}
+	function removePermission() {
+		var items = "";
+		$("input:checkbox[type=checkbox]:checked").each(function() {
+			items+= $(this).val()+" ";
+		});
+		if(confirm("권한을 삭제하시겠습니까?")){
+
+			console.log(items);
+				$.ajax({
+					url: "/math/removeper",
+					type: "post",
+					
+					data: {userid : $("#userid").val(),
+						    per: items },
+					success: function(data) {
+							if(data == "ok"){
+								alert("변경되였습니다.");
+								window.location.reload();
+							}else{
+								alert("권한주기 오류 확인후 다시해주세요");
+							}
+					
+					},
+					error: function( jqXHR, textStatus, errorThrown) {
+						console.log("error : "+  jqXHR +", "+textStatus+", "+errorThrown);
+					}
+			});
+			} else {
+				return false;
+			}
+		}
+	</script>
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
@@ -151,14 +176,27 @@ function sendmail(){
 </th></tr>
 <tr><th><div id="d1"></div></th><th><button onclick="sendAddPer();">권한 주기</button><button onclick="remove1();">선택한 권한지우기</button></th></tr>
 <tr><td>보유 권한</td><th>
-<Select id="s2">
+<%-- <Select id="s2">
 	<option selected="selected">보유 권한</option>
 	<%for(Semester m : mylist){ %>
 	<option><%=m.getSemesterName() %></option>
 	<%} %>
 </Select>
 <button onclick="removePermission();">권한삭제</button>
-</th></tr>
+</th></tr> --%>
+<tr><td colspan="2">
+<%for(int i =0 ; i<mylist.size();i++){%>
+<input type="checkbox" id="ckd" value="<%=mylist.get(i).getSemesterName()%>"><%=mylist.get(i).getSemesterName() %></input>&nbsp;&nbsp;
+<%if((i+1)%4==0){
+	out.print("<br>");
+}}
+%>
+</td></tr>
+<tr><td colspan="2">
+<button onclick="allCheck();">모두 선택</button>&nbsp;&nbsp;
+<button onclick="unCheck();">모두 해제</button>&nbsp;&nbsp;
+<button onclick="removePermission();">권한삭제</button>
+</td></tr>
 </table>
 </div>
 </div>

@@ -261,5 +261,23 @@ public class AdminDao {
 		}
 		return seme;
 	}
+	public int removePermission(Connection conn, ArrayList<Semester> addper) {
+		int result = 0;
+		PreparedStatement pstmt= null;
+		String qurey ="delete from tb_permission where semester_no =? and USER_ID=?";
+		try {
+			for(int i = 0 ; i<addper.size();i++) {
+			pstmt= conn.prepareStatement(qurey);
+			pstmt.setInt(1, addper.get(i).getSemesterNo());
+			pstmt.setString(2, addper.get(i).getUserId());		
+			result += pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
 }

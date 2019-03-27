@@ -110,4 +110,15 @@ public class AdminService {
 		close(conn);
 		return seme;
 	}
+	public int removePermission(ArrayList<Semester> addper) {
+		Connection conn = getConnection();
+		int result = adao.removePermission(conn,addper);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
