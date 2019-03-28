@@ -4,17 +4,25 @@
 <%
 	Notice notice = (Notice)request.getAttribute("notice");
 	String ctx = request.getContextPath();
+<<<<<<< HEAD
+=======
+	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+>>>>>>> ysy2
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 <title>수정페이지</title>
+=======
+<title>공지사항수정페이지</title>
+>>>>>>> ysy2
 <script type="text/javascript" src="<%=ctx %>/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 function listView(){
-	location.href = '/math/nslist';
+	location.href = '/math/nslist?page='+<%=currentPage%>;
 }
 var oEditors = [];
 $(function(){

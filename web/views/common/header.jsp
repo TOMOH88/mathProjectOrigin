@@ -7,6 +7,19 @@
 <meta charset="UTF-8">
 <title>감성수학</title>
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+$(function(){
+	if(<%=userId%> != null){
+		location.href="/math/nuslist";
+	}else{
+		alert("사용자로그인 해주셔야 합니다.");
+		location.href="/math/index.jsp";
+	}
+});
+</script>
+>>>>>>> ysy2
 <style>
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
 .snip1241 {
@@ -75,6 +88,7 @@
 </style>
 </head>
 <body>
+<<<<<<< HEAD
 <ul class="snip1241">
   <li class="current"><a href="#">감성수학</a></li>
   <li><a href="#">고객센터관리</a></li>
@@ -82,8 +96,19 @@
   <li><a href="#">QnA관리</a></li>
   <li><a href="#">문제관리</a></li>
   <li><a href="/math/myinfo">마이페이지</a></li>
+=======
+<%if(userId != null){ %>
+<ul class="snip1241">
+  <li class="current"><a href="#">감성수학</a></li>
+  <li><a href="/math/nuslist">공지사항</a></li>
+  <li><a href="/math/fulist">FAQ</a></li>
+  <li><a href="/math/quslist">QnA</a></li>
+  <li><a href="#">문제</a></li>
+  <li><a href="#">회원</a></li>
+>>>>>>> ysy2
   <li><a href="/math/logout">로그아웃</a></li>
 </ul>
+<% } %>
 </body>
 </html>
 

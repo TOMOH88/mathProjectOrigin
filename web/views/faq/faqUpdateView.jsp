@@ -3,6 +3,10 @@
 <%@ page import="faq.model.vo.Faq" %>    
 <%
 	Faq faq = (Faq)request.getAttribute("faq");
+<<<<<<< HEAD
+=======
+	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+>>>>>>> ysy2
 %>
 <!DOCTYPE html>
 <html>
@@ -44,6 +48,13 @@ $(function(){
           $("#nform").submit();
       });    
 });
+<<<<<<< HEAD
+=======
+
+function faqList(){
+	location.href="/math/fslist?page="+<%=currentPage%>;
+}
+>>>>>>> ysy2
 </script>
 </head>
 <body>
@@ -65,10 +76,17 @@ $(function(){
 	<tr>
 		<td colspan="2">
 			<input type="button" id="save" value="수정하기" >
+<<<<<<< HEAD
 			<button onclick="javascript:location.href='/math/fslist';">목록으로가기</button>
+=======
+>>>>>>> ysy2
 		</td>
 	</tr>
 </table>
 </form>
+<<<<<<< HEAD
+=======
+<button onclick="faqList();">목록으로가기</button>
+>>>>>>> ysy2
 </body>
 </html>

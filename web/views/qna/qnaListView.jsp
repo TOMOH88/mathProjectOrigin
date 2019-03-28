@@ -24,7 +24,11 @@
 <table align="center" cellspacing="0" width="800px">
 	<tr>
 		<th></th>
+<<<<<<< HEAD
 		<th>질문내용</th>
+=======
+		<th>내용</th>
+>>>>>>> ysy2
 		<th>작성자</th>
 		<th>등록일자</th>
 	</tr>
@@ -36,12 +40,19 @@
 		<%} else { %>
 			<td><a href="/math/qdetail?no=<%=qna.getQnaNo()%>">[re]<%=qna.getQnaTitle() %></a></td>
 		<%} %>
+<<<<<<< HEAD
 		<td><%=qna.getAdminId() %></td>
+=======
+		<td><%=qna.getQnaWriter() %></td>
+>>>>>>> ysy2
 		<td><%=qna.getQnaDate() %></td>
 	</tr>
 	<% } %>
 </table>
+<<<<<<< HEAD
 <form action="/math/qslist" method="post">
+=======
+>>>>>>> ysy2
 <div style="text-align:center">
 	<% if(currentPage <= 1){ %>
 		[맨처음]
@@ -73,8 +84,14 @@
 	<% }else{ %>
 		<a href="/math/qslist?page=<%=maxPage%>">[마지막]</a>
 	<%} %>
+<<<<<<< HEAD
 <div align="center">
 <div>
+=======
+</div>	
+<div align="center">
+<form action="/math/qslist" method="post">
+>>>>>>> ysy2
 <select name="qOption">
 	<option value="">선택하세요</option>
 	<option name="qTitle" value="qTitle">제목</option>
@@ -83,7 +100,12 @@
 </select>
 <input type="text" name="title">
 <input type="submit" value="검색">
+<<<<<<< HEAD
 </div>
 </form>
+=======
+</form>
+</div>
+>>>>>>> ysy2
 </body>
 </html>

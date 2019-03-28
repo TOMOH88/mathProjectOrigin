@@ -50,6 +50,7 @@ $(function(){
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
 <hr style="clear:both;">
+<<<<<<< HEAD
 <form id="nform" action="/math/qawrite" method="post" enctype="multipart/form-data">
 <input type="hidden" name="qno" value="<%=qna.getQnaNo()%>">
 <input type="hidden" name="adminId" value="<%=qna.getAdminId()%>">
@@ -58,6 +59,16 @@ $(function(){
 	<tr>
 		<td>질문내용</td>
 		<td><input type="text" name="qATitle"  value="<%=qna.getQnaTitle()%>" readonly></td>
+=======
+<h1 align="center">답변쓰기페이지</h1>
+<form id="nform" action="/math/qawrite" method="post" enctype="multipart/form-data">
+<input type="hidden" name="qno" value="<%=qna.getQnaNo()%>">
+<input type="hidden" name="admin" value="<%=admin%>">
+<table align="center" cellspacing="0" width="800px">
+	<tr>
+		<td>제목</td>
+		<td><input type="text"  name="qATitle" ></td>
+>>>>>>> ysy2
 	</tr>
 	<tr>
 		<td>답변내용</td>
@@ -68,8 +79,13 @@ $(function(){
 		<td><input type="file" name="upfile"></td>
 	</tr>
 </table>
+<<<<<<< HEAD
 <input type="button" id="save" value="답변쓰기">
 </form>
 
+=======
+<input type="button" id="save" value="답변작성">
+</form>
+>>>>>>> ysy2
 </body>
 </html>

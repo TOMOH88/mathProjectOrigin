@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String userId = (String)session.getAttribute("userId"); %>
 <!doctype html>
 <html lang="kr">
 	<head>
@@ -8,11 +7,6 @@
 	<title>감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-<% if(userId != null){%>
-	$(function() {
-		location.href="views/main/main.jsp";
-	});	
-<%}%>
 function checkId() {
 	$.ajax({
 		url: "/math/chkid",
@@ -45,31 +39,6 @@ $(function() {
 					+"다시 입력하십시요.");
 			$("#password2").select();
 		}
-	});
-});
-$(function() {
-	$("#searchid").click(function() {
-		window.open("/math/views/member/searchemail.jsp","window", "width=500,height=300");
-	});
-});
-$(function() {
-	$("#tac").click(function() {
-		window.open("/math/views/member/TermsAndConditions.jsp","window", "width=500,height=300");
-	});
-});
-$(function() {
-	$("#phone").blur(function() {
-		console.log("포커스 사라짐");
-		var phone = $("#phone").val();
-		
-		num = /^[0-9]+$/;
-		if(!num.test(phone)){
-			alert("숫자만 입력해주세요");
-			phone = "";
-			phone.focus();
-			return;
-		}
-		
 	});
 });
 </script>
@@ -366,7 +335,7 @@ body .container .content .signup-cont {
 						                    <label for="remember">Remember me</label>
 						                    <div class="submit-wrap">
 							                        <input type="submit" value="로그인 " class="submit">
-							                        <a id="searchid" class="more">Forgot your Email?</a>
+							                        <a href="#" class="more">Forgot your password?</a>
 						                    </div>
         					        </form>
     				        </div>
@@ -386,8 +355,7 @@ body .container .content .signup-cont {
 
 						                    <div class="submit-wrap">
 							                        <input type="submit" value="회원가입" class="submit">
-							                        <a id="tac" class="more">Terms and conditions</a>
-							                        
+							                        <a href="#" class="more">Terms and conditions</a>
 						                    </div>
         					        </form>
         					       

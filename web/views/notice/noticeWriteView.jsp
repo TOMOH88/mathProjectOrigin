@@ -54,8 +54,13 @@ $(function(){
 <hr style="clear:both;">
 <h1 align="center">공지사항 글쓰기</h1>
 <form name="nform"  id="nform"  action="/math/nwrite" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<<<<<<< HEAD
 <table align="center" width="800" cellspacing="0">
 <input type="hidden" name="writer" value="<%=adminId%>">
+=======
+<input type="hidden" name="writer" value="<%=admin%>">
+<table align="center" width="800" cellspacing="0">
+>>>>>>> ysy2
 	<tr>
 		<th>제목</th>
 		<td><input type="text" id="title" name="title" ></td>

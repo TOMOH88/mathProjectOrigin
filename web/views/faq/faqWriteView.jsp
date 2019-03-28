@@ -53,7 +53,11 @@ $(function(){
 <hr style="clear:both;">
 <H1 align="center">FAQ 글쓰기 페이지</H1>
 <form id="nform" action="/math/fwrite" method="post">
+<<<<<<< HEAD
 <input type="hidden" name="writer" value="<%=adminId%>">
+=======
+<input type="hidden" name="writer" value="<%=admin%>">
+>>>>>>> ysy2
 <table width="800px" cellspacing="0" align="center">
 	<tr>
 		<th>글제목</th>

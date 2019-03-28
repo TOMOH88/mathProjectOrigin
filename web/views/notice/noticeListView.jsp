@@ -15,7 +15,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항목록관리페이지</title>
+<script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+</script>
 </head>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
@@ -33,7 +36,7 @@
 	<% for(int n = 0; n < nsList.size(); n++){ %>
 	<tr>
 		<td><%=nsList.get(n).getNoticeNo() %></td>
-		<td><a href="/math/ndetail?no=<%=nsList.get(n).getNoticeNo()%>"><%=nsList.get(n).getNoticeTitle() %></a></td>
+		<td><a href="/math/ndetail?no=<%=nsList.get(n).getNoticeNo()%>&page=<%=currentPage%>"><%=nsList.get(n).getNoticeTitle() %></a></td>
 		<td><%=nsList.get(n).getWriterName() %></td>
 		<td><%=nsList.get(n).getNoticeDate() %></td>
 		<td><%=nsList.get(n).getNoticeCount() %></td>
@@ -82,6 +85,7 @@
 	<input type="text" name="title" >
 	<input type="submit" value="검색" >
 </form>
+</div>
 <button onclick="javascript:location.href='views/notice/noticeWriteView.jsp'">글쓰기</button>
 <%@ include file="../common/footer.jsp" %>
 </body>
