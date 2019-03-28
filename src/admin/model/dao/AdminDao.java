@@ -298,5 +298,23 @@ public class AdminDao {
 		}
 		return result;
 	}
+	public int overlapDelete(Connection conn, String semeName, String userId) {
+		int result = 0;
+		PreparedStatement pstmt= null;
+		String qurey ="delete from tb_permission where semester_no = (select semester_no from tb_semester where semester_name = ?) and USER_ID=?";
+		try {
+			
+			pstmt= conn.prepareStatement(qurey);
+			pstmt.setString(1, semeName);
+			pstmt.setString(2, userId);		
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
 }

@@ -240,5 +240,6 @@ public class MemberDao {
 		}
 		return slist;
 	}
+
 }
 

@@ -132,4 +132,14 @@ public class AdminService {
 		close(conn);
 		
 	}
+	public void overlapDelete(String semeName, String userId) {
+		Connection conn = getConnection();
+		int result = adao.overlapDelete(conn,semeName,userId);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+	}
 }

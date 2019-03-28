@@ -67,12 +67,23 @@ function sendmail(){
 	}
 	};
 	
-	
+	var arr = new Array();
 	function addPermission() {
-		var per = $("#s1").val();
-		$("#d1").html($("#d1").text()+" "+per)
+		var per = $("#s1").val();	
+		var arr2 = new Array();
+		var per2 = "";
+		arr.push(per);
+		arr2 =arr.slice().sort(function(a,b){return a - b}).reduce(function(a,b){if (a.slice(-1)[0] !== b) a.push(b);return a;},[]);
+		for(var i= 0; i<arr2.length;i++){
+			per2 += arr2[i]+" ";
+			
+		}
+		$("#d1").html(per2); 
+		console.log(arr2); 
 
 	};
+	
+	
 	function sendAddPer() {
 		if(confirm("권한을 적용하시겠습니까?")){
 			$.ajax({
@@ -100,6 +111,7 @@ function sendmail(){
 		}
 	};
 	function remove1() {
+		arr=Array();
 		$("#d1").html("");
 	}
 	function allCheck() {
@@ -166,8 +178,7 @@ function sendmail(){
 <tr><td>권한 주기</td>
 <th>
 <Select id="s1">
-	<option selected="selected">권한 선택</option>
-	<option>모든권한</option>
+	<option selected="selected">모든권한</option>
 	<%for(Semester s : slist){ %>
 	<option><%=s.getSemesterName() %></option>
 	<%} %>
@@ -176,14 +187,6 @@ function sendmail(){
 </th></tr>
 <tr><th><div id="d1"></div></th><th><button onclick="sendAddPer();">권한 주기</button><button onclick="remove1();">선택한 권한지우기</button></th></tr>
 <tr><td>보유 권한</td><th>
-<%-- <Select id="s2">
-	<option selected="selected">보유 권한</option>
-	<%for(Semester m : mylist){ %>
-	<option><%=m.getSemesterName() %></option>
-	<%} %>
-</Select>
-<button onclick="removePermission();">권한삭제</button>
-</th></tr> --%>
 <tr><td colspan="2">
 <%for(int i =0 ; i<mylist.size();i++){%>
 <input type="checkbox" id="ckd" value="<%=mylist.get(i).getSemesterName()%>"><%=mylist.get(i).getSemesterName() %></input>&nbsp;&nbsp;

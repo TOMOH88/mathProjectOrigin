@@ -41,31 +41,34 @@ public class AddPermissionServlet extends HttpServlet {
 		ArrayList<Semester> addper = new ArrayList<>();
 		ArrayList<Semester> addper2 = new ArrayList<>();
 		int result =0;
-		if(str[1].equals("모든권한")) {
+		if(str[0].equals("모든권한")) {
 			addper2 = new AdminService().selectMyPermission(userId);
-/*			for(int i = 0 ; i<addper2.size();i++) {
-				addper2.get(i).setUserId(userId);
-				System.out.println(addper2);
-			}*/
 			int result2 = new AdminService().removePermission(addper2);
 			System.out.println(result2);
 			addper = new AdminService().selectPermission();
 			for(int i = 0 ; i<addper.size();i++) {
 				addper.get(i).setUserId(userId);
 			}
-			
-			for(Semester s:addper) {
-				System.out.println(s);
-			}
 			result = new AdminService().addPermission(addper);
 			new AdminService().lastModifiedPermission(userId);
 		}else {
-		System.out.println(str.length);
-		for(int i=1 ; i<str.length;i++) {
+		addper = new AdminService().selectMyPermission(userId);
+			for(int i = 0 ;i<addper.size();i++) {
+				for(int x=0 ; x<str.length;x++) {
+					System.out.print(addper.get(i).getSemesterName()+"=");
+					System.out.println(str[x]);
+					if(addper.get(i).getSemesterName().equals(str[x])) {
+						new AdminService().overlapDelete(str[x],userId);
+						
+					}
+				}
+			}
+			
+		for(int i=0 ; i<str.length;i++) {
 			Semester seme = new AdminService().selectSemesterNo(str[i]);
-			addper.add(new Semester(seme.getSemesterNo(),userId , seme.getSemesterName()));
+			addper2.add(new Semester(seme.getSemesterNo(),userId , seme.getSemesterName()));
 		}
-		result = new AdminService().addPermission(addper);
+		result = new AdminService().addPermission(addper2);
 		new AdminService().lastModifiedPermission(userId);
 		}
 		String returnValue=null;
