@@ -99,7 +99,7 @@ $(".hover").mouseleave(
   <li><a href="/math/nlist"  data-hover="Notice">공지사항</a></li>
   <li><a href="#" data-hover="FAQ">FAQ</a></li>
   <li><a href="#" data-hover="QnA">QnA</a></li>
-  <li><a href="#" data-hover="Matter">문제</a></li>
+  <li><a href="/math/views/question/questionPrint.jsp" data-hover="Matter">문제</a></li>
   <li><a href="/math/myinfo" data-hover="My Page">마이페이지</a></li>
   <li><a href="/math/logout" data-hover="logout">로그아웃</a></li>
 </ul>
