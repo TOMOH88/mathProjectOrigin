@@ -201,8 +201,8 @@ div.q {
 		});
 		var title = $("#title").val();
 		var waterMark = $("#waterMark").val();
-		
-		window.open("/math/views/question/preview.jsp?items="+items+"&title="+title+"&waterMark"+waterMark, "a", "width=1000, height=1000, left=100, top=50");
+		console.log(title, waterMark);
+		window.open("/math/views/question/preview.jsp?items="+items+"&title="+title+"&waterMark="+waterMark, "a", "width=1000, height=1000, left=100, top=50");
 	}
 	
 	function makeSemester(){

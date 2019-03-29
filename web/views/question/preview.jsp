@@ -11,7 +11,8 @@
     
     String title = request.getParameter("title");
     String waterMark = request.getParameter("waterMark");
-    
+    System.out.println("title : " + title);
+    System.out.println("waterMark : " + waterMark);
 %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +39,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #ddd;
+    background-color: #ddd;  
 }
 * {
     box-sizing: border-box;
@@ -52,11 +53,21 @@
     border-radius: 5px;
     background: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    
+    background-image: url("/math/resources/logo/보노보노.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 150px;
+
 }
 .content {
     padding: 0;
     border: 1px #888 dotted;
     height: 257mm;
+   /*  background-image: url("/math/resources/logo/보노보노.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 150px; */
 }
  
 @page {
@@ -76,10 +87,18 @@
         width: initial;
         min-height: initial;
         box-shadow: initial;
-        background: initial;
+        /* background: initial; */
+        -webkit-print-color-adjust: exact;
         page-break-after: always;
-    }
-}
+        
+    } 
+} 
+/* @media print and (color) {
+   * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+   }
+} */
 
 table {
     width: 100%;
@@ -130,7 +149,7 @@ for(int i=0; i<4; i++){
 <div class="main"><img src="<%= strArr[2] %>" width="100%"></div>
 <div class="main"><img src="<%= strArr[3] %>" width="100%"></div> --%>
 		<%-- <img src="<%= strArr[0] %>"> --%>
-	</div> 
+	</div>
 </div>
 <% 
 if(strArr.length > 4){
