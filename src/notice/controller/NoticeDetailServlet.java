@@ -34,10 +34,7 @@ public class NoticeDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		int noticeNo = Integer.parseInt(request.getParameter("no"));
-		int currentPage = 1;
-		if(request.getParameter("page") != null) {
-			currentPage = Integer.parseInt(request.getParameter("page"));
-		}
+	
 		String nOption = "";
 		if(request.getParameter("noption") != null) {
 			nOption = request.getParameter("noption");
@@ -64,7 +61,6 @@ public class NoticeDetailServlet extends HttpServlet {
 			request.setAttribute("noticeBack", noticeBack);
 			request.setAttribute("noticeNext", noticeNext);
 			request.setAttribute("noticeMin", noticeMin);
-			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");

@@ -59,15 +59,9 @@ public class QnaAnswerUpdateServlet extends HttpServlet {
 		
 		Qna qna = new Qna();
 		qna.setQnaNo(Integer.parseInt(mrequest.getParameter("qno")));
-<<<<<<< HEAD
 		qna.setQnaTitle(mrequest.getParameter("qATitle"));
 		qna.setQnaContent(mrequest.getParameter("content"));
 		qna.setAdminId(mrequest.getParameter("adminId"));
-=======
-		qna.setQnaTitle(mrequest.getParameter("qQTitle"));
-		qna.setQnaContent(mrequest.getParameter("content"));
-		qna.setQnaWriter(mrequest.getParameter("admin"));
->>>>>>> ysy2
 		
 		String oFileName = mrequest.getParameter("ofile");
 		String rFileName = mrequest.getParameter("rfile");
@@ -108,11 +102,7 @@ public class QnaAnswerUpdateServlet extends HttpServlet {
 		}
 		int result = new QnaService().answerUpdate(qna);
 		if(result > 0) {
-<<<<<<< HEAD
 			response.sendRedirect("/math/qdetail?no="+qna.getQnaNo());
-=======
-			response.sendRedirect("/math/qudetail?no="+qna.getQnaNo());
->>>>>>> ysy2
 		}else {
 			view = request.getRequestDispatcher("views/qna/qnaError.jsp");
 			request.setAttribute("message", qna.getQnaNo() + "번 수정 실패!" );

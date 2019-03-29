@@ -65,12 +65,8 @@ public class QnaAnswerWriteServlet extends HttpServlet {
 		Qna qna = new Qna();
 		qna.setQnaTitle(mrequest.getParameter("qATitle"));
 		qna.setQnaContent(mrequest.getParameter("content"));
-<<<<<<< HEAD
 		qna.setUserId(mrequest.getParameter("userId"));
 		qna.setAdminId(mrequest.getParameter("adminId"));
-=======
-		qna.setQnaWriter(mrequest.getParameter("admin"));
->>>>>>> ysy2
 		String originalFileName = mrequest.getFilesystemName("upfile");
 		qna.setOriginalQname(originalFileName);
 		qna.setParentNo(qnaNo);
@@ -106,11 +102,7 @@ public class QnaAnswerWriteServlet extends HttpServlet {
 			response.sendRedirect("/math/qslist");
 		}else {
 			view = request.getRequestDispatcher("views/qna/qnaError.jsp");
-<<<<<<< HEAD
 			request.setAttribute("message", "답변쓰기 실패");
-=======
-			request.setAttribute("message", "답변작성 실패");
->>>>>>> ysy2
 			view.forward(request, response);
 		}
 	}

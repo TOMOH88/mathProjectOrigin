@@ -32,7 +32,6 @@ public class NoticeUpdateViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("no"));
-		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		Notice notice = new NoticeService().selectNDetail(noticeNo);
 		
@@ -41,7 +40,6 @@ public class NoticeUpdateViewServlet extends HttpServlet {
 		if(notice != null) {
 			view = request.getRequestDispatcher("views/notice/noticeUpdateView.jsp");
 			request.setAttribute("notice", notice);
-			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");

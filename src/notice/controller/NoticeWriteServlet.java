@@ -54,10 +54,7 @@ public class NoticeWriteServlet extends HttpServlet {
 		String savePath = root + "files/notice";
 		
 		MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-<<<<<<< HEAD
 		System.out.println("noticeWrite : " + mrequest.getParameter("content"));
-=======
->>>>>>> ysy2
 		Notice notice = new Notice();
 		notice.setNoticeTitle(mrequest.getParameter("title"));
 		notice.setWriterName(mrequest.getParameter("writer"));

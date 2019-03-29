@@ -53,22 +53,13 @@ $(function(){
 <h1 align="center"><%=qna.getQnaNo() %>번 수정페이지</h1>
 <form id="nform" action="/math/qaupdate" method="post" enctype="multipart/form-data">	
 <input type="hidden" name="qno" value="<%=qna.getQnaNo()%>">
-<<<<<<< HEAD
 <input type="hidden" name="adminId" value="<%=qna.getAdminId()%>">
-=======
-<input type="hidden" name="admin" value="<%=admin%>">
->>>>>>> ysy2
 <input type="hidden" name="ofile" value="<%=qna.getOriginalQname() %>">
 <input type="hidden" name="rfile" value="<%=qna.getRenameQname() %>">
 <table align="center" cellspacing="0" width="800px">
 	<tr>
-<<<<<<< HEAD
 		<td>질문내용</td>
 		<td><input type="text" name="qATitle"  value="<%=qna.getQnaTitle()%>" readonly></td>
-=======
-		<td>제목</td>
-		<td><input type="text" name="qQTitle"  value="<%=qna.getQnaTitle()%>" ></td>
->>>>>>> ysy2
 	</tr>
 	<tr>
 		<td>답변내용</td>
