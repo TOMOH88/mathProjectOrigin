@@ -15,7 +15,7 @@ public class QuestionDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select semester_name from tb_semester";
+		String query = "select semester_name from tb_semester order by 1 asc";
 		
 		try {
 			stmt = conn.createStatement();

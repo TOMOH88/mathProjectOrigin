@@ -267,6 +267,8 @@ div.q {
 		$("#semester").val(semester);
 		$("#book").val(book);
 		$("#chapter").val(chapter);
+		var imgName = $("#upImg").val();
+		alert(imgName);
 		$("form").attr("action", "/math/upImg");
 		$("form").submit();
 	}
@@ -340,6 +342,10 @@ div.q {
 		
 		location.href = "/math/dImg?semester="+semester+"&book="+book+"&chapter="+chapter+"&items="+items;
 	}
+	
+	function superUpload(){
+		location.href = "/math/sUpload";
+	}
 </script>
 </head>
 <body>
@@ -373,9 +379,10 @@ div.q {
 	<input type="hidden" name="semester" id="semester">
 	<input type="hidden" name="book" id="book">
 	<input type="hidden" name="chapter" id="chapter">
-	<input type="file" name="upImg">
+	<input multiple="multiple" type="file" id="upImg" name="upImg">
 </form><br>
 <button onclick="uploadImg();">문제 등록</button>
+<button onclick="superUpload();">Super Upload</button>
 </div>
 <div id="titleDiv">
 문제지 Title : <input type="text" id="title"> <br><br>

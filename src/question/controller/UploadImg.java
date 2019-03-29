@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,7 +51,7 @@ public class UploadImg extends HttpServlet {
 		
 		String root = request.getSession().getServletContext().getRealPath("/workbook/");
 		
-		String temporaryPath = root + "임시저장소";
+		String temporaryPath = request.getSession().getServletContext().getRealPath("/resources/임시저장소");
 		
 		//request 를 MultipartRequest 객체로 변환함
 		MultipartRequest mrequest = new MultipartRequest(request, temporaryPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
@@ -60,6 +61,7 @@ public class UploadImg extends HttpServlet {
 		String chapter = mrequest.getParameter("chapter");
 		String imgName = mrequest.getFilesystemName("upImg");
 		String savePath = root + semester + "/" + book + "/" + chapter + "/" + imgName;
+	
 		
 		File orgFile = new File(temporaryPath + "/" + imgName);
 	    File newFile = new File(savePath);
