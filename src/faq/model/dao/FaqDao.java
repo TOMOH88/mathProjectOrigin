@@ -71,7 +71,7 @@ public class FaqDao {
 			close(rset);
 			close(pstmt);
 		}
-		return fList;
+		return fList;	
 	}
 	
 	public Faq faqDetail(int faqNo, Connection conn) {

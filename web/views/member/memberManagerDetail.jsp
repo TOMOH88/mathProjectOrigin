@@ -6,6 +6,7 @@
 <% Member member = (Member)request.getAttribute("member");
 	ArrayList<Semester> slist = (ArrayList<Semester>)request.getAttribute("semester");
 	ArrayList<Semester> mylist = (ArrayList<Semester>)request.getAttribute("permission");
+	int pages = ((Integer)request.getAttribute("page")).intValue();
 %>
 <!DOCTYPE html>
 <html>
@@ -14,6 +15,9 @@
 <title>감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
  <script type="text/javascript">
+function backPage() {
+	location.href="/math/mmanager?page="+<%=pages%>;
+}
 function changePwd() {
 	var pwd1 = $("#password").val();
 	var pwd2 = $("#password1").val();
@@ -54,6 +58,7 @@ function sendmail(){
 		success: function(data) {
 				if(data == "ok"){
 					alert("변경되였습니다.");
+					window.location.reload();
 				}else{
 					alert("변경실패!");
 				}
@@ -70,6 +75,10 @@ function sendmail(){
 	var arr = new Array();
 	function addPermission() {
 		var per = $("#s1").val();	
+		if(per=="모든권한"){
+			arr = new Array();
+			$("#d1").html(per);
+		}else{
 		var arr2 = new Array();
 		var per2 = "";
 		arr.push(per);
@@ -79,8 +88,8 @@ function sendmail(){
 			
 		}
 		$("#d1").html(per2); 
-		console.log(arr2); 
-
+		}
+		
 	};
 	
 	
@@ -167,25 +176,25 @@ function sendmail(){
                 <div class="card-title">
 <table class="table">
 <tr></tr>
-<tr><td>회원 아이디 </td><th><input type="text" id="userid" value="<%=member.getUserId()%>" readonly="readonly"></th></tr>
+<tr><td>회원 아이디 </td><th><input type="text" id="userid" style="width:500px;height:40px;" value="<%=member.getUserId()%>" readonly="readonly"></th></tr>
 <tr><td>회원 이름</td><th><%=member.getUserName() %></th></tr>
 <tr><td>전화번호</td><th><%=member.getPhone() %></th></tr>
-<tr><td>비밀번호</td><th><input type="password" name="password" id="password" value="<%=member.getUserPwd() %>"></th></tr>
-<tr><td>비밀번호 확인</td><th><input type="password" name="password" id="password1" value="<%=member.getUserPwd() %>"></th></tr>
+<tr><td>비밀번호</td><th><input type="password" name="password" id="password" id="userid" style="width:500px;height:40px;" value="<%=member.getUserPwd() %>"></th></tr>
+<tr><td>비밀번호 확인</td><th><input type="password" name="password" id="password1" id="userid" style="width:500px;height:40px;"  value="<%=member.getUserPwd() %>"></th></tr>
 <tr><td colspan="2"><button onclick="changePwd();" class="btn btn-default">변경</button>&nbsp;&nbsp;<button onclick="sendmail();" class="btn btn-default">비밀번호 초기화</button></td></tr>
 <tr><td>가입일</td><th><%=member.getRegistDate() %></th></tr>
 <tr><td>최종 수정일</td><th><%=member.getLastModified() %></th></tr>
 <tr><td>권한 주기</td>
 <th>
-<Select id="s1">
+<Select id="s1" style="width:200px;height:40px;">
 	<option selected="selected">모든권한</option>
 	<%for(Semester s : slist){ %>
 	<option><%=s.getSemesterName() %></option>
 	<%} %>
 </Select>
-<button onclick="addPermission();">권한추가</button>
+<button onclick="addPermission();" class="btn btn-default">권한추가</button>
 </th></tr>
-<tr><th><div id="d1"></div></th><th><button onclick="sendAddPer();">권한 주기</button><button onclick="remove1();">선택한 권한지우기</button></th></tr>
+<tr><th><div id="d1"></div></th><th><button onclick="sendAddPer();" class="btn btn-default">권한 주기</button><button onclick="remove1();" class="btn btn-default">선택한 권한지우기</button></th></tr>
 <tr><td>보유 권한</td><th>
 <tr><td colspan="2">
 <%for(int i =0 ; i<mylist.size();i++){%>
@@ -196,11 +205,12 @@ function sendmail(){
 %>
 </td></tr>
 <tr><td colspan="2">
-<button onclick="allCheck();">모두 선택</button>&nbsp;&nbsp;
-<button onclick="unCheck();">모두 해제</button>&nbsp;&nbsp;
-<button onclick="removePermission();">권한삭제</button>
+<button onclick="allCheck();" class="btn btn-default">모두 선택</button>&nbsp;&nbsp;
+<button onclick="unCheck();" class="btn btn-default">모두 해제</button>&nbsp;&nbsp;
+<button onclick="removePermission();" class="btn btn-default">권한삭제</button>
 </td></tr>
 </table>
+<div align="center"><button onclick="backPage();" class="btn btn-default btn-sm">목록으로</button></div>
 </div>
 </div>
 </div>

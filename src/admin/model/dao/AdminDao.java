@@ -316,5 +316,114 @@ public class AdminDao {
 		}
 		return result;
 	}
+	public int allSearchListCount(String searchTitle, String fOption, Connection conn) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "";
+		if(fOption.equals("userid")) {
+			query = "select count(*) from tb_user where USER_ID like ?";
+		}else if(fOption.equals("username")) {
+			query = "select count(*) from tb_user where PHONE like ?";
+		}else if(fOption.equals("phone")){
+			query = "select count(*) from tb_user where USER_NAME like ?";
+		}else {
+			query = "select count(*) from tb_user";
+		}
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			if(fOption.equals("userid")) {
+				pstmt.setString(1, "%"+searchTitle+"%");
+			}else if(fOption.equals("username")) {
+				pstmt.setString(1, "%"+searchTitle+"%");
+			}else if(fOption.equals("phone")) {
+				pstmt.setString(1, "%"+searchTitle+"%");
+			}
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public ArrayList<Member> selectMemberAll(String searchTitle, String fOption, int currentPage, int limit,
+			Connection conn) {
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int startPage = (currentPage - 1 ) * limit + 1;
+		int endPage = startPage + limit - 1;
+		
+		String query = "";
+		if(fOption.equals("userid")) {
+			query = "select * " + 
+					"from( select rownum rnum, USER_ID, USER_PWD, USER_NAME, PHONE, REGIST_DATE, LASTMODIFIED, MEMBER_LEVEL " + 
+					"from( select * from tb_user where user_id like ? order by REGIST_DATE desc))" + 
+					"where rnum >= ? and rnum <= ?";
+		}else if(fOption.equals("username")) {
+			query = "select * " + 
+					"from( select rownum rnum, USER_ID, USER_PWD, USER_NAME, PHONE, REGIST_DATE, LASTMODIFIED, MEMBER_LEVEL " + 
+					"from( select * from tb_user where user_name like ? order by REGIST_DATE desc))" + 
+					"where rnum >= ? and rnum <=?";
+		}else if(fOption.equals("phone")) {
+			query = "select * " + 
+					"from( select rownum rnum, USER_ID, USER_PWD, USER_NAME, PHONE, REGIST_DATE, LASTMODIFIED, MEMBER_LEVEL " + 
+					"from( select * from tb_user where phone like ? order by REGIST_DATE desc))" + 
+					"where rnum >= ? and rnum <=?";
+		}else {
+			query = "select * " + 
+				"from( select rownum rnum, USER_ID, USER_PWD, USER_NAME, PHONE, REGIST_DATE, LASTMODIFIED, MEMBER_LEVEL " + 
+				"from( select * from tb_user order by REGIST_DATE desc))" + 
+				"where rnum >= ? and rnum <=?";
+		}
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			if(fOption.equals("userid")) {
+				pstmt.setString(1, "%" + searchTitle + "%");
+				pstmt.setInt(2, startPage);
+				pstmt.setInt(3, endPage);
+			}else if(fOption.equals("username")) {
+				pstmt.setString(1, "%" + searchTitle + "%");
+				pstmt.setInt(2, startPage);
+				pstmt.setInt(3, endPage);
+			}else if(fOption.equals("phone")) {
+				pstmt.setString(1, "%" + searchTitle + "%");
+				pstmt.setInt(2, startPage);
+				pstmt.setInt(3, endPage);
+			}else {
+				pstmt.setInt(1, startPage);
+				pstmt.setInt(2, endPage);
+			}
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				String userId = rset.getString(2);
+				String userPwd = rset.getString(3);
+				String userName = rset.getString(4);
+				String phone = rset.getString(5);
+				Date registDate = rset.getDate(6);
+				Date lastModified = rset.getDate(7);
+				String memberLevel = rset.getString(8);
+				list.add(new Member(userId, userPwd, userName, phone, registDate, lastModified, memberLevel));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;	
+	}
+	}
 
-}
+

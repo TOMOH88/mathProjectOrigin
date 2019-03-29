@@ -142,4 +142,16 @@ public class AdminService {
 		}
 		close(conn);
 	}
+	public int allSearchListCount(String searchTitle, String fOption) {
+		Connection conn = getConnection();
+		int result = adao.allSearchListCount(searchTitle, fOption, conn);
+		close(conn);
+		return result;
+	}
+	public ArrayList<Member> selectMemberAll(String searchTitle, String fOption, int currentPage, int limit) {
+		Connection conn = getConnection();
+		ArrayList<Member> list = adao.selectMemberAll(searchTitle, fOption, currentPage, limit, conn);
+		close(conn);
+		return list;	
+	}
 }

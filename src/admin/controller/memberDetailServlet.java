@@ -35,6 +35,7 @@ public class MemberDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String userId = request.getParameter("userid");
+		int page = Integer.parseInt(request.getParameter("page"));
 		Member member = new AdminService().selectMember(userId);
 		ArrayList<Semester> slist = new AdminService().selectPermission();
 		ArrayList<Semester> mylsit = new AdminService().selectMyPermission(userId);
@@ -45,6 +46,7 @@ public class MemberDetailServlet extends HttpServlet {
 			request.setAttribute("member", member);
 			request.setAttribute("semester", slist);
 			request.setAttribute("permission", mylsit);
+			request.setAttribute("page",page);
 			
 			view.forward(request, response);
 		}else {

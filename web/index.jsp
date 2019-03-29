@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String userId = (String)session.getAttribute("userId"); %>
+<% String userId = (String)session.getAttribute("userId");
+Cookie[] cookies = request.getCookies();
+	%>
 <!doctype html>
 <html lang="kr">
 	<head>
@@ -8,11 +10,26 @@
 	<title>감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+$( document ).ready(function() {
+	<%if(cookies != null){%>
+		<%for(Cookie cookie: cookies){
+			if(cookie.getName().equals("id")){
+				userId = (String)session.getAttribute("userId");
+			}
+		}
+	}%>
+});
+
+
+
 <% if(userId != null){%>
 	$(function() {
 		location.href="views/main/main.jsp";
 	});	
 <%}%>
+
+
+
 function checkId() {
 	$.ajax({
 		url: "/math/chkid",
@@ -362,8 +379,8 @@ body .container .content .signup-cont {
 						                    <label for="email">Your email</label>
 						                    <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호">
                 						    <label for="password">Your password</label>
-						                    <input type="checkbox" id="remember" class="checkbox" checked>
-						                    <label for="remember">Remember me</label>
+						                    <input type="checkbox" id="keeplogin" name="keeplogin" class="checkbox" value="yes">
+						                    <label for="keeplogin">자동 로그인</label>
 						                    <div class="submit-wrap">
 							                        <input type="submit" value="로그인 " class="submit">
 							                        <a id="searchid" class="more">Forgot your Email?</a>
