@@ -11,8 +11,6 @@
     
     String title = request.getParameter("title");
     String waterMark = request.getParameter("waterMark");
-    System.out.println("title : " + title);
-    System.out.println("waterMark : " + waterMark);
 %>
 <!DOCTYPE html>
 <html>
@@ -30,8 +28,27 @@
 			var $h1 = $('<% for(int i=0; i<2; i++){out.println("<h1>hi</h1><br>"); } %>');
 			$("div.paper").eq(index).append($h1); --%>
 		});
-		
+
 	});
+	
+	var initBody;
+		    function beforePrint()
+		    {
+		        initBody = document.body.innerHTML;
+		        document.body.innerHTML = one.innerHTML;
+		    }
+		    function afterPrint()
+		    {
+		        document.body.innerHTML = initBody;
+		    }
+		    function pageprint()
+		    {
+		        window.onbeforeprint = beforePrint;
+		        window.onafterprint = afterPrint;
+		        window.print();
+		    }
+
+
 </script>
 <style type="text/css">
     body {
@@ -47,7 +64,7 @@
 }
 .paper {
     width: 210mm;
-    min-height: 297mm;
+	min-height: 297mm;
     padding: 20mm;  /* set contents area */
     margin: 10mm auto;
     border-radius: 5px;
@@ -59,15 +76,14 @@
     background-position: bottom right;
     background-size: 150px;
 
+	position:relative;
 }
 .content {
     padding: 0;
-    border: 1px #888 dotted;
+    /* border: 1px #888 dotted; */
     height: 257mm;
-   /*  background-image: url("/math/resources/logo/보노보노.jpg");
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    background-size: 150px; */
+  /*  position:relative;
+   z-index: 1; */
 }
  
 @page {
@@ -93,12 +109,7 @@
         
     } 
 } 
-/* @media print and (color) {
-   * {
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-   }
-} */
+
 
 table {
     width: 100%;
@@ -115,7 +126,6 @@ table {
 div.p {
    width: 50%;
    height: 50%;
-
    float: left;
 }  
 
@@ -125,11 +135,19 @@ div.main {
 	float: left;
 }
 
+span.waterMark {
+	font-weight: bold;
+	opacity: 0.5;
+	position:relative;
+   	z-index: 10; 
+   	left: 290px;
+   	top: -550px;
+}
 </style>
 
 </head>
 <body>
-
+<center><button style="width:100px;height:50px;" onclick="pageprint();">인쇄하기</button></center>
 
 <div id="one">
 <div class="paper">
@@ -149,6 +167,7 @@ for(int i=0; i<4; i++){
 <div class="main"><img src="<%= strArr[2] %>" width="100%"></div>
 <div class="main"><img src="<%= strArr[3] %>" width="100%"></div> --%>
 		<%-- <img src="<%= strArr[0] %>"> --%>
+		<span class="waterMark"><%= waterMark %></span>
 	</div>
 </div>
 <% 
@@ -156,15 +175,26 @@ if(strArr.length > 4){
 	for(int i=0; i<=page2; i++){ 
 	out.println("<div class='paper' id='" + i + "'>");
 	out.println("<div class='content'>");
-	
 		for(int j=img; j<img+4; j++){
 			//out.println("<div class='p' id='" + j + "'> <img src='" + strArr[j] + "' width='100%'></div>");
 			out.println("<div class='p'> <img src='" + strArr[j] + "' width='100%'></div>");
-			if(j == strArr.length - 1)
+			if(j == strArr.length - 1 && (1 == strArr.length % 4)){
+				out.println("<div class='p'></div>"); 
+				out.println("<div class='p'></div>");
+				out.println("<div class='p'></div>");
 				break;
+			}else if(j == strArr.length - 1 && (2 == strArr.length % 4)){
+				out.println("<div class='p'></div>"); 
+				out.println("<div class='p'></div>");
+				break;
+			}else if(j == strArr.length - 1 && (3 == strArr.length % 4)){
+				out.println("<div class='p'></div>");
+				break;
+			}
 		}
 	img = img + 4;
-	out.println("</div>");    
+	out.println("<span class='waterMark'>" + waterMark + "</span>");
+	out.println("</div>");
 	out.println("</div>"); 
 	if(img == strArr.length)
 		break;

@@ -174,7 +174,7 @@ div.q {
 				var print="";
 				for(var i in json.list){
 					var qPath = imgPath + decodeURIComponent(json.list[i].question);
-					print += "<div class='q'><input type='checkbox' name='img' value='" + qPath + "'>" + 
+					print += "<div class='q'><input type='checkbox' name='img' value='" + qPath + "'>" +
 					decodeURIComponent(json.list[i].question).substring(0, decodeURIComponent(json.list[i].question).length-4) + "</div>";
 					
 				}
@@ -267,8 +267,7 @@ div.q {
 		$("#semester").val(semester);
 		$("#book").val(book);
 		$("#chapter").val(chapter);
-		var imgName = $("#upImg").val();
-		alert(imgName);
+		
 		$("form").attr("action", "/math/upImg");
 		$("form").submit();
 	}
