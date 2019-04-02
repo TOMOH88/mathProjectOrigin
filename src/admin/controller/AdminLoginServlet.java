@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,8 @@ public class AdminLoginServlet extends HttpServlet {
 		HttpSession session =request.getSession();
 		String admin= request.getParameter("userid");
 		String userPwd = request.getParameter("password");
+		String keeplogin = request.getParameter("keeplogin");
+		System.out.println(keeplogin);
 		LoginManager loginManager = LoginManager.getInstance(); 
 		RequestDispatcher view = null;
 		if(loginManager.isValid(admin, userPwd)) {
@@ -48,14 +51,28 @@ public class AdminLoginServlet extends HttpServlet {
 	        		view = request.getRequestDispatcher("/views/member/adminError.jsp");
 	    			request.setAttribute("message", "이미 아이디가 사용중입니다.");
 	    			view.forward(request, response);
-	        		/*//기존의 접속(세션)을 끊는다.
-	                loginManager.removeSession(userId);
-	                
-	                //새로운 세션을 등록한다. setSession함수를 수행하면 valueBound()함수가 호출된다.
-	                loginManager.setSession(session, userId);
-	                response.sendRedirect("/math/views/main/adminmain.jsp");*/
 	            }
 	        }else{
+	        	
+	        	if(keeplogin!=null && admin != null){
+	    			if(keeplogin.equals("yes")){
+	    				Cookie cookie = new Cookie("adminid",admin );
+	    				cookie.setMaxAge(60*60*24*14);//2주일
+	    				response.addCookie(cookie);
+	    				System.out.println("쿠키아이디 생성 = "+cookie.getValue());
+	    			}else if(keeplogin.equals("no")){
+	    				Cookie[] cookies = request.getCookies();
+	    				if(cookies !=null){
+	    					for(Cookie cookie: cookies){
+	    						if(cookie.getName().equals("adminid")){
+	    							cookie.setMaxAge(0);
+	    							response.addCookie(cookie);
+	    						}
+	    					}
+	    				}
+	    			}
+	    		}
+	        		        	
 	            loginManager.setSession(session, admin);
 	            response.sendRedirect("/math/views/main/adminmain.jsp");
 	        }

@@ -32,6 +32,10 @@ public class FaqUpdateViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int faqNo = Integer.parseInt(request.getParameter("no"));
+		int currentPage = 1;
+		if(request.getParameter("page") != null) {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		}
 		
 		Faq faq = new FaqService().faqDetail(faqNo);
 		
@@ -40,6 +44,7 @@ public class FaqUpdateViewServlet extends HttpServlet {
 		if(faq != null) {
 			view = request.getRequestDispatcher("views/faq/faqUpdateView.jsp");
 			request.setAttribute("faq", faq);
+			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/faq/faqError.jsp");

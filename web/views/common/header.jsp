@@ -1,90 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String userId = (String)session.getAttribute("userId"); 
-%>    
+<% String userId = (String)session.getAttribute("userId"); %>    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>감성수학</title>
-<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-<style>
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
-.snip1241 {
-  font-family: 'Raleway', Arial, sans-serif;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 1px;
+<title>유저헤더</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- Material Kit CSS -->
+    <link href="/math/resources/assets/css/material-kit.css?v=2.0.5" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+function logout() {
+	if(confirm("로그아웃 하시겠습니다.")){
+		location.href="/math/logout";
+		
+	}else{
+		return false;
+	}
 }
-.snip1241 * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.35s ease;
-  transition: all 0.35s ease;
-}
-.snip1241 li {
-  display: inline-block;
-  list-style: outside none none;
-  margin: 0.5em 1em;
-  padding: 0;
-}
-.snip1241 a {
-  padding: 0.5em 0.8em;
-  color: black;
-  position: relative;
-  text-decoration: none;
-}
-.snip1241 a:before,
-.snip1241 a:after {
-  height: 14px;
-  width: 14px;
-  position: absolute;
-  content: '';
-  -webkit-transition: all 0.35s ease;
-  transition: all 0.35s ease;
-  opacity: 0;
-}
-.snip1241 a:before {
-  right: 0;
-  top: 0;
-  border-right: 3px solid #9b59b6;
-  border-top: 3px solid #9b59b6;
-  -webkit-transform: translate(-100%, 50%);
-  transform: translate(-100%, 50%);
-}
-.snip1241 a:after {
-  left: 0;
-  bottom: 0;
-  border-left: 3px solid #9b59b6;
-  border-bottom: 3px solid #9b59b6;
-  -webkit-transform: translate(100%, -50%);
-  transform: translate(100%, -50%);
-}
-.snip1241 a:hover,
-.snip1241 .current a {
-  color: black;
-}
-.snip1241 a:hover:before,
-.snip1241 .current a:before,
-.snip1241 a:hover:after,
-.snip1241 .current a:after {
-  -webkit-transform: translate(0%, 0%);
-  transform: translate(0%, 0%);
-  opacity: 1;
-}
-</style>
+</script>
 </head>
 <body>
-<ul class="snip1241">
-  <li class="current"><a href="#">감성수학</a></li>
-  <li><a href="#">고객센터관리</a></li>
-  <li><a href="#">FAQ관리</a></li>
-  <li><a href="#">QnA관리</a></li>
-  <li><a href="#">문제관리</a></li>
-  <li><a href="/math/myinfo">마이페이지</a></li>
-  <li><a href="/math/logout">로그아웃</a></li>
-</ul>
+<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/math/views/main/main.jsp" style="font-family: Black Han Sans; font-size:30pt;">
+         	<i class="material-icons" >account_balance</i> 감성수학 </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="/math/nuslist" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt;">
+              <i class="material-icons">dashboard</i> 공지사항
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/math/fulist" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt;">
+              <i class="material-icons">description</i> FAQ
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/math/qmuslist?userId=<%=userId %>" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt;">
+              <i class="material-icons">toc</i> QnA
+            </a>
+          </li>
+          <li class="nav-item" >
+            <a href="/math/views/question/questionPrint.jsp" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt;">
+              <i class="material-icons">import_contacts</i> 문제
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/math/culist?userId=<%=userId %>" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt;"> 
+              <i class="material-icons">ondemand_video</i> 강의
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/math/myinfo" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt;">
+              <i class="material-icons">person</i> 마이페이지
+            </a>
+          </li>
+          <%if(userId != null){ %>
+          <li class="nav-item">
+            <a onclick="logout();" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt; cursor:pointer;">
+              <i class="material-icons">power_settings_new</i> 로그아웃
+            </a>
+          </li>
+          <%}else{ %>
+          <li class="nav-item">
+            <a href="/math/index.jsp" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt; cursor:pointer;">
+              <i class="material-icons">power_settings_new</i> 로그인
+            </a>
+          </li>
+          <%} %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<script src="/math/resources/assets/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="/math/resources/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/math/resources/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+<script src="/math/resources/assets/js/plugins/moment.min.js"></script>
+<script src="/math/resources/assets/js/material-kit.js?v=2.0.5" type="text/javascript"></script>
+<script src="/math/resources/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<script src="/math/resources/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
 

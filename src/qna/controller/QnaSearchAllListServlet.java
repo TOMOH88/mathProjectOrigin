@@ -79,7 +79,7 @@ public class QnaSearchAllListServlet extends HttpServlet {
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/qna/qnaError.jsp");
-			request.setAttribute("message", "QnA 게시물보기 실패");
+			request.setAttribute("message", "QnA 목록이 없습니다.");
 			view.forward(request, response);
 		}
 		

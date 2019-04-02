@@ -32,6 +32,10 @@ public class QnaAnswerUpdateViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int qnaNo = Integer.parseInt(request.getParameter("no"));
+		int currentPage = 1;
+		if(request.getParameter("page") != null) {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		}
 		
 		Qna qna = new QnaService().qnaDetail(qnaNo);
 		
@@ -39,6 +43,7 @@ public class QnaAnswerUpdateViewServlet extends HttpServlet {
 		if(qna != null) {
 			view = request.getRequestDispatcher("views/qna/qnaUpdateView.jsp");
 			request.setAttribute("qna", qna);
+			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/qna/qnaError.jsp");

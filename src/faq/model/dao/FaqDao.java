@@ -71,7 +71,7 @@ public class FaqDao {
 			close(rset);
 			close(pstmt);
 		}
-		return fList;	
+		return fList;
 	}
 	
 	public Faq faqDetail(int faqNo, Connection conn) {
@@ -275,6 +275,37 @@ public class FaqDao {
 		}
 		
 		return faqMin;
+	}
+
+	public ArrayList<Faq> faqUserList(Connection conn) {
+		ArrayList<Faq> fList = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from tb_faq order by faq_no desc";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			while(rset.next()) {
+				Faq faq = new Faq();
+				
+				faq.setFaqNo(rset.getInt("faq_no"));
+				faq.setQuestionContent(rset.getString("question_content"));
+				faq.setAnswerContent(rset.getString("answer_content"));
+				faq.setFaqDate(rset.getDate("faq_date"));
+				faq.setAdminId(rset.getString("admin_id"));
+				
+				fList.add(faq);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return fList;
 	}
 	
 }

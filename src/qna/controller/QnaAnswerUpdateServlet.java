@@ -44,6 +44,7 @@ public class QnaAnswerUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
 		RequestDispatcher view = null;
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			view = request.getRequestDispatcher("views/qna/qnaError.jsp");
@@ -57,11 +58,16 @@ public class QnaAnswerUpdateServlet extends HttpServlet {
 		
 		MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
+		int currentPage = 1;
+		if(mrequest.getParameter("page") != null) {
+			currentPage = Integer.parseInt(mrequest.getParameter("page"));
+		}
+		
 		Qna qna = new Qna();
 		qna.setQnaNo(Integer.parseInt(mrequest.getParameter("qno")));
-		qna.setQnaTitle(mrequest.getParameter("qATitle"));
+		qna.setQnaTitle(mrequest.getParameter("qQTitle"));
 		qna.setQnaContent(mrequest.getParameter("content"));
-		qna.setAdminId(mrequest.getParameter("adminId"));
+		qna.setQnaWriter(mrequest.getParameter("admin"));
 		
 		String oFileName = mrequest.getParameter("ofile");
 		String rFileName = mrequest.getParameter("rfile");
@@ -102,7 +108,7 @@ public class QnaAnswerUpdateServlet extends HttpServlet {
 		}
 		int result = new QnaService().answerUpdate(qna);
 		if(result > 0) {
-			response.sendRedirect("/math/qdetail?no="+qna.getQnaNo());
+			response.sendRedirect("/math/qdetail?no="+qna.getQnaNo() + "&page=" + currentPage);
 		}else {
 			view = request.getRequestDispatcher("views/qna/qnaError.jsp");
 			request.setAttribute("message", qna.getQnaNo() + "번 수정 실패!" );

@@ -36,6 +36,7 @@ public class MemberMyinfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session =request.getSession();
 		String userId = (String)session.getAttribute("userId");
+		System.out.println("맴버디테일 :"+userId);
 		Member member = new MemberService().selectMember(userId);
 		ArrayList<Semester> allList = new MemberService().selectPermission(userId);
 		ArrayList<Semester> slist = new MemberService().selectMyPermission(userId);

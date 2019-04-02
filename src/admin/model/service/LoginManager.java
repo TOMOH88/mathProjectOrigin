@@ -40,8 +40,6 @@ public class LoginManager implements HttpSessionBindingListener {
          while(e.hasMoreElements()){
               session = (HttpSession)e.nextElement();
               if(adminUsers.get(session).equals(userId)){
-                  //세션이 invalidate될때 HttpSessionBindingListener를 
-                  //구현하는 클레스의 valueUnbound()함수가 호출된다.
                   session.invalidate();
               }
          }
@@ -64,6 +62,7 @@ public class LoginManager implements HttpSessionBindingListener {
 	public void setSession(HttpSession session, String admin){
         //이순간에 Session Binding이벤트가 일어나는 시점
         //name값으로 userId, value값으로 자기자신(HttpSessionBindingListener를 구현하는 Object)
+		System.out.println(session);
         session.setAttribute(admin, this);//login에 자기자신을 집어넣는다.
     }
 	

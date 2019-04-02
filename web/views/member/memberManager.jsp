@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list"); 
-	String admin = (String)session.getAttribute("admin");
 	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
@@ -17,7 +16,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<title>회원관리 : 감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	function levelChange(i) {
@@ -40,7 +40,7 @@
 					console.log("error : "+  jqXHR +", "+textStatus+", "+errorThrown);
 				}
 			});
-		}else{
+	}else{
 			return false;	
 		}
 		}
@@ -63,20 +63,45 @@
 	});
 </script>
 </head>
+<style>
+table{
+	font-family: 'Jua', sans-serif;
+}
+
+div > h4{
+	font-family: 'Jua', sans-serif;
+}
+
+div > p{
+	font-family: 'Jua', sans-serif;
+}
+
+ul {
+	font-family: 'Jua', sans-serif;
+}
+
+#d1{
+	font-family: 'Jua', sans-serif;
+}
+</style>
 <body>
 <%@ include file="../common/Adminheader.jsp" %>
+
 <div class="content">
         <div class="container-fluid">
           <div class="card">
             <div class="card-header card-header-primary">
               <h4 class="card-title">회원관리</h4>
+               <%if(admin != null){ %>
               <p class="card-category" id="cmember"></p>
+               <%} %>
             </div>
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-<table id="t1" class="table">
-<tr><td>회원 아이디 </td><td>회원 이름</td><td>가입일</td><td>권한</td><td></td><td>회원정보</td></tr>
+ <%if(admin != null){ %>
+<table id="t1" class="table table-striped table-hover">
+<tr class="table-primary"><td>회원 아이디 </td><td>회원 이름</td><td>가입일</td><td>권한</td><td></td><td>회원정보</td></tr>
 <%for(int i=0 ; i<list.size();i++){
 String name = list.get(i).getUserId();
 %>
@@ -102,49 +127,82 @@ String name = list.get(i).getUserId();
 </tr>
 <%} %>
 </table>
-<div style="text-align:center">
+<ul class="pagination pagination-primary" style="justify-content: center;">
 	<% if(currentPage <= 1){ %>
-		[맨처음]
+	<li class="page-item">
+		<a class="page-link"> [맨처음] </a>
+		</li>
 	<% }else if(searchTitle != null){ %>
-		<a href="/math/mmanager?page=1&title=<%=searchTitle%>&fOption=<%=fOption%>">[맨처음]</a>
+	<li class="page-item">
+		<a href="/math/mmanager?page=1&title=<%=searchTitle%>&fOption=<%=fOption%>" class="page-link">[맨처음]</a>
+		</li>
 	<% }else{ %>
-		<a href="/math/mmanager?page=1">[맨처음]</a>
+	<li class="page-item">
+		<a href="/math/mmanager?page=1" class="page-link">[맨처음]</a>
+		</li>
 	<%} if((currentPage - 5) <= startPage && (endPage - 5) >= 1){ %>
-		<a href="/math/mmanager?page=<%= (startPage - 5) + 4   %>&title=<%=searchTitle%>&fOption=<%=fOption%>">[이전]</a>
+	<li class="page-item">
+		<a href="/math/mmanager?page=<%= (startPage - 5) + 4   %>&title=<%=searchTitle%>&fOption=<%=fOption%>" class="page-link">[이전]</a>
+		</li>
 	<% }else{%>
-		[이전]
+	<li class="page-item">
+		<a class="page-link"> [이전] </a>
+		</li>
 	<%} for(int p = startPage; p <= endPage; p++){ 
 			if(p == currentPage){%>
-				<font>[<%=p %>]</font>
+			<li class="page-item">
+				<a class="page-link"> <font>[<%=p %>]</font> </a>
+				</li>
 			<%}else if(searchTitle != null && fOption != null){ %>
-				<a href="/math/mmanager?page=<%=p%>&title=<%=searchTitle%>&fOption=<%=fOption%>"><%=p %></a>
+			<li class="page-item">
+				<a href="/math/mmanager?page=<%=p%>&title=<%=searchTitle%>&fOption=<%=fOption%>" class="page-link"><%=p %></a>
+				</li>
 				<%}else{ %>
-				<a href="/math/mmanager?page=<%=p%>"><%=p %></a>
+				<li class="page-item">
+				<a href="/math/mmanager?page=<%=p%>" class="page-link"><%=p %></a>
+				</li>
 	<% }} %>
 	<% if((startPage + 5) <= maxPage && (currentPage + 5) >= startPage){ %>
-		<a href="/math/mmanager?page=<%=startPage+5%>&title=<%=searchTitle %>&fOption=<%=fOption%>">[다음]</a>
+	<li class="page-item">
+		<a href="/math/mmanager?page=<%=startPage+5%>&title=<%=searchTitle %>&fOption=<%=fOption%>" class="page-link">[다음]</a>
+		</li>
 	<%}else{ %>
-		[다음]
+	<li class="page-item">
+		<a class="page-link"> [다음] </a>
+		</li>
 	<%} %>
 	<% if(currentPage >= maxPage){ %>
-		[마지막]
+	<li class="page-item">
+		<a class="page-link"> [마지막] </a>
+		</li>
 	<% }else if(searchTitle != null){ %>
-		<a href="/math/mmanager?page=<%=maxPage%>&title=<%=searchTitle%>&fOption=<%=fOption%>">[마지막]</a>
+	<li class="page-item">
+		<a href="/math/mmanager?page=<%=maxPage%>&title=<%=searchTitle%>&fOption=<%=fOption%>" class="page-link">[마지막]</a>
+		</li>
 	<% }else{ %>
-		<a href="/math/mmanager?page=<%=maxPage%>">[마지막]</a>
+	<li class="page-item">
+		<a href="/math/mmanager?page=<%=maxPage%>" class="page-link">[마지막]</a>
+		</li>
 	<%} %>
-<form action="/math/mmanager?page=1" method="post">
-<div>
-	<select name="fOption">
+</ul>
+<div align="center" id="d1">
+<form action="/math/mmanager?page=1" method="post" class="form-inline ml-auto">
+<div class="container">
+	<select name="fOption" class="form-control">
 		<option value="">선택하세요</option>
 		<option name="userid" value="userid">아이디</option>
 		<option name="username" value="username">이름</option>
 		<option name="phone" value="phone">핸드폰번호</option>
 	</select>
 	&nbsp;
-	<input type="text" name="title">
-	<input type="submit" value="검색">
+	<input type="text" name="title" class="form-control" placeholder="Search">
+	<button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
+                    <i class="material-icons">search</i>
+                  </button>
 </div>
+<%}else{ %>
+<h1>로그인 해주세요</h1>
+<%} %>
 </form>
 </div>
 </div>
@@ -154,6 +212,5 @@ String name = list.get(i).getUserId();
 </div>
 </div>
 <%@ include file="../common/footer.jsp" %>
-
 </body>
 </html>
