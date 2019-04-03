@@ -9,6 +9,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import member.model.service.LoginManager;
 
 /**
  * Servlet implementation class MemberAutoLoginServlet
@@ -31,13 +34,28 @@ public class MemberAutoLoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cookie[] cookies = request.getCookies();
 		String path = "index.jsp";
-		
+		LoginManager lm = new LoginManager();
+		HttpSession session =request.getSession();
+		RequestDispatcher view = null;
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
 				String userid = cookie.getName();
 				if(userid.equals("userId")) {
-					path= "views/main/main.jsp";
-					break;
+					if(lm.isUsing(cookie.getValue())) {
+						cookie.setMaxAge(0);
+						response.addCookie(cookie);	
+						
+						path="views/member/memberError.jsp";
+						request.setAttribute("message", "이미 아이디가 사용중입니다.");
+						break;
+					}else {
+						lm.setSession(session, cookie.getValue());
+						path= "views/main/main.jsp";
+						break;
+					}
+					
+					
+					
 				}else {
 					path="index.jsp";
 				}
@@ -45,7 +63,7 @@ public class MemberAutoLoginServlet extends HttpServlet {
 		}else {
 			path="index.jsp";
 		}
-		RequestDispatcher view = request.getRequestDispatcher(path);
+		view = request.getRequestDispatcher(path);
 		view.forward(request, response);
 	}
 
