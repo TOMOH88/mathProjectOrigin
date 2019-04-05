@@ -113,7 +113,7 @@ body .container .half {
   padding: 58px 40px 0;
 }
 body .container .half.bg {
-  background-image: url(resources/images/math-3986758_1920.jpg);
+  background-image: url(/math/resources/images/math-3986758_1920.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }

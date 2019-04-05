@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import admin.model.service.LoginManager;
+import admin.model.vo.Admin;
 
 /**
  * Servlet implementation class AdminLogoutServlet
@@ -32,24 +32,12 @@ public class AdminLogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		Cookie[] cookies = request.getCookies();
-		LoginManager login = new LoginManager();
-		if(session != null) {
-			if(cookies != null) {
-				for(Cookie cookie : cookies) {
-					if(cookie.getName().equals("adminid")) {
-						cookie.setMaxAge(0);
-						response.addCookie(cookie);	
-						System.out.println("쿠키 삭제");
-					}
-				}
-			}
-				String name = (String)session.getAttribute("admin");
-				System.out.println("세션 네임 : "+ name);
-				login.removeSession(name);
-				System.out.println("세션삭제");
-				response.sendRedirect("/math/admin.jsp");		
-		}		
+		Admin admin = (Admin)session.getAttribute("admin");
+		String userId = admin.getAdminId();
+		
+		session.invalidate();
+		System.out.println(userId+"님 로그아웃");
+		response.sendRedirect("/math/admin.jsp");
 	}
 
 	/**

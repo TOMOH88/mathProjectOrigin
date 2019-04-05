@@ -12,7 +12,7 @@
 window.onload = function () {
 	 
 	alert("<%=message %>");
-	location.href="/math/index.jsp";
+	location.href="/math/main.jsp";
 	}
 </script>
 </head>

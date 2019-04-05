@@ -21,7 +21,7 @@
 </script>
 </head>
 <body>
-<%@ include file="../common/header.jsp" %>
+<%@ include file="views/common/header.jsp" %>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -48,7 +48,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<%@ include file="../common/ufooter.jsp" %>
+<%@ include file="views/common/ufooter.jsp" %>
   <script src="/math/resources/assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="/math/resources/assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="/math/resources/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>

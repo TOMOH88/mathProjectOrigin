@@ -81,7 +81,7 @@ public class MemberLoginServlet extends HttpServlet {
 	    			}
 	    		}
 	            loginManager.setSession(session, userId);
-	            response.sendRedirect("/math/views/main/main.jsp");
+	            response.sendRedirect("/math/main.jsp");
 	        }
 		}else {
 			view = request.getRequestDispatcher("/views/member/memberError.jsp");

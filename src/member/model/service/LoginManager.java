@@ -38,7 +38,9 @@ public class LoginManager implements HttpSessionBindingListener {
          Enumeration<HttpSession> e = loginUsers.keys();
          HttpSession session = null;
          while(e.hasMoreElements()){
+        	 System.out.println(e);
               session = (HttpSession)e.nextElement();
+              System.out.println("리무브 세션"+session);
               if(loginUsers.get(session).equals(userId)){
                   session.invalidate();
               }

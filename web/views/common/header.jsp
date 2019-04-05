@@ -20,8 +20,8 @@
 <script type="text/javascript">
 function logout() {
 	if(confirm("로그아웃 하시겠습니다.")){
+		userId=null;
 		location.href="/math/logout";
-		
 	}else{
 		return false;
 	}
@@ -32,7 +32,7 @@ function logout() {
 <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="/math/views/main/main.jsp" style="font-family: Black Han Sans; font-size:30pt;">
+        <a class="navbar-brand" href="/math/main.jsp" style="font-family: Black Han Sans; font-size:30pt;">
          	<i class="material-icons" >account_balance</i> 감성수학 </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
@@ -81,7 +81,7 @@ function logout() {
           </li>
           <%}else{ %>
           <li class="nav-item">
-            <a href="/math/index.jsp" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt; cursor:pointer;">
+            <a href="/math/views/common/login.jsp" class="nav-link" style="font-family: 'Do Hyeon', sans-serif; font-size:20pt; cursor:pointer;">
               <i class="material-icons">power_settings_new</i> 로그인
             </a>
           </li>

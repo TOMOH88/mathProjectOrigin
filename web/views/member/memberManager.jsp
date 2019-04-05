@@ -11,6 +11,7 @@
 	int allSearchListCount = ((Integer)request.getAttribute("allSearchListCount")).intValue();
 	String searchTitle = (String)request.getAttribute("searchTitle");
 	String fOption = (String)request.getAttribute("fOption");
+
 %>
 <!DOCTYPE html>
 <html>

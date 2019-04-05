@@ -112,12 +112,13 @@ public class MemberDao {
 	public int memberUpdate(Connection conn, Member member) {
 		int result = 0;
 		PreparedStatement pstmt= null;
-		String qurey ="update tb_user set user_pwd =?, phone =?, lastmodified = sysdate where user_id = ?";
+		String qurey ="update tb_user set user_pwd =?, phone =?,user_name=?, lastmodified = sysdate where user_id = ?";
 		try {
 			pstmt= conn.prepareStatement(qurey);
 			pstmt.setString(1, member.getUserPwd());
 			pstmt.setString(2, member.getPhone());
-			pstmt.setString(3, member.getUserId());
+			pstmt.setString(3, member.getUserName());
+			pstmt.setString(4, member.getUserId());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

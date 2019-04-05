@@ -1,15 +1,6 @@
 <%@page import="admin.model.service.LoginManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% Cookie[] cookies = request.getCookies();
-	if(cookies != null){
-		for(Cookie cookie : cookies){
-			if(cookie.getName().equals("adminid")){
-				session.setAttribute("admin", cookie.getValue());
-			}
-		}
-	}
-%>
 <!doctype html>
 <html lang="kr">
 	<head>
@@ -17,12 +8,6 @@
 	<title>감성수학 관리자</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-<%for(Cookie cookie : cookies){
-		if(cookie.getName().equals("adminid")){%>
-$(function() {
-	location.href="/math/autologin";
-});
-<%}}%>
 </script>
 <style rel="stylesheet">
 @charset "UTF-8";
@@ -312,8 +297,6 @@ body .container .content .signup-cont {
 						                    <label for="email">Your email</label>
 						                    <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호">
                 						    <label for="password">Your password</label>
-                						    <input type="checkbox" id="keeplogin" name="keeplogin" value="yes" class="checkbox" checked>
-						                    <label for="keeplogin">자동로그인</label>
 						                    <div class="submit-wrap">
 							                        <input type="submit" value="로그인 " class="submit">
 						                    </div>

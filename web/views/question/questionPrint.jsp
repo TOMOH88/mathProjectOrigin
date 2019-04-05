@@ -153,6 +153,40 @@ div {
 		console.log(title, waterMark);
 		window.open("/math/views/question/preview.jsp?items="+items+"&title="+title+"&waterMark="+waterMark, "a", "width=1000, height=1000, left=100, top=50");
 	}
+	function textDown(){
+		var semester = $("#f1sel option:selected").val();
+		var book = $("#f2sel option:selected").val();
+		var chapter = $("#f3sel option:selected").val();
+		var title = $("#title").val();
+		var name="";
+		$('input:checkbox[type=checkbox]:checked').each(function () {
+		   name += $(this).val(); 
+		});
+		$.ajax({
+			url: "/math/tdown",
+			type: "post",
+			data: {semester: semester,
+					book: book,
+					chapter: chapter,
+					name: name,
+					title : title},
+			success: function(data) {
+					if(data == "ok"){
+						alert("오답노트 생성 성공 다운로드 받아주세요!");
+						$("#ddd").html("<a href='/math/files/text/"+$("#title").val()+".txt' download>오답노트<a>");
+					}else{
+						alert("오답노트 생성 실패!");
+					}
+			},
+			error: function( jqXHR, textStatus, errorThrown) {
+				console.log("error : "+  jqXHR +", "+textStatus+", "+errorThrown);
+			}
+		});
+	
+	
+	
+	
+	};
 	
 </script>
 </head>
@@ -213,6 +247,8 @@ div {
 	<button onclick="preview();" class="btn btn-default btn-sm">미리보기</button>
 	<button onclick="allCheck();" class="btn btn-default btn-sm">전체 선택</button>
 	<button onclick="unCheck();" class="btn btn-default btn-sm">전체 해제</button>
+	<button onclick="textDown();" class="btn btn-default btn-sm">오답 체크</button>
+	<div id="ddd"></div>
 	<div id="qImg" class="border" style=" overflow:auto;">
 <div id="left"></div>
 </div>

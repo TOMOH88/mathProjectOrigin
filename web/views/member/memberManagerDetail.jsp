@@ -7,6 +7,7 @@
 	ArrayList<Semester> slist = (ArrayList<Semester>)request.getAttribute("semester");
 	ArrayList<Semester> mylist = (ArrayList<Semester>)request.getAttribute("permission");
 	int pages = ((Integer)request.getAttribute("page")).intValue();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -125,10 +126,12 @@ function sendmail(){
 		$("#d1").html("");
 	}
 	function allCheck() {
-		$(":checkbox").prop("checked",true);
-	}
-	function unCheck() {
-		$(":checkbox").prop("checked",false);
+		if($(":checkbox").prop("checked")==false){
+			$(":checkbox").prop("checked",true);
+		}else{
+			$(":checkbox").prop("checked",false);
+		}
+		
 	}
 	function removePermission() {
 		var items = "";

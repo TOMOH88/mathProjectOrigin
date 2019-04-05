@@ -47,7 +47,7 @@ public class MemberLogoutServlet extends HttpServlet {
 				System.out.println("세션 네임 : "+ name);
 				login.removeSession(name);
 				System.out.println("세션삭제");
-				response.sendRedirect("/math/index.jsp");		
+				response.sendRedirect("/math/main.jsp");		
 		}
 	}
 

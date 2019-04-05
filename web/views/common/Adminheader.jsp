@@ -1,7 +1,7 @@
+<%@page import="admin.model.vo.Admin"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String admin = (String)session.getAttribute("admin");
-%>
+  <%  String admin = (String)session.getAttribute("admin");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,7 @@
 function logout() {
 	
 	if(confirm("로그아웃 하시겠습니다.")){
-			
+		admin=null;	
 		location.href="/math/alogout";
 		
 	}else{

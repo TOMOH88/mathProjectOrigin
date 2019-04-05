@@ -53,7 +53,7 @@ div {
 <script type="text/javascript">
 	$(function(){
 		$.ajax({
-			url: "/math/semester",
+			url: "/math/asemester",
 			type: "post",
 			dataType: "json",
 			success: function(data){
@@ -118,7 +118,6 @@ div {
 		});
 	}
 	var num = new Array();
-	
 	function f3change(){
 		var semester = $("#f1sel option:selected").val();
 		var book = $("#f2sel option:selected").val();
@@ -138,6 +137,7 @@ div {
 					var qPath = imgPath + decodeURIComponent(json.list[i].question);
 					print += "<div class='q'><input type='checkbox' class='que' id='"+decodeURIComponent(json.list[i].question)+"' name='img' value='" + qPath + "'><label for='" + decodeURIComponent(json.list[i].question) + "'>" +
 		               decodeURIComponent(json.list[i].question).substring(0, decodeURIComponent(json.list[i].question).length-4) + "</label></div>";
+					
 				}
 				$("#left").html(print);
 			},
@@ -311,6 +311,7 @@ div {
 	function superUpload(){
 		location.href = "/math/sUpload";
 	}
+	
 </script>
 </head>
 <body>

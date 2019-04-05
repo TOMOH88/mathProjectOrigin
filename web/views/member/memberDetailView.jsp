@@ -6,6 +6,8 @@
 <% Member member = (Member)request.getAttribute("member");
 	ArrayList<Semester> mypermi = (ArrayList<Semester>)request.getAttribute("permission");
 	ArrayList<Semester> slist = (ArrayList<Semester>)request.getAttribute("semester");
+	
+
 %>
 <!DOCTYPE html>
 <html>

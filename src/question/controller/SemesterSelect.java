@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import question.model.service.QuestionService;
-import question.model.vo.Question;
+import member.model.service.MemberService;
+import member.model.vo.Semester;
+
 
 /**
  * Servlet implementation class SemesterSelect
@@ -38,7 +39,11 @@ public class SemesterSelect extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ArrayList<Question> list = new QuestionService().semesterSelect();
+		//ArrayList<Question> list = new QuestionService().semesterSelect();
+		String userId = (String) request.getSession().getAttribute("userId");
+		System.out.println(userId);
+		ArrayList<Semester> list = new MemberService().selectMyPermission(userId);
+		System.out.println(list);
 		/*for (Question q : list) {
 			System.out.println(q.getSemester());
 		}*/
@@ -49,11 +54,11 @@ public class SemesterSelect extends HttpServlet {
 		JSONArray jsonArr = new JSONArray();
 
 		
-		for (Question q : list) {
+		for (Semester q : list) {
 			
 			JSONObject userJson = new JSONObject();
 			
-			userJson.put("semester", URLEncoder.encode(q.getSemester(), "UTF-8"));
+			userJson.put("semester", URLEncoder.encode(q.getSemesterName(), "UTF-8"));
 			
 			jsonArr.add(userJson);
 		}

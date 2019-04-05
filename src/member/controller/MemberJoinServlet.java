@@ -40,7 +40,7 @@ public class MemberJoinServlet extends HttpServlet {
 		int result = new MemberService().insertMember(member);
 		response.setContentType("text/html; charset=utf-8");
 		if(result > 0) {
-			response.sendRedirect("/math/index.jsp");
+			response.sendRedirect("/math/main.jsp");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
 			request.setAttribute("message", "회원가입 실패!");

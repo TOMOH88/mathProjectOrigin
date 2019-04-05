@@ -36,6 +36,7 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setUserId(request.getParameter("userid"));
 		member.setUserPwd(request.getParameter("password"));
 		member.setPhone(request.getParameter("phone"));
+		member.setUserName(request.getParameter("username"));
 		System.out.println(member);
 		int result = new MemberService().memberUpdate(member);
 		if(result > 0) {
