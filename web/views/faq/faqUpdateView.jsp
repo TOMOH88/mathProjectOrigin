@@ -17,7 +17,7 @@
   <link href="/math/resources/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>faq수정페이지</title>
+<title>감성수학</title>
 <script type="text/javascript" src="/math/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -49,13 +49,27 @@ $(function(){
       
       //저장버튼 클릭시 form 전송
       $("#save").click(function(){
-    	  if($("#title").val() == ""){
-    		  alert("제목을 입력해주세요.");
-    		  return;
-    	  }
           oEditors.getById["con1"].exec("UPDATE_CONTENTS_FIELD", []);
+          var title = $("#title").val();
+          var con1 = $("#con1").val();
+          
+          if(title == "" || title == null || title == "&nbsp;" || title == "<p>&nbsp;</p>" || title == "<br>"){
+    		  alert("제목을 입력해주세요.");
+    		  $("#title").focus();
+    		  return false;
+    	  }else if(con1 == "" || con1 == null || con1 == "&nbsp;" || con1 == "<p>&nbsp;</p>" || con1 == "<br>"){
+    		  alert("내용을 입력해주세요.");
+    		  oEditors.getById["con1"].exec("FOCUS");
+    		  return false;
+    	  }
+          
           $("#nform").submit();
-      });    
+      });
+      document.addEventListener("keydown", function(event) {
+  		if (event.keyCode === 13) {
+  			event.preventDefault();
+  			}
+  		}, true);
 });
 
 function faqList(){

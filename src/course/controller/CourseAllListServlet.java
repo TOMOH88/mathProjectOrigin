@@ -81,6 +81,9 @@ public class CourseAllListServlet extends HttpServlet {
 			request.setAttribute("sOption", sOption);
 			request.setAttribute("bOption", bOption);
 			view.forward(request, response);
+		}else if(cList.size() == 0) {
+			view = request.getRequestDispatcher("views/course/courseNoListView.jsp");
+			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/course/courseError.jsp");
 			request.setAttribute("message", "강의목록이 없습니다.");

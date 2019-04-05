@@ -43,9 +43,11 @@ request.setCharacterEncoding("UTF-8");
 		if(request.getParameter("title") != null) {
 			psearchTitle = request.getParameter("title");
 		}
+		int currentPage = 1;
+		if(request.getParameter("page") != null) {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		}
 		PopupService pservice = new PopupService();
-		//조회수 1증가 처리
-		pservice.addReadCount(popupNo);
 		
 		Popup popup = pservice.selectPDetail(popupNo);
 		

@@ -47,6 +47,7 @@ public class MemberDetailServlet extends HttpServlet {
 			request.setAttribute("semester", slist);
 			request.setAttribute("permission", mylsit);
 			request.setAttribute("page",page);
+			
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/member/AdminError.jsp");

@@ -40,7 +40,7 @@ public class AdminLoginServlet extends HttpServlet {
 		Admin loginAdmin = new AdminService().loginAdmin(admin, userPwd);
 		if(loginAdmin !=null) {
 			session.setAttribute("admin",admin);
-			response.sendRedirect("/math/views/main/adminmain.jsp");
+			response.sendRedirect("/math/nslist");
 		}else {
 			view = request.getRequestDispatcher("/views/member/adminError.jsp");
 			request.setAttribute("message", "로그인실패!");

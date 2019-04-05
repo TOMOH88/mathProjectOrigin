@@ -54,10 +54,13 @@ ul {
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">팝업관리</h4>
+                  <%if(admin != null){ %>
                   <p class="card-category"> 현재 게시글 수 : <%=AllSearchListCount %></p>
+                  <%}%>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
+                  <%if(admin != null){ %>
                     <table class="table table-striped table-hover">
                       <thead class=" text-primary">
 	<tr class="table-primary">
@@ -71,7 +74,7 @@ ul {
 	<% for(int n = 0; n < plist.size(); n++){ %>
 	<tr>
 		<td><%=plist.get(n).getPopupNo() %></td>
-		<td><a href="/math/pdetail?no=<%=plist.get(n).getPopupNo()%>"><%=plist.get(n).getPopupName() %></a></td>
+		<td><a href="/math/pdetail?no=<%=plist.get(n).getPopupNo()%>&page=<%=currentPage%>"><%=plist.get(n).getPopupName() %></a></td>
 		<td><%=plist.get(n).getPopupImagePath() %></td>
 		<td><%=plist.get(n).getPopupDate() %></td>
 		<td><%=plist.get(n).getPopupEndDate() %></td>
@@ -151,6 +154,9 @@ ul {
                   </div>
 </form>
 <button onclick="javascript:location.href='views/popup/popupWriteView.jsp'" type="button" class="btn btn-primary btn-sm">팝업등록</button>
+<%}else { %>
+<h1>로그인 해주세요.</h1>
+<%} %>
 </div>
 </div>
 </div>

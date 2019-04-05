@@ -12,7 +12,7 @@
   <!-- Material Kit CSS -->
   <link href="/math/resources/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-    <title>footer</title>
+    <title>감성수학</title>
 </head>
 <style>
 	footer{

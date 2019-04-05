@@ -20,8 +20,8 @@
 <script type="text/javascript">
 function logout() {
 	if(confirm("로그아웃 하시겠습니다.")){
-		userId=null;
 		location.href="/math/logout";
+		
 	}else{
 		return false;
 	}

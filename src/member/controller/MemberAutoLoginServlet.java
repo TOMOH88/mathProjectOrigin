@@ -33,7 +33,7 @@ public class MemberAutoLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cookie[] cookies = request.getCookies();
-		String path = "/math/views/common/login.jsp";
+		String path = "main.jsp";
 		LoginManager lm = new LoginManager();
 		HttpSession session =request.getSession();
 		RequestDispatcher view = null;
@@ -44,7 +44,7 @@ public class MemberAutoLoginServlet extends HttpServlet {
 					if(lm.isUsing(cookie.getValue())) {
 						cookie.setMaxAge(0);
 						response.addCookie(cookie);	
-						path="views/member/memberLoginError.jsp";
+						path="views/member/memberError.jsp";
 						request.setAttribute("message", "이미 아이디가 사용중입니다.");
 						break;
 					}else {
@@ -56,11 +56,11 @@ public class MemberAutoLoginServlet extends HttpServlet {
 					
 					
 				}else {
-					path="/math/views/common/login.jsp";
+					path="main.jsp";
 				}
 			}
 		}else {
-			path="/math/views/common/login.jsp";
+			path="main.jsp";
 		}
 		view = request.getRequestDispatcher(path);
 		view.forward(request, response);

@@ -51,7 +51,7 @@ public class DeleteBook extends HttpServlet {
 		}
 		
 		if(result > 0) {
-			response.sendRedirect("/math/views/question/questionPrint.jsp");
+			response.sendRedirect("/math/views/question/adminQuestionPrint.jsp");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
 			request.setAttribute("message", message);

@@ -79,17 +79,6 @@ public class PopupService {
 		return result;
 	}
 
-	public void addReadCount(int popupNo) {
-		Connection conn = getConnection();
-		int result = pdao.addReadCount(popupNo, conn);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-	}
-
 	public Popup selectPDetail(int popupNo) {
 		Connection conn = getConnection();
 		Popup popup = pdao.selectPDetail(popupNo, conn);
@@ -116,5 +105,12 @@ public class PopupService {
 		int popupMin = pdao.popupMin(conn);
 		close(conn);
 		return popupMin;
+	}
+
+	public ArrayList<Popup> popupMain() {
+		Connection conn = getConnection();
+		ArrayList<Popup> mplist = pdao.popupMain(conn);
+		close(conn);
+		return mplist;
 	}
 }

@@ -54,8 +54,26 @@ $(function(){
       //저장버튼 클릭시 form 전송
       $("#save").click(function(){
           oEditors.getById["con1"].exec("UPDATE_CONTENTS_FIELD", []);
+          var title = $("#title").val();
+          var con1 = $("#con1").val();
+          
+          if(title == "" || title == null || title == "&nbsp;" || title == "<p>&nbsp;</p>" || title == "<br>"){
+    		  alert("제목을 입력해주세요.");
+    		  $("#title").focus();
+    		  return false;
+    	  }else if(con1 == "" || con1 == null || con1 == "&nbsp;" || con1 == "<p>&nbsp;</p>" || con1 == "<br>"){
+    		  alert("내용을 입력해주세요.");
+    		  oEditors.getById["con1"].exec("FOCUS");
+    		  return false;
+    	  }
+    	  
           $("#nform").submit();
-      });    
+      });
+      document.addEventListener("keydown", function(event) {
+    		if (event.keyCode === 13) {
+    			event.preventDefault();
+    			}
+    		}, true);    
 });
 </script>
 </head>
@@ -102,7 +120,7 @@ ul {
 	</tr>
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="title" value="<%=notice.getNoticeTitle() %>" class="form-control"></td>
+			<td><input type="text" id="title" name="title" value="<%=notice.getNoticeTitle() %>" class="form-control"></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
@@ -125,7 +143,6 @@ ul {
 	</table>
 	<div align="center" id="d1">
 				<input type="button" id="save" value="수정하기" class="btn btn-defualt btn-sm">
-				<button onclick="listView(); return false;" class="btn btn-default btn-sm">목록으로 돌아가기</button>
 				</div>
 </form>
 </div>

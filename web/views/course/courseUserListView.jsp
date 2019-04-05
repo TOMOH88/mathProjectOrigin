@@ -19,7 +19,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>Insert title here</title>
+<title>감성수학</title>
 </head>
 <style>
 table{
@@ -45,8 +45,12 @@ ul {
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
-          <h1>강의</h1>
+          <%if(userId != null){ %>
+          	<h1>강의</h1>
             <h3 class="title text-center">목록보기</h3>
+            <%}else{ %>
+			<h1>로그인 해주세요</h1>	
+			<%} %>
           </div>
         </div>
       </div>
@@ -55,6 +59,7 @@ ul {
    <div class="main main-raised">
     <div class="container">
       <div class="section text-center">
+  <%if(userId != null){ %>
 <% if(member.getMemberLevel().equals("1")){ %>
 <table class="table table-striped table-hover">
 	<tr class="table-success">
@@ -146,7 +151,7 @@ window.onload = function(){
 	history.go(-1);
 }
 </script>
-<%} %>
+<%}} %>
 </div>
 </div>
 </div>

@@ -8,6 +8,7 @@
 	int popupBack = (Integer)request.getAttribute("popupBack");
 	int popupNext = (Integer)request.getAttribute("popupNext");
 	int popupMin = (Integer)request.getAttribute("popupMin");
+	int currentPage = (Integer)request.getAttribute("page");
 %>    
 <!DOCTYPE html>
 <html>
@@ -64,12 +65,12 @@ ul {
 			<td><%=popup.getPopupName() %></td>
 		</tr>
 		<tr>
-			<th>팝업메모</th>
-			<td><%=popup.getPopupExplan()%></td>
+			<th>이미지</th>
+			<td><img src="/math/files/popup/<%=popup.getPopupImagePath()%>" style="width:100%;"></td>
 		</tr>
 		<tr>
-			<th>팝업설정여부</th>
-			<td><button onclick="location.href=window.open('views/main/main.jsp')">팝	업뛰우기</button></td>
+			<th>팝업메모</th>
+			<td><%=popup.getPopupExplan()%></td>
 		</tr>
 	</table>
 	<div style="text-align:center;" id="d1">

@@ -45,7 +45,7 @@ ul {
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
-          <h1>공지사항</h1>
+          	<h1>공지사항</h1>
             <h3 class="title text-center">목록보기</h3>
           </div>
         </div>

@@ -191,6 +191,7 @@ public class QuestionDao {
 	public int uploadImg(Connection conn, String semester, String book, String chapter, String imgName) {
 		int result = 0;
 		PreparedStatement pstmt = null;
+		System.out.println("semester=" +semester + "\nbook=" + book + "\nchapter=" + chapter + "\nimgName=" + imgName);
 		String query = "insert into tb_question values (?, (select chapter_no from tb_chapter where chapter_name = ? and book_no = (select book_no from tb_book where book_name = ? and semester_no = (select semester_no from tb_semester where semester_name = ?))), "
 				+ "(select book_no from tb_book where book_name = ? and semester_no = (select semester_no from tb_semester where semester_name = ?)), "
 				+ "(select semester_no from tb_semester where semester_name = ?))";

@@ -58,7 +58,7 @@ public class PopupListServlet extends HttpServlet {
 		
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view = null;
-		if(plist.size() > 0) {
+		if(plist.size() >= 0) {
 			view = request.getRequestDispatcher("views/popup/popupListView.jsp");
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
@@ -69,7 +69,7 @@ public class PopupListServlet extends HttpServlet {
 			request.setAttribute("plist", plist);
 			request.setAttribute("AllSearchListCount", AllSearchListCount);
 			view.forward(request, response);
-		}else {
+		}else{
 			view = request.getRequestDispatcher("views/popup/popupError.jsp");
 			request.setAttribute("message", "조회 불가");
 			view.forward(request, response);

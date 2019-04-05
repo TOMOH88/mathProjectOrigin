@@ -16,13 +16,14 @@ public class Popup implements Serializable{
 	private Date popupDate;
 	private Date popupEndDate;
 	private String popupImagePath;
+	private String popupImgLink;
 	private String popupExplan;
 	private String adminId;
 	
 	public Popup() {}
 
 	public Popup(int popupNo, String popupName, String popupLink, int popupX, int popupY, int popupWidth,
-			int popupHeight, Date popupDate, Date popupEndDate, String popupImagePath, String popupExplan,
+			int popupHeight, Date popupDate, Date popupEndDate, String popupImagePath, String popupImgLink, String popupExplan,
 			String adminId) {
 		super();
 		this.popupNo = popupNo;
@@ -35,6 +36,7 @@ public class Popup implements Serializable{
 		this.popupDate = popupDate;
 		this.popupEndDate = popupEndDate;
 		this.popupImagePath = popupImagePath;
+		this.popupImgLink = popupImgLink;
 		this.popupExplan = popupExplan;
 		this.adminId = adminId;
 	}
@@ -126,6 +128,14 @@ public class Popup implements Serializable{
 	public void setPopupImagePath(String popupImagePath) {
 		this.popupImagePath = popupImagePath;
 	}
+	
+	public String getPopupImgLink() {
+		return popupImgLink;
+	}
+	
+	public void setPopupImgLink(String popupImgLink) {
+		this.popupImgLink = popupImgLink;
+	}
 
 	public String getPopupExplan() {
 		return popupExplan;
@@ -146,6 +156,7 @@ public class Popup implements Serializable{
 				+ this.popupY + ", " + this.popupWidth + ", " 
 				+ this.popupHeight + ", " + this.popupDate + ", " 
 				+ this.popupEndDate + ", " + this.popupImagePath + ", " 
+				+ popupImgLink + ", "
 				+ this.popupExplan + ", " + this.adminId; 
 	}
 }

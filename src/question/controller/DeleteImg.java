@@ -54,7 +54,7 @@ public class DeleteImg extends HttpServlet {
 		}
 		
 		if(count == img.length) {
-			response.sendRedirect("/math/views/question/questionPrint.jsp");
+			response.sendRedirect("/math/views/question/adminQuestionPrint.jsp");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
 			request.setAttribute("message", "삭제 실패!  (문제 이미지" + img.length + "개 중 " + count + "개 삭제 완료!)");

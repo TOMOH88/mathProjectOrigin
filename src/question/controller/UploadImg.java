@@ -93,7 +93,7 @@ public class UploadImg extends HttpServlet {
 	    }
 	
 	    if(result > 0) {
-	    	response.sendRedirect("/math/views/question/questionPrint.jsp");
+	    	response.sendRedirect("/math/views/question/adminQuestionPrint.jsp");
 	    }else {
 	    	view = request.getRequestDispatcher("views/question/questionError.jsp");
 			request.setAttribute("message", "문제 이미지 업로드 실패!");

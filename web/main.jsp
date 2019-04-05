@@ -17,7 +17,35 @@
 <title>메인</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+$(function(){
+	 $.ajax({
+		 	url : '/math/popup.do',
+	        type : 'post',
+	        dataType : 'json',
+	        success : function(data){
+	                var jsonStr = JSON.stringify(data);
+					var json = JSON.parse(jsonStr);
+					for( i in json.list){
+						var sdate= new Date(json.list[i].startDate);
+						var edate= new Date(json.list[i].endDate);
+						var images = json.list[i].popupImagePath;
+						var imglink = decodeURIComponent(json.list[i].popupImgLink);
+						var now = new Date();
+						if(now >= sdate && now <= edate){
+						OpenPopup(json.list[i].popupLink+"?images="+ images + "&imglink=" + imglink , decodeURIComponent(json.list[i].popupName) , json.list[i].popupWidth, json.list[i].popupHeight, json.list[i].popupX, json.list[i].popupY);
+							}
+						}
+	            }, error : function(jqXHR, textStatus, errorThrown){
+	            	console.log("error : " + jqXHR + textStatus + errorThrown);
+	            }
+	    });
+});
 
+function OpenPopup(link, name , width, height, left, top){
+       var winPop;
+       winPop = window.open(link ,'pop'+name, 'toolbar=yes,width='+width+',height='+height+',left='+left+',top='+top+',status=yes,scrollbars=no, resize=yes, toolbar=no, location=no' );
+		
+   }
 </script>
 </head>
 <body>

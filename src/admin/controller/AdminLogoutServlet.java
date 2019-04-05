@@ -32,12 +32,11 @@ public class AdminLogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		Admin admin = (Admin)session.getAttribute("admin");
-		String userId = admin.getAdminId();
-		
-		session.invalidate();
-		System.out.println(userId+"님 로그아웃");
-		response.sendRedirect("/math/admin.jsp");
+
+		if(session != null) {
+			session.invalidate();
+			response.sendRedirect("/math/admin.jsp");
+		}
 	}
 
 	/**

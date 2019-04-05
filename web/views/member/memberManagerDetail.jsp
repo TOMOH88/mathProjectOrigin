@@ -7,7 +7,6 @@
 	ArrayList<Semester> slist = (ArrayList<Semester>)request.getAttribute("semester");
 	ArrayList<Semester> mylist = (ArrayList<Semester>)request.getAttribute("permission");
 	int pages = ((Integer)request.getAttribute("page")).intValue();
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -125,14 +124,15 @@ function sendmail(){
 		arr=Array();
 		$("#d1").html("");
 	}
+	
 	function allCheck() {
-		if($(":checkbox").prop("checked")==false){
-			$(":checkbox").prop("checked",true);
-		}else{
-			$(":checkbox").prop("checked",false);
-		}
-		
-	}
+	      if($(":checkbox").prop("checked")==false){
+	         $(":checkbox").prop("checked",true);
+	      }else{
+	         $(":checkbox").prop("checked",false);
+	      }
+	      
+	   }
 	function removePermission() {
 		var items = "";
 		$("input:checkbox[type=checkbox]:checked").each(function() {
@@ -224,7 +224,7 @@ ul {
 <tr><th><div id="d1"></div></th><th><button onclick="sendAddPer();" class="btn btn-default">권한 주기</button><button onclick="remove1();" class="btn btn-default">선택한 권한지우기</button></th></tr>
 <tr><td>보유 권한</td><td>
 <%for(int i =0 ; i<mylist.size();i++){%>
-<input type="checkbox" id="ckd" value="<%=mylist.get(i).getSemesterName()%>"><%=mylist.get(i).getSemesterName() %></input>&nbsp;&nbsp;
+<input type="checkbox" id="ckd" value="<%=mylist.get(i).getSemesterName()%>" name="chk"><%=mylist.get(i).getSemesterName() %></input>&nbsp;&nbsp;
 <%if((i+1)%4==0){
 	out.print("<br>");
 }}

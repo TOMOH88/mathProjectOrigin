@@ -78,7 +78,7 @@ public class SuperUpload extends HttpServlet {
         }
         System.out.println("대용량 업로드 성공..");
 
-        response.sendRedirect("/math/views/question/questionPrint.jsp");
+        response.sendRedirect("/math/views/question/adminQuestionPrint.jsp");
 	}
 
 	/**

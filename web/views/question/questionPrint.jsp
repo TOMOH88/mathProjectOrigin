@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>Insert title here</title>
+<title>감성수학</title>
 <style type="text/css">
 select {
 	 width: 200px; /* 원하는 너비설정 */
@@ -50,7 +50,7 @@ div {
 				
 				var print = "<option value=''>학기</option>";
 				for(var i in json.list){
-					print += "<option value='" + decodeURIComponent(json.list[i].semester) + "'>" + decodeURIComponent(json.list[i].semester) + "</option>";
+					print += "<option value='" + decodeURIComponent(json.list[i].semester).replace(/\+/gi, " ") + "'>" + decodeURIComponent(json.list[i].semester).replace(/\+/gi, " ") + "</option>";
 				}
 				$("#f1sel").html(print);
 			},
@@ -72,7 +72,7 @@ div {
 				
 				var print = "<option value=''>교재</option>";
 				for(var i in json.list){
-					print += "<option value='" + decodeURIComponent(json.list[i].book) + "'>" + decodeURIComponent(json.list[i].book) + "</option>";
+					print += "<option value='" + decodeURIComponent(json.list[i].book).replace(/\+/gi, " ") + "'>" + decodeURIComponent(json.list[i].book).replace(/\+/gi, " ") + "</option>";
 				}
 				$("#f2sel").html(print);
 			},
@@ -95,7 +95,7 @@ div {
 				
 				var print = "<option value=''>챕터</option>";
 				for(var i in json.list){
-					print += "<option value='" + decodeURIComponent(json.list[i].chapter) + "'>" + decodeURIComponent(json.list[i].chapter) + "</option>";
+					print += "<option value='" + decodeURIComponent(json.list[i].chapter).replace(/\+/gi, " ") + "'>" + decodeURIComponent(json.list[i].chapter).replace(/\+/gi, " ") + "</option>";
 				}
 				$("#f3sel").html(print);
 			},
@@ -122,7 +122,7 @@ div {
 				
 				var print="";
 				for(var i in json.list){
-					var qPath = imgPath + decodeURIComponent(json.list[i].question);
+					var qPath = imgPath + decodeURIComponent(json.list[i].question).replace(/\+/gi, " ");
 					print += "<div class='q'><input type='checkbox' name='img' value='" + qPath + "'>" +
 					decodeURIComponent(json.list[i].question).substring(0, decodeURIComponent(json.list[i].question).length-4) + "</div>";
 					
@@ -135,14 +135,13 @@ div {
 		});
 	}
 	
-	function allCheck(){
-		$(":checkbox").prop("checked", true);
-	}
-	
-	function unCheck(){
-		$(":checkbox").prop("checked", false);
-	}
-	
+	   function allCheck() {
+		      if($(":checkbox").prop("checked")==false){
+		         $(":checkbox").prop("checked",true);
+		      }else{
+		         $(":checkbox").prop("checked",false);
+		      }
+	   }
 	function preview(){
 		var items = [];
 		$("input:checkbox[type=checkbox]:checked").each(function () {
@@ -150,8 +149,10 @@ div {
 		});
 		var title = $("#title").val();
 		var waterMark = $("#waterMark").val();
-		console.log(title, waterMark);
-		window.open("/math/views/question/preview.jsp?items="+items+"&title="+title+"&waterMark="+waterMark, "a", "width=1000, height=1000, left=100, top=50");
+		
+		/* window.open("/math/views/question/preview.jsp?items="+items+"&title="+title+"&waterMark="+waterMark, "a", "width=1000, height=1000, left=100, top=50"); */
+		window.open("", "popup_window", "width=1000, height=1000, left=100, top=50");
+		$("#qform").submit();
 	}
 	function textDown(){
 		var semester = $("#f1sel option:selected").val();
@@ -182,12 +183,7 @@ div {
 				console.log("error : "+  jqXHR +", "+textStatus+", "+errorThrown);
 			}
 		});
-	
-	
-	
-	
 	};
-	
 </script>
 </head>
 <body>
@@ -197,8 +193,12 @@ div {
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
+          <%if(userId != null){ %>
           <h1>문제</h1>
             <h3 class="title text-center">문제지 출력</h3>
+            <%}else { %>
+            <h1>로그인 해주세요</h1>
+            <%} %>
           </div>
         </div>
       </div>
@@ -207,6 +207,7 @@ div {
    <div class="main main-raised">
     <div class="container">
       <div class="section text-center">
+      <%if(userId != null){ %>
       <table class="table">
       <tr>
       <td>
@@ -232,26 +233,28 @@ div {
 	</td>
 </tr>
 </table>
+<form id="qform" name="qform" method="post" action="/math/views/question/preview.jsp" target="popup_window">
 <table class="table">
 <tr><td>
 <div class="form-group">
-<label for="exampleFormControlTextarea1">문제지 Title</label><input type="text" id="title" class="form-control">
+<label for="exampleFormControlTextarea1">문제지 Title</label><input type="text" id="title" name="title" class="form-control">
 </div>
 </td><td>
 <div class="form-group">
-<label for="exampleFormControlTextarea1">워터마크</label><input type="text" id="waterMark" class="form-control">
+<label for="exampleFormControlTextarea1">워터마크</label><input type="text" id="waterMark" name="waterMark" class="form-control">
 </div>
 </td>
 </tr>
 </table>
-	<button onclick="preview();" class="btn btn-default btn-sm">미리보기</button>
-	<button onclick="allCheck();" class="btn btn-default btn-sm">전체 선택</button>
-	<button onclick="unCheck();" class="btn btn-default btn-sm">전체 해제</button>
-	<button onclick="textDown();" class="btn btn-default btn-sm">오답 체크</button>
+	<button type="button" onclick="preview();" class="btn btn-default btn-sm">미리보기</button>
+	<button type="button" onclick="allCheck();" class="btn btn-default btn-sm">전체 선택</button>
+	<button type="button" onclick="textDown();" class="btn btn-default btn-sm">오답 체크</button>
 	<div id="ddd"></div>
-	<div id="qImg" class="border" style=" overflow:auto;">
+<div id="qImg" class="border" style=" overflow:auto;">
 <div id="left"></div>
 </div>
+</form>
+<%} %>
 </div>
 </div>
 </div>

@@ -12,7 +12,7 @@
   <!-- Material Kit CSS -->
   <link href="/math/resources/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>Insert title here</title>
+<title>감성수학</title>
 <style type="text/css">
 select {
 	 width: 200px; /* 원하는 너비설정 */
@@ -62,7 +62,7 @@ div {
 				
 				var print = "<option value=''>학기</option>";
 				for(var i in json.list){
-					print += "<option value='" + decodeURIComponent(json.list[i].semester) + "'>" + decodeURIComponent(json.list[i].semester) + "</option>";
+					print += "<option value='" + decodeURIComponent(json.list[i].semester).replace(/\+/gi, " ")  + "'>" + decodeURIComponent(json.list[i].semester).replace(/\+/gi, " ")  + "</option>";
 				}
 				$("#f1sel").html(print);
 			},
@@ -84,7 +84,7 @@ div {
 				
 				var print = "<option value=''>교재</option>";
 				for(var i in json.list){
-					print += "<option value='" + decodeURIComponent(json.list[i].book) + "'>" + decodeURIComponent(json.list[i].book) + "</option>";
+					print += "<option value='" + decodeURIComponent(json.list[i].book).replace(/\+/gi, " ")  + "'>" + decodeURIComponent(json.list[i].book).replace(/\+/gi, " ")  + "</option>";
 				}
 				$("#f2sel").html(print);
 			},
@@ -108,7 +108,7 @@ div {
 				
 				var print = "<option value=''>챕터</option>";
 				for(var i in json.list){
-					print += "<option value='" + decodeURIComponent(json.list[i].chapter) + "'>" + decodeURIComponent(json.list[i].chapter) + "</option>";
+					print += "<option value='" + decodeURIComponent(json.list[i].chapter).replace(/\+/gi, " ")  + "'>" + decodeURIComponent(json.list[i].chapter).replace(/\+/gi, " ")  + "</option>";
 				}
 				$("#f3sel").html(print);
 			},
@@ -118,6 +118,7 @@ div {
 		});
 	}
 	var num = new Array();
+	
 	function f3change(){
 		var semester = $("#f1sel option:selected").val();
 		var book = $("#f2sel option:selected").val();
@@ -134,12 +135,12 @@ div {
 				
 				var print="";
 				for(var i in json.list){
-					var qPath = imgPath + decodeURIComponent(json.list[i].question);
+					var qPath = imgPath + decodeURIComponent(json.list[i].question).replace(/\+/gi, " ");
 					print += "<div class='q'><input type='checkbox' class='que' id='"+decodeURIComponent(json.list[i].question)+"' name='img' value='" + qPath + "'><label for='" + decodeURIComponent(json.list[i].question) + "'>" +
 		               decodeURIComponent(json.list[i].question).substring(0, decodeURIComponent(json.list[i].question).length-4) + "</label></div>";
-					
 				}
 				$("#left").html(print);
+				/* $("#qform").html(print); */
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				console.log("error: " + jqXHR + ", " + textStatus + ", " + errorThrown);
@@ -147,32 +148,55 @@ div {
 		});
 	}
 	
-	/* $(document).on("change",":checkbox", function(){
-	      $("input[type=checkbox]:checked + label").css("background-color", "gray");
-	      
-	   }); */
-	
-	function allCheck(){
-		$(":checkbox").prop("checked", true);
-	}
-	
-	function unCheck(){
-		$(":checkbox").prop("checked", false);
-	}
+	function allCheck() {
+	      if($(":checkbox").prop("checked")==false){
+	         $(":checkbox").prop("checked",true);
+	      }else{
+	         $(":checkbox").prop("checked",false);
+	      }
+ 	}
 	
 	function preview(){
+		var semester = $("#f1sel option:selected").val();
+		var book = $("#f2sel option:selected").val();
+		var chapter = $("#f3sel option:selected").val();
+		
+		if(semester == ""){
+			alert("학기를 선택해주세요");
+			return;
+		}
+		if(book == ""){
+			alert("교재를 선택해주세요");
+			return;
+		}
+		if(chapter == ""){
+			alert("챕터를 선택해주세요");
+			return;
+		}
+		
 		var items = [];
 		$("input:checkbox[type=checkbox]:checked").each(function () {
 		    items.push($(this).val());
 		});
+		
+		if(items == ""){
+			alert("문제를 하나 이상 선택해주세요");
+			return;
+		}
 		var title = $("#title").val();
 		var waterMark = $("#waterMark").val();
-		console.log(title, waterMark);
-		window.open("/math/views/question/preview.jsp?items="+items+"&title="+title+"&waterMark="+waterMark, "a", "width=1000, height=1000, left=100, top=50");
+
+		/* window.open("/math/views/question/preview.jsp?items="+items+"&title="+title+"&waterMark="+waterMark, "a", "width=1000, height=1000, left=100, top=50"); */
+		window.open("", "popup_window", "width=1000, height=1000, left=100, top=50");
+		$("#qform").submit();
 	}
 	
 	function makeSemester(){
 		var newSemester = prompt("생성할 학기 이름");
+		if(newSemester == null){
+			return;
+		}
+		
 		if(confirm("정말로 생성하시겠습니까?")){	
 			location.href = "/math/mSemester?newSemester="+newSemester;
 		}else{
@@ -187,6 +211,11 @@ div {
 			return;
 		}
 		var newBook = prompt("생성할 교재 이름");
+		
+		if(newBook == null){
+			return;
+		}
+		
 		if(confirm("정말로 생성하시겠습니까?")){	
 			location.href = "/math/mBook?newBook="+newBook+"&semester="+semester;
 		}else{
@@ -206,6 +235,9 @@ div {
 			return;
 		}
 		var newChapter = prompt("생성할 챕터 이름");
+		if(newChapter == null){
+			return;
+		}
 		if(confirm("정말로 생성하시겠습니까?")){	
 			location.href = "/math/mChapter?newChapter="+newChapter+"&semester="+semester+"&book="+book;
 		}else{
@@ -234,8 +266,8 @@ div {
 		$("#book").val(book);
 		$("#chapter").val(chapter);
 		
-		$("form").attr("action", "/math/upImg");
-		$("form").submit();
+		$("#uform").attr("action", "/math/upImg");
+		$("#uform").submit();
 	}
 	
 	function delSemester(){
@@ -311,7 +343,6 @@ div {
 	function superUpload(){
 		location.href = "/math/sUpload";
 	}
-	
 </script>
 </head>
 <body>
@@ -323,10 +354,13 @@ div {
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">문제관리</h4>
+                <%if(admin != null){ %>
                   <p class="card-category">문제지 출력 페이지</p>
+                 <%}%>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
+<%if(admin != null){ %>
 <table class="table">
 <tr></tr>
 <tr>
@@ -359,40 +393,51 @@ div {
 </tr>
 </table>
 <div id="upload" align="center">
-	<form method="post" enctype="multipart/form-data">
+	<form id="uform" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="semester" id="semester">
 	<input type="hidden" name="book" id="book">
 	<input type="hidden" name="chapter" id="chapter">
-	<input multiple="multiple" type="file" id="upImg" name="upImg" class="form-control">
+	<input type="file" id="upImg" name="upImg" class="form-control" accept=".gif, .jpg, .png, .bmp, .jpeg">
 </form><br>
 <button onclick="uploadImg();" class="btn btn-default btn-sm">문제 등록</button>
 <button onclick="superUpload();" class="btn btn-default btn-sm">Super Upload</button>
 </div>
+
 <table class="table">
 <tr>
 </tr>
 <tr>
 <td>
-<div class="form-group">
+<!-- <div class="form-group">
 <label for="exampleFormControlTextarea1">문제지 Title</label> <input type="text" id="title" class="form-control">
-</div>
+</div> -->
 </td>
 <td>
-<div class="form-group">
+<!-- <div class="form-group">
 <label for="exampleFormControlTextarea1">워터마크</label> <input type="text" id="waterMark" class="form-control" >
-</div>
+</div> -->
 </td>
 </tr>
 </table>
+<form id="qform" name="qform" method="post" action="/math/views/question/preview.jsp" target="popup_window">
+<div class="form-group">
+<div class="form-group">
+<label for="exampleFormControlTextarea1">문제지 Title</label> <input type="text" id="title" name="title" class="form-control">
+</div>
+<label for="exampleFormControlTextarea1">워터마크</label> <input type="text" id="waterMark" name="waterMark" class="form-control" >
+</div>
 <div align="center">
-<button onclick="preview();" class="btn btn-default btn-sm">미리보기</button>
-	<button onclick="allCheck();" class="btn btn-default btn-sm">전체 선택</button>
-	<button onclick="unCheck();" class="btn btn-default btn-sm">전체 해제</button>
-	<button onclick="delImg();" class="btn btn-default btn-sm">문제 삭제</button>
+<button type="button" onclick="preview();" class="btn btn-default btn-sm">미리보기</button>
+	<button type="button" onclick="allCheck();" class="btn btn-default btn-sm">전체 선택</button>
+	<button type="button" onclick="delImg();" class="btn btn-default btn-sm">문제 삭제</button>
 	</div>
 <div id="qImg" class="border" style=" overflow:auto;">
 <div id="left" ></div>
 </div>
+	</form>
+	<%}else { %>
+    <h1>로그인 해주세요</h1>
+    <%} %>
 </div>
 </div>
 </div>

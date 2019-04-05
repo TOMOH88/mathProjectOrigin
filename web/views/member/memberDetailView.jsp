@@ -6,15 +6,13 @@
 <% Member member = (Member)request.getAttribute("member");
 	ArrayList<Semester> mypermi = (ArrayList<Semester>)request.getAttribute("permission");
 	ArrayList<Semester> slist = (ArrayList<Semester>)request.getAttribute("semester");
-	
-
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>회원관리 : 감성수학</title>
+<title>감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
  <script type="text/javascript">
 $(function() {
@@ -74,10 +72,10 @@ ul {
           <div class="brand text-center">
 	        <%if(userId != null){ %>
 	        <h1>마이페이지</h1>
+            <h3 class="title text-center">회원정보수정</h3>
 	        <%}else{ %>
 			<h1>로그인해주세요</h1>
 			<%} %>
-            <h3 class="title text-center">회원정보수정</h3>
           </div>
         </div>
       </div>

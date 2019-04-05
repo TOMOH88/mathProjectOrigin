@@ -51,17 +51,33 @@ ul {
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-<form action="/math/pinsert" method="post">
+<form action="/math/pinsert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <table class="table">
 <tr>
 </tr>
 	<tr>
 		<th>제목</th>
-		<td><input type="text" name="ptitle" id="ptitle" required></td>
+		<td><input type="text" name="ptitle" id="ptitle" required class="form-control"></td>
 	</tr>
 	<tr>
 		<th>링크주소</th>
-		<td><input type="text" name="plink" id="plink" required></td>
+		<td><input type="text" name="plink" id="plink" required class="form-control"></td>
+	</tr>
+	<tr>
+		<th>x좌표</th>
+		<td><input type="number" name="pX" id="pX" required class="form-control"></td>
+	</tr>
+	<tr>
+		<th>y좌표</th>
+		<td><input type="number" name="pY" id="pY" required class="form-control"></td>
+	</tr>
+	<tr>
+		<th>width</th>
+		<td><input type="number" name="pWidth" id="pWidth" required class="form-control"></td>
+	</tr>
+	<tr>
+		<th>height</th>
+		<td><input type="number" name="pHeight" id="pHeight" required class="form-control"></td>
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -73,12 +89,16 @@ ul {
 		</td>
 	</tr>
 	<tr>
-		<th>이미지경로</th>
-		<td><input type="text" name="imagelink" id="imagelink" required></td>
+		<th>이미지첨부</th>
+		<td><input type="file" name="imagelink" id="imagelink" required class="form-control"></td>
+	</tr>
+	<tr>
+		<th>링크주소</th>
+		<td><input type="text" name="imgl" id="imgl" required class="form-control"></td>
 	</tr>
 	<tr>
 		<th>설명</th>
-		<td><textarea rows="2" cols="60" name="discrip" id="discrip" required></textarea></td>
+		<td><textarea rows="2" cols="60" name="discrip" id="discrip" required class="form-control"></textarea></td>
 	</tr>
 </table>
 <div style="text-align:center;" id="d1">

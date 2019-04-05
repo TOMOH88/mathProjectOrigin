@@ -58,8 +58,6 @@ public class CourseUpdateServlet extends HttpServlet {
 		}
 		course.setCourseContent(request.getParameter("content"));
 		
-		CourseService cservice = new CourseService();
-		
 		int result = new CourseService().courseUpdate(course, sOption, bOption);
 		if(result > 0) {
 			response.sendRedirect("/math/cdetail?no=" + course.getCourseNo());

@@ -37,10 +37,6 @@ public class TextDownloadServlet extends HttpServlet {
 		String chapter = request.getParameter("chapter");
 		String name = request.getParameter("name");
 		String title = request.getParameter("title");
-		System.out.println("학기 : "+semester);
-		System.out.println("문제지 : "+book);
-		System.out.println("챕터 : "+chapter);
-		System.out.println(name);
 		String str[] = name.split("/");
 		ArrayList<String> arr= new ArrayList<>();
 		for(int i = 0; i<str.length;i++) {

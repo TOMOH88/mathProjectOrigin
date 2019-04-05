@@ -19,7 +19,7 @@
   <link href="/math/resources/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <meta charset="UTF-8">
-<title>FAQ상세페이지</title>
+<title>감성수학</title>
 <script type="text/javascript">
 	function faqUpView(){
 		location.href="/math/fupview?no="+<%=faq.getFaqNo()%>+"&page="+<%=currentPage%>;

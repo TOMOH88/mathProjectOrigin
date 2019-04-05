@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>qna페이지</title>
+<title>감성수학</title>
 <script type="text/javascript">
 function questionWrite() {
 	location.href="/math/views/qna/questionWriteView.jsp";
@@ -31,8 +31,12 @@ div >	h3{
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
+           <%if(userId != null){ %>
           <h1>QnA</h1>
             <h3 class="title text-center">목록보기</h3>
+           <%}else{ %>
+            <h1>로그인 해주세요</h1>
+            <%} %>
           </div>
         </div>
       </div>
@@ -41,9 +45,11 @@ div >	h3{
    <div class="main main-raised">
     <div class="container">
       <div class="section text-center">
+       <%if(userId != null){ %>
 <h3 align="center">QnA 목록이없습니다. 새로운글을 작성해주세요.</h3>
 <div id="d1">
 <button onclick="questionWrite();" class="btn btn-default btn-sm">질문하기</button>
+<%}%>
 </div>
 </div>
 </div>

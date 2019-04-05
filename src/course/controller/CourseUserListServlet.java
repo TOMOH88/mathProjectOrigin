@@ -70,8 +70,8 @@ public class CourseUserListServlet extends HttpServlet {
 		if(maxPage < endPage) {
 			endPage = maxPage;
 		}
-		ArrayList<Course> cList = cservice.courseAllList(currentPage, limit, sOption, bOption);
 		Member member = cservice.userMember(userId);
+		ArrayList<Course> cList = cservice.courseAllList(currentPage, limit, sOption, bOption);
 		RequestDispatcher view = null;
 		if(cList.size() > 0) {
 			view = request.getRequestDispatcher("views/course/courseUserListView.jsp");

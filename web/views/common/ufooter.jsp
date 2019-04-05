@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>유저푸터</title>
+<title>감성수학</title>
 </head>
 <style>
 	footer{

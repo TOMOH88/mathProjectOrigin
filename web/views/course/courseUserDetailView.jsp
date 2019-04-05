@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>강의글 상세페이지</title>
+<title>감성수학</title>
 <style>
 table{
 	font-family: 'Jua', sans-serif;

@@ -27,7 +27,7 @@
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>강의목록관리페이지</title>
+<title>감성수학</title>
 <script type="text/javascript">
 	function courseWrite(){
 		location.href="/math/cwview";
@@ -64,10 +64,13 @@ ul {
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">강의</h4>
+                  <%if(admin != null){ %>
                   <p class="card-category"> 목록보기 </p>
+                  <%}%>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
+                  <%if(admin != null){ %>
                     <table class="table table-striped table-hover">
                       <thead class="text-primary">
 	<tr class="table-primary">
@@ -153,6 +156,9 @@ ul {
 </div>
 <div align="center" id="d1">
 <button onclick="courseWrite();" class="btn btn-primary btn-sm">글쓰기</button>
+<%}else { %>
+<h1>로그인 해주세요.</h1>
+<%} %>
 </div>
 </div>
 </div>

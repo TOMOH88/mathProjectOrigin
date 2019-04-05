@@ -37,11 +37,11 @@ public class CourseUpdateViewServlet extends HttpServlet {
 		int courseNo = Integer.parseInt(request.getParameter("no"));
 
 		CourseService cservice = new CourseService();
-		Course course = cservice.courseDetail(courseNo);
 		ArrayList<Semester> semList = cservice.semList();
 		ArrayList<Book> bList = cservice.bookList();
-		String sName = cservice.selectSName(course.getCourseNo());
-		String bName = cservice.selectBName(course.getCourseNo());
+		String sName = cservice.selectSName(courseNo);
+		String bName = cservice.selectBName(courseNo);
+		Course course = cservice.courseDetail(courseNo);
 		
 		RequestDispatcher view = null;
 		if(course != null) {

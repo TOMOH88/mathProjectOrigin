@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>강의 글작성페이지</title>
+<title>감성수학</title>
 <script type="text/javascript" src="/math/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -145,7 +145,6 @@ ul {
 		<th colspan="2">
 		<div align="center">
 			<input type="button" id="save" value="글 등록" class="btn btn-default btn-sm">
-			<button onclick="javascript:location.href='/math/clist'; return false;" class="btn btn-default btn-sm">목록가기</button>
 			</div>
 		</th>
 	</tr>

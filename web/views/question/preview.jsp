@@ -2,21 +2,26 @@
     pageEncoding="UTF-8"%>
     
 <%
-   String value = request.getParameter("items");
-      
-    String[] strArr = value.split(",");
+    /* String value = request.getParameter("items"); */
+    request.setCharacterEncoding("utf-8");
+	String strArr[] = request.getParameterValues("img");
+	
+   /* String[] strArr = value.split(","); */ 
     
+   for(String s:strArr){
+	   System.out.println(s);
+   }
     int page2 = (strArr.length - 4) / 4;
     int img=4;
-    
+     
     String title = request.getParameter("title");
-    String waterMark = request.getParameter("waterMark");
+    String waterMark = request.getParameter("waterMark"); 
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
    $(function(){
@@ -64,7 +69,7 @@
 }
 .paper {
     width: 210mm;
-   min-height: 297mm;
+	min-height: 297mm;
     padding: 20mm;  /* set contents area */
     margin: 10mm auto;
     border-radius: 5px;
@@ -76,7 +81,7 @@
     background-position: bottom right;
     background-size: 150px;
 
-   position:relative;
+	position:relative;
 }
 .content {
     padding: 0;
@@ -115,7 +120,6 @@ table {
     width: 100%;
     height: 10%;
     border: 1px solid #444444;
-    border-collapse : collapse;
   }
   th, td {
     border: 1px solid #444444;
@@ -131,26 +135,24 @@ div.p {
 }  
 
 div.main {
-   width: 50%;
-   height: 45%;
-   float: left;
+	width: 50%;
+	height: 45%;
+	float: left;
 }
 
 span.waterMark {
-   font-weight: bold;
-   opacity: 0.5;
-   position:relative;
-      z-index: 10; 
-      left: 290px;
-      top: -550px;
+	font-weight: bold;
+	opacity: 0.5;
+	position:relative;
+   	z-index: 10; 
+   	left: 290px;
+   	top: -550px;
 }
-
 #pr {
-   position: fixed;
-   z-index: 3;
-   left: 0px;
-   top: 300px;
-   font-weight: bold;
+	position: fixed;
+	z-index: 3;
+	top: 350px;
+	left: 0px;
 }
 </style>
 
@@ -172,11 +174,7 @@ for(int i=0; i<4; i++){
       break;
 }
 %>
-<%-- <div class="main"><img src="<%= strArr[1] %>" width="100%"></div>
-<div class="main"><img src="<%= strArr[2] %>" width="100%"></div>
-<div class="main"><img src="<%= strArr[3] %>" width="100%"></div> --%>
-      <%-- <img src="<%= strArr[0] %>"> --%>
-      <span class="waterMark"><%= waterMark %></span>
+		<span class="waterMark"><%= waterMark %></span>
    </div>
 </div>
 <% 

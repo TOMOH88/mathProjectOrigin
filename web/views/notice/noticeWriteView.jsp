@@ -50,11 +50,29 @@ $(function(){
       //저장버튼 클릭시 form 전송
       $("#save").click(function(){
           oEditors.getById["con1"].exec("UPDATE_CONTENTS_FIELD", []);
+          var title = $("#title").val();
+          var con1 = $("#con1").val();
+          
+          if(title == "" || title == null || title == "&nbsp;" || title == "<p>&nbsp;</p>" || title == "<br>"){
+    		  alert("제목을 입력해주세요.");
+    		  $("#title").focus();
+    		  return false;
+    	  }else if(con1 == "" || con1 == null || con1 == "&nbsp;" || con1 == "<p>&nbsp;</p>" || con1 == "<br>"){
+    		  alert("내용을 입력해주세요.");
+    		  oEditors.getById["con1"].exec("FOCUS");
+    		  return false;
+    	  }
+    	  
           $("#nform").submit();
-      });    
-      
-      $("#con1").css("display","none");
+      });
+      document.addEventListener("keydown", function(event) {
+    		if (event.keyCode === 13) {
+    			event.preventDefault();
+    			}
+    		}, true);
+  
 });
+
 </script>
 </head>
 <style>
@@ -111,8 +129,6 @@ ul {
 <input type="hidden" name="writer" value="<%=admin%>">
 <div class="container" align="center" id="d1">
 <input type="button" id="save" value="글 등록" class="btn btn-default btn-sm">
-			<input type="reset" value="작성취소" class="btn btn-default btn-sm">
-			<button onclick="javascript:location.href='/math/nslist'; return false;" class="btn btn-default btn-sm">목록가기</button>
 			</div>
 </form>
 </div>

@@ -19,14 +19,18 @@
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>강의글 상세페이지</title>
+<title>감성수학</title>
 <script type="text/javascript">
 	function courseUpdate(){
 		location.href="/math/cupview?no=" + <%=course.getCourseNo()%>;
 	}
 	
 	function courseDelete(){
-		location.href="/math/cdelete?no="+<%=course.getCourseNo()%>;
+		if(confirm("정말 삭제하시겠습니까?") == true){
+			location.href="/math/cdelete?no="+<%=course.getCourseNo()%>;
+		}else{
+			return;
+		}
 	}
 	
 	function courseList(){

@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>qna목록 관리자페이지</title>
+<title>감성수학</title>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <!--     Fonts and icons     -->
@@ -55,15 +55,18 @@ ul {
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">QnA</h4>
+                  <%if(admin != null){ %>
                   <p class="card-category"> 현재 게시글 수 : <%=allSearchListCount %></p>
+                  <%}%>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
+                  <%if(admin != null){ %>
                     <table class="table table-striped table-hover">
                       <thead class=" text-primary">
 	<tr class="table-primary">
 		<th>글번호</th>
-		<th>내용</th>
+		<th>제목</th>
 		<th>작성자</th>
 		<th>등록일자</th>
 	</tr>
@@ -155,6 +158,9 @@ ul {
                   </button>
 </div>
 </form>
+<%}else { %>
+<h1>로그인 해주세요.</h1>
+<%} %>
 </div>
 </div>
 </div>

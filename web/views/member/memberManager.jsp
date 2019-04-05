@@ -11,14 +11,14 @@
 	int allSearchListCount = ((Integer)request.getAttribute("allSearchListCount")).intValue();
 	String searchTitle = (String)request.getAttribute("searchTitle");
 	String fOption = (String)request.getAttribute("fOption");
-
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>회원관리 : 감성수학</title>
+<title>
+감성수학</title>
 <script type="text/javascript" src="/math/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	function levelChange(i) {

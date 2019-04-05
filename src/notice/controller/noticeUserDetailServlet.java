@@ -16,13 +16,13 @@ import notice.model.vo.Notice;
  * Servlet implementation class noticeUserDetailServlet
  */
 @WebServlet("/nudetail")
-public class noticeUserDetailServlet extends HttpServlet {
+public class NoticeUserDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public noticeUserDetailServlet() {
+    public NoticeUserDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

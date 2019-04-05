@@ -24,13 +24,13 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 		String query = "";
 		if(searchTitle != null) {
 		query = "select * "
-				+ "from (select rownum rnum, popup_no, popup_name, popup_link, popup_date, popup_enddate, popup_imagepath, popup_explan "
+				+ "from (select rownum rnum, popup_no, popup_name, popup_link, popup_x, popup_y, popup_width, popup_height, popup_date, popup_enddate, popup_imagepath, popup_imglink, popup_explan "
 				+ "from (select * from tb_popup where popup_name like ? order by popup_no desc)) "
 				+ "where rnum >= ? and rnum <= ?";
 		
 		}else {
 			query = "select * "
-					+ "from (select rownum rnum, popup_no, popup_name, popup_link, popup_date, popup_enddate, popup_imagepath, popup_explan "
+					+ "from (select rownum rnum, popup_no, popup_name, popup_link, popup_x, popup_y, popup_width, popup_height, popup_date, popup_enddate, popup_imagepath, popup_imglink, popup_explan "
 					+ "from (select * from tb_popup order by popup_no desc)) "
 					+ "where rnum >= ? and rnum <= ?";
 		}
@@ -55,9 +55,14 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 				popup.setPopupNo(rset.getInt("popup_no"));
 				popup.setPopupName(rset.getString("popup_name"));
 				popup.setPopupLink(rset.getString("popup_link"));
+				popup.setPopupX(rset.getInt("popup_x"));
+				popup.setPopupY(rset.getInt("popup_Y"));
+				popup.setPopupWidth(rset.getInt("popup_width"));
+				popup.setPopupHeight(rset.getInt("popup_height"));
 				popup.setPopupDate(rset.getDate("popup_date"));
 				popup.setPopupEndDate(rset.getDate("popup_enddate"));
 				popup.setPopupImagePath(rset.getString("popup_imagepath"));
+				popup.setPopupImgLink(rset.getString("popup_imgLink"));
 				popup.setPopupExplan(rset.getString("popup_explan"));
 				
 				pArr.add(popup);
@@ -75,8 +80,34 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 	}
 
 	public int updatePopup(Connection conn, Popup popup) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update tb_popup set popup_name = ?, popup_link = ?, popup_x = ?, popup_y = ?, popup_width = ?, popup_height = ?, popup_date = ?, popup_enddate = ?, popup_imagepath = ?, popup_imglink = ?, popup_explan = ? where popup_no = ? ";
+		
+		try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, popup.getPopupName());
+				pstmt.setString(2, popup.getPopupLink());
+				pstmt.setInt(3, popup.getPopupX());
+				pstmt.setInt(4, popup.getPopupY());
+				pstmt.setInt(5, popup.getPopupWidth());
+				pstmt.setInt(6, popup.getPopupHeight());
+				pstmt.setDate(7, popup.getPopupDate());
+				pstmt.setDate(8, popup.getPopupEndDate());
+				pstmt.setString(9, popup.getPopupImagePath());
+				pstmt.setString(10, popup.getPopupImgLink());
+				pstmt.setString(11, popup.getPopupExplan());
+				pstmt.setInt(12, popup.getPopupNo());
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	public int deletePopup(Connection conn, int popupNo) {
@@ -102,17 +133,22 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 	public int insertPopup(Connection conn, Popup popup) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "insert into tb_popup values (sq_popupno.nextval, ?, ?, ?, ?, ?, ?, 'admin01')";
+		String query = "insert into tb_popup values (sq_popupno.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'admin01')";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setString(1, popup.getPopupName());
-			pstmt.setString(2, popup.getPopupImagePath());
-			pstmt.setDate(3, popup.getPopupDate());
-			pstmt.setDate(4, popup.getPopupEndDate());
-			pstmt.setString(5, popup.getPopupImagePath());
-			pstmt.setString(6, popup.getPopupExplan());
+			pstmt.setString(2, popup.getPopupLink());
+			pstmt.setInt(3, popup.getPopupX());
+			pstmt.setInt(4, popup.getPopupY());
+			pstmt.setInt(5, popup.getPopupWidth());
+			pstmt.setInt(6, popup.getPopupHeight());
+			pstmt.setDate(7, popup.getPopupDate());
+			pstmt.setDate(8, popup.getPopupEndDate());
+			pstmt.setString(9, popup.getPopupImagePath());
+			pstmt.setString(10, popup.getPopupImgLink());
+			pstmt.setString(11, popup.getPopupExplan());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -184,7 +220,7 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 	}
 
 	public Popup selectPDetail(int popupNo, Connection conn) {
-		Popup popup = null;
+		Popup popup = new Popup();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -197,14 +233,19 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				popup = new Popup();
+	
 				
 				popup.setPopupNo(popupNo);
 				popup.setPopupName(rset.getString("popup_name"));
 				popup.setPopupLink(rset.getString("popup_link"));
+				popup.setPopupX(rset.getInt("popup_x"));
+				popup.setPopupY(rset.getInt("popup_y"));
+				popup.setPopupWidth(rset.getInt("popup_width"));
+				popup.setPopupHeight(rset.getInt("popup_height"));
 				popup.setPopupDate(rset.getDate("popup_date"));
 				popup.setPopupEndDate(rset.getDate("popup_enddate"));
 				popup.setPopupImagePath(rset.getString("popup_imagepath"));
+				popup.setPopupImgLink(rset.getString("popup_imglink"));
 				popup.setPopupExplan(rset.getString("popup_explan"));
 				
 			}
@@ -216,26 +257,6 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 		}
 		
 		return popup;
-	}
-
-	public int addReadCount(int popupNo, Connection conn) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = "update tb_popup set popup_count = popup_count + 1 where popup_no = ?";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, popupNo);
-			
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
 	}
 
 	public int popupBack(int popupNo, Connection conn) {
@@ -310,5 +331,47 @@ public ArrayList<Popup> listPopup(String searchTitle,int currentPage, int limit,
 		}
 		
 		return popupMin;
+	}
+
+	public ArrayList<Popup> popupMain(Connection conn) {
+		ArrayList<Popup> pArr = new ArrayList<Popup>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from tb_popup";
+		
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Popup popup = new Popup();
+				
+				popup.setPopupNo(rset.getInt("popup_no"));
+				popup.setPopupName(rset.getString("popup_name"));
+				popup.setPopupLink(rset.getString("popup_link"));
+				popup.setPopupX(rset.getInt("popup_x"));
+				popup.setPopupY(rset.getInt("popup_Y"));
+				popup.setPopupWidth(rset.getInt("popup_width"));
+				popup.setPopupHeight(rset.getInt("popup_height"));
+				popup.setPopupDate(rset.getDate("popup_date"));
+				popup.setPopupEndDate(rset.getDate("popup_enddate"));
+				popup.setPopupImagePath(rset.getString("popup_imagepath"));
+				popup.setPopupImgLink(rset.getString("popup_imglink"));
+				popup.setPopupExplan(rset.getString("popup_explan"));
+				
+				pArr.add(popup);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return pArr;
 	}
 }

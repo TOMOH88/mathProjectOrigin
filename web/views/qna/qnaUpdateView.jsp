@@ -50,14 +50,27 @@ $(function(){
       
       //저장버튼 클릭시 form 전송
       $("#save").click(function(){
-    	  if($("#title").val() == ""){
-    		  alert("제목을 입력해주세요.");
-    		  return;
-    	  }
-    	  
-   	 	 oEditors.getById["con1"].exec("UPDATE_CONTENTS_FIELD", []);
-         	$("#nform").submit();
-      });
+    	 	 oEditors.getById["con1"].exec("UPDATE_CONTENTS_FIELD", []);
+    	 	var title = $("#title").val();
+         var con1 = $("#con1").val();
+         
+         if(title == "" || title == null || title == "&nbsp;" || title == "<p>&nbsp;</p>" || title == "<br>"){
+   		  alert("제목을 입력해주세요.");
+   		  $("#title").focus();
+   		  return false;
+   	  }else if(con1 == "" || con1 == null || con1 == "&nbsp;" || con1 == "<p>&nbsp;</p>" || con1 == "<br>"){
+   		  alert("내용을 입력해주세요.");
+   		  oEditors.getById["con1"].exec("FOCUS");
+   		  return false;
+   	  }
+     	  
+          	$("#nform").submit();
+       });
+       document.addEventListener("keydown", function(event) {
+     		if (event.keyCode === 13) {
+     			event.preventDefault();
+     			}
+     		}, true);
       
 });
 </script>

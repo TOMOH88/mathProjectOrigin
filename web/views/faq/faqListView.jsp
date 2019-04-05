@@ -24,7 +24,7 @@
   <link href="/math/resources/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <meta charset="UTF-8">
-<title>faq목록페이지</title>
+<title>감성수학</title>
 <script type="text/javascript">
 function faqWrite(){
 	location.href = "/math/views/faq/faqWriteView.jsp";
@@ -61,10 +61,13 @@ ul {
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">FAQ</h4>
+                  <%if(admin != null){ %>
                   <p class="card-category"> 현재 게시글 수 : <%=allSearchListCount %></p>
+                  <%}%>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
+                  <%if(admin != null){ %>
                     <table class="table table-striped table-hover">
                       <thead class=" text-primary">
 	<tr class="table-primary">
@@ -156,6 +159,9 @@ ul {
 </form>
 <div align="center">
 <button id="faqBtn" onclick="faqWrite();" class="btn btn-primary btn-sm">글쓰기</button>
+<%}else { %>
+<h1>로그인 해주세요.</h1>
+<%} %>
 </div>
 </div>
 </div>

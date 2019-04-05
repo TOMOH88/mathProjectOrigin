@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>QnA 내글보기페이지</title>
+<title>감성수학</title>
 </head>
 <style>
 table{
@@ -44,8 +44,12 @@ ul {
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
+          <%if(userId != null){ %>
           <h1>QnA</h1>
             <h3 class="title text-center">목록보기</h3>
+            <%}else{ %>
+            <h1>로그인 해주세요</h1>
+            <%} %>
           </div>
         </div>
       </div>
@@ -54,10 +58,11 @@ ul {
    <div class="main main-raised">
     <div class="container">
       <div class="section text-center">
+      <%if(userId != null){ %>
       <table class="table table-striped table-hover">
 	<tr class="table-success">
 		<th>글번호</th>
-		<th>질문내용</th>
+		<th>제목</th>
 		<th>작성자</th>
 		<th>등록일자</th>
 	</tr>
@@ -130,6 +135,7 @@ function questionWrite(){
 	location.href="/math/views/qna/questionWriteView.jsp";
 }
 </script>
+<%} %>
 </div>
 </div>
 </div>

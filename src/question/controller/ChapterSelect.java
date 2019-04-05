@@ -2,6 +2,7 @@ package question.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
@@ -39,10 +40,11 @@ public class ChapterSelect extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String semester = request.getParameter("semester");
-		String book = request.getParameter("book");
+		String semester = URLDecoder.decode(request.getParameter("semester"),"utf-8");
+		String book = URLDecoder.decode(request.getParameter("book"),"utf-8");
 		ArrayList<Question> list = new QuestionService().chapterSelect(semester, book);
-
+		
+		System.out.println(list.size());
 		// 전송할 json 객체 준비
 		JSONObject sendJson = new JSONObject();
 		// 리스트 객체들을 저장할 json 배열 객체 준비
