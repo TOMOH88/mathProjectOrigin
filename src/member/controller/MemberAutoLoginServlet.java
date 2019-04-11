@@ -19,57 +19,74 @@ import member.model.service.LoginManager;
 @WebServlet("/mautologin")
 public class MemberAutoLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public MemberAutoLoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public MemberAutoLoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Cookie[] cookies = request.getCookies();
 		String path = "main.jsp";
 		LoginManager lm = new LoginManager();
-		HttpSession session =request.getSession();
+		HttpSession session = request.getSession();
 		RequestDispatcher view = null;
-		if(cookies != null) {
-			for(Cookie cookie : cookies) {
-				String userid = cookie.getName();
-				if(userid.equals("userId")) {
-					if(lm.isUsing(cookie.getValue())) {
-						cookie.setMaxAge(0);
-						response.addCookie(cookie);	
-						path="views/member/memberError.jsp";
-						request.setAttribute("message", "이미 아이디가 사용중입니다.");
-						break;
-					}else {
-						lm.setSession(session, cookie.getValue());
-						path= "main.jsp";
-						break;
+		String userId = (String) session.getAttribute("userId");
+		if (lm.isUsing(userId)) {
+			lm.removeSession(userId);
+			if (cookies != null) {
+				for (Cookie cookie : cookies) {
+					String userid = cookie.getName();
+					if (userid.equals("userId")) {
+						if (lm.isUsing(cookie.getValue())) {
+							lm.setSession(session, cookie.getValue());
+							path = "main.jsp";
+							break;
+						}
+					} else {
+						path = "main.jsp";
 					}
-					
-					
-					
-				}else {
-					path="main.jsp";
 				}
+			} else {
+				path = "main.jsp";
 			}
-		}else {
-			path="main.jsp";
+			
+		} else {
+			if (cookies != null) {
+				for (Cookie cookie : cookies) {
+					String userid = cookie.getName();
+					if (userid.equals("userId")) {
+						if (lm.isUsing(cookie.getValue())) {
+							lm.setSession(session, cookie.getValue());
+							path = "main.jsp";
+							break;
+						}
+					} else {
+						path = "main.jsp";
+					}
+				}
+			} else {
+				path = "main.jsp";
+			}
 		}
 		view = request.getRequestDispatcher(path);
 		view.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

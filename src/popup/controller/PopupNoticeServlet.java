@@ -63,7 +63,6 @@ public class PopupNoticeServlet extends HttpServlet {
 			jsonArr.add(userJson);
 		}
 		sendJson.put("list", jsonArr);
-		System.out.println("sendJson :" + sendJson.toJSONString());
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println(sendJson.toJSONString());

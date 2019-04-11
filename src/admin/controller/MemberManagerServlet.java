@@ -76,7 +76,7 @@ public class MemberManagerServlet extends HttpServlet {
 			request.setAttribute("searchTitle", searchTitle);
 			view.forward(request, response);
 		}else {
-			view = request.getRequestDispatcher("views/member/adminError.jsp");
+			view = request.getRequestDispatcher("views/member/adminMemberManagerError.jsp");
 			request.setAttribute("message","모든 회원 정보 보기 실패");
 			view.forward(request, response);
 		}
