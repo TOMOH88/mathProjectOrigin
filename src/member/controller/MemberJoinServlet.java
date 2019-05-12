@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.model.service.MemberService;
+import member.model.service.SHA256Util;
 import member.model.vo.Member;
 
 /**
@@ -33,8 +34,11 @@ public class MemberJoinServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		Member member = new Member();
-		member.setUserId(request.getParameter("email2"));
-		member.setUserPwd(request.getParameter("password2"));
+		member.setUserId(request.getParameter("email2"));		
+		String salt = SHA256Util.generateSalt();
+        String newPassword = SHA256Util.getEncrypt(request.getParameter("password2"), salt);
+        member.setUserPwd(newPassword);
+        member.setSalt(salt);
 		member.setUserName(request.getParameter("username"));
 		member.setPhone(request.getParameter("phone"));
 		int result = new MemberService().insertMember(member);

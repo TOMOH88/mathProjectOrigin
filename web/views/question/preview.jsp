@@ -76,7 +76,7 @@
     background: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     
-    background-image: url("/math/resources/logo/191316695.png");
+    background-image: url("/math/resources/logo/191316695.jpg");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: 150px;

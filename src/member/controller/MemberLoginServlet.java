@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import member.model.service.LoginManager;
 import member.model.service.MemberService;
+import member.model.service.SHA256Util;
 
 /**
  * Servlet implementation class MemberLoginServlet
@@ -39,7 +40,12 @@ public class MemberLoginServlet extends HttpServlet {
 		  request.setCharacterEncoding("utf-8");
 			HttpSession session = request.getSession();
 			String userId = request.getParameter("email");
-			String userPwd = request.getParameter("password");
+			
+			 String memberSalt = new MemberService().getSaltById(userId);
+		     String inputPassword = request.getParameter("password");
+		     String newPassword = SHA256Util.getEncrypt(inputPassword, memberSalt);
+
+			
 			String keeplogin = request.getParameter("keeplogin");
 			System.out.println(keeplogin);
 			LoginManager loginManager = LoginManager.getInstance();
@@ -51,11 +57,11 @@ public class MemberLoginServlet extends HttpServlet {
 				view.forward(request, response);
 			}
 			
-			if (loginManager.isValid(userId, userPwd)) {
+			if (loginManager.isValid(userId, newPassword)) {
 				loginManager.removeSession(userId);
 			}
 			
-			if(!(loginManager.isValid(userId, userPwd))) {
+			if(!(loginManager.isValid(userId, newPassword))) {
 				view = request.getRequestDispatcher("/views/member/memberError.jsp");
 				request.setAttribute("message", "비밀번호를 확인해주세요!");
 				view.forward(request, response);
@@ -80,81 +86,6 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("userId", userId);
 			loginManager.setSession(session, userId);
 			response.sendRedirect("/math/main.jsp");
-/*		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		String userId = request.getParameter("email");
-		String userPwd = request.getParameter("password");
-		String keeplogin = request.getParameter("keeplogin");
-		System.out.println(keeplogin);
-		LoginManager loginManager = LoginManager.getInstance();
-		RequestDispatcher view = null;
-		int ckdId = new MemberService().checkId(userId);
-		if (ckdId < 1) {
-			view = request.getRequestDispatcher("/views/member/memberError.jsp");
-			request.setAttribute("message", "회원 가입후 이용해주세요!");
-			view.forward(request, response);
-		}else{
-			if (loginManager.isValid(userId, userPwd)) {
-				response.setContentType("text/html; charset=utf-8");
-				loginManager.printloginUsers();
-				if (loginManager.isUsing(userId)) {
-					loginManager.removeSession(userId);
-					//session.setAttribute("userId", userId);
-					if (keeplogin != null && userId != null) {
-						if (keeplogin.equals("yes")) {
-							Cookie cookie = new Cookie("userId", userId);
-							cookie.setMaxAge(60 * 60 * 24 * 14);
-							response.addCookie(cookie);
-							System.out.println("쿠키아이디 생성" + cookie.getValue());
-						} else if (keeplogin.equals("no")) {
-							Cookie[] cookies = request.getCookies();
-							if (cookies != null) {
-								for (Cookie cookie : cookies) {
-									if (cookie.getName().equals("userId")) {
-										cookie.setMaxAge(0);
-										response.addCookie(cookie);
-										System.out.println("쿠키삭제");
-									}
-								}
-							}
-						}
-						loginManager.setSession(session, userId);
-						response.sendRedirect("/math/main.jsp");	
-					} else {
-						view = request.getRequestDispatcher("/views/member/memberError.jsp");
-						request.setAttribute("message", "비밀번호를 확인해주세요!");
-						view.forward(request, response);
-					}
-				}else {
-					if (keeplogin != null && userId != null) {
-						if (keeplogin.equals("yes")) {
-							Cookie cookie = new Cookie("userId", userId);
-							cookie.setMaxAge(60 * 60 * 24 * 14);
-							response.addCookie(cookie);
-							System.out.println("쿠키아이디 생성" + cookie.getValue());
-						} else if (keeplogin.equals("no")) {
-							Cookie[] cookies = request.getCookies();
-							if (cookies != null) {
-								for (Cookie cookie : cookies) {
-									if (cookie.getName().equals("userId")) {
-										cookie.setMaxAge(0);
-										response.addCookie(cookie);
-										System.out.println("쿠키삭제");
-									}
-								}
-							}
-						}
-						loginManager.setSession(session, userId);
-						response.sendRedirect("/math/main.jsp");	
-					}
-				}
-			}else {
-
-				view = request.getRequestDispatcher("/views/member/memberError.jsp");
-				request.setAttribute("message", "비밀번호를 확인해주세요!");
-				view.forward(request, response);
-			}
-		}*/
 	}
 
 	/**

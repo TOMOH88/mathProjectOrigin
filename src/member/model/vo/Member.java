@@ -13,11 +13,23 @@ public class Member implements Serializable{
 	private Date registDate;
 	private Date lastModified;
 	private String memberLevel;
+	private String salt;
 	
 	public Member() {}
+	
+	public Member(String userId, String userName, String phone, Date registDate, Date lastModified,
+			String memberLevel) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.phone = phone;
+		this.registDate = registDate;
+		this.lastModified = lastModified;
+		this.memberLevel = memberLevel;
+	}
 
 	public Member(String userId, String userPwd, String userName, String phone, Date registDate, Date lastModified,
-			String memberLevel) {
+			String memberLevel, String salt) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -26,6 +38,7 @@ public class Member implements Serializable{
 		this.registDate = registDate;
 		this.lastModified = lastModified;
 		this.memberLevel = memberLevel;
+		this.salt = salt;
 	}
 
 	public String getUserId() {
@@ -80,8 +93,16 @@ public class Member implements Serializable{
 		return memberLevel;
 	}
 
-	public void setmemberLevel(String memberLevel) {
+	public void setMemberLevel(String memberLevel) {
 		this.memberLevel = memberLevel;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	public static long getSerialversionuid() {
@@ -91,8 +112,10 @@ public class Member implements Serializable{
 	@Override
 	public String toString() {
 		return userId + ", " + userPwd + ", " + userName + ", " + phone + ", " + registDate + ", " + lastModified + ", "
-				+ memberLevel;
+				+ memberLevel + ", " + salt;
 	}
+
+
 	
 	
 }

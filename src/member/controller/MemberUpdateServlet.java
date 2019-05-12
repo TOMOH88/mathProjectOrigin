@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.model.service.MemberService;
+import member.model.service.SHA256Util;
 import member.model.vo.Member;
 
 /**
@@ -34,7 +35,10 @@ public class MemberUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		Member member = new Member();
 		member.setUserId(request.getParameter("userid"));
-		member.setUserPwd(request.getParameter("password"));
+		String salt = SHA256Util.generateSalt();
+        String newPassword = SHA256Util.getEncrypt(request.getParameter("password"), salt);
+        member.setUserPwd(newPassword);
+        member.setSalt(salt);
 		member.setPhone(request.getParameter("phone"));
 		member.setUserName(request.getParameter("username"));
 		System.out.println(member);
