@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import member.model.service.LoginManager;
 import member.model.service.MemberService;
-import member.model.service.SHA256Util;
 
 /**
  * Servlet implementation class MemberLoginServlet

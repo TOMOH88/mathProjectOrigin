@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.model.service.MemberService;
-import member.model.service.SHA256Util;
-import member.model.vo.Member;
+
 
 /**
  * Servlet implementation class MemberJoinServlet
